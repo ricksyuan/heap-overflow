@@ -26,11 +26,7 @@ export default class SessionForm extends React.Component {
         break;
       default:
         // TODO: How to implement a default
-<<<<<<< HEAD
         console.log('ERROR: Default case encountered. Neither login or signup reached');
-=======
-        console.log("ERROR: Default case encountered. Neither login or signup reached");
->>>>>>> a22841df667f58e82a03d91dc255bec5792ba468
         break;
     }
   }
