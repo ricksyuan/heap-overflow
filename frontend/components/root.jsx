@@ -1,7 +1,7 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
-import App from './app';
+import App from './app-grid';
 
 // Root sets up the provider and router.
 const Root = ({ store }) => (

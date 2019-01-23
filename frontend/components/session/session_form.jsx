@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default class SessionForm extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {email: '', password: ''};
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -26,7 +26,7 @@ export default class SessionForm extends React.Component {
         break;
       default:
         // TODO: How to implement a default
-        console.log("ERROR: Default case encountered. Neither login or signup reached");
+        console.log('ERROR: Default case encountered. Neither login or signup reached');
         break;
     }
   }
@@ -37,35 +37,35 @@ export default class SessionForm extends React.Component {
 
   render() {
     return (
-      <div className='session'>
-        <form className='session-form' onSubmit={this.handleSubmit}>
+      <div className="session">
+        <form className="session-form" onSubmit={this.handleSubmit}>
           <label>Display Name</label>
           <input
-            className='name'
-            type='text'
-            placeholder='J. Doe'
+            className="name"
+            type="text"
+            placeholder="J. Doe"
             value={this.state.email}
             onChange={this.handleChange}
           />
 
           <label>Email (required, but never shown)</label>
           <input
-            className='text'
-            type='text'
-            placeholder='you@example.org'
+            className="text"
+            type="text"
+            placeholder="you@example.org"
             value={this.state.email}
             onChange={this.handleChange}
           />
           <label>Password</label>
           <input
-            className='password'
-            type='password'
-            placeholder='********'
+            className="password"
+            type="password"
+            placeholder="********"
             value={this.state.password}
             onChange={this.handleChange}
           />
           <input
-            type='submit'
+            type="submit"
             value={this.props.type}
           />
         </form>

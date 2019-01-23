@@ -1,0 +1,56 @@
+/* Layout using Grid */
+
+$so-orange-color: #f48024; // TEMP: CONFIRMED from element inspector
+$so-header-off-white-color: #fafafb; // TEMP: CONFIRMED from element inspector
+$so-top-border-width: 3px;
+$so-nav-unselected-color: #535a60; // TEMP: CONFIRMED from element inspector
+$so-nav-selected-color: #0C0D0E; // TEMP: TO BE CONFIRMED
+
+.page {
+  display: grid;
+  grid-template-rows: 55px auto 100px; // TODO: Update 100px for footer
+  grid-template-columns: 164px auto;
+  // header header spans top of grid.
+  // nav bar is to left of content.
+  grid-template-areas: "header header" "nav content" "footer footer";
+}
+
+.header {
+  grid-area: header;
+  border-top: $so-top-border-width solid $so-orange-color;
+  height: 50px;
+  background-color: $so-header-off-white-color;
+  box-sizing: border-box;
+  box-shadow: 0 1px 0 rgba(12,13,14,0.05), 0 1px 6px rgba(59,64,69,0.05); // TEMP: box-shadow cubic-bezier(.165, .84, .44, 1) .25s  
+  position: sticky;
+  top: 0;
+  min-height: 3.5rem; //TODO: Change
+}
+
+.nav {
+  grid-area: nav;
+  background-color: gray; // TODO: FOR TESTING ONLY (CHANGE TO WHITE)
+  border: 2px solid green; // TODO: FOR TESTING ONLY
+  & > div {
+    position: sticky;
+    top: 0;
+  }
+}
+
+.content {
+  grid-area: content;
+  min-height: 1000px;
+  background-color: lightgray; // TODO: FOR TESTING ONLY (CHANGE TO WHITE)
+  border: 2px solid red; // TODO: FOR TESTING ONLY
+  & .sidebar {
+    display: grid;
+    grid-template: 
+
+    border: 2px solid brown;
+  }
+}
+
+.footer {
+  grid-area: footer;
+  border: 3px solid purple;
+}
