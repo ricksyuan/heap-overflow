@@ -3,11 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default class SessionForm extends React.Component {
   constructor(props) {
-<<<<<<< HEAD
     super(props);
-=======
-    super(props)
->>>>>>> a22841df667f58e82a03d91dc255bec5792ba468
     this.state = {email: '', password: ''};
     this.handleSubmit = this.handleSubmit.bind(this);
   }
