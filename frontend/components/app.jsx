@@ -15,12 +15,23 @@ import Nav from './nav/nav_container.jsx';
 // Make <h1>Heap Overflow</h1> a clickable image with logo
 const App = () => (
   <div>
-    <div className='nav'>
+    <header className='nav'>
       <Route path='/' component={Nav}/>
-    </div>
-    <div>
+    </header>
+    <aside>
+      <h2>Sidebar</h2>
+      <ul>
+        <li>Lorem ipsum dolor,</li>
+        <li>sit amet consectetur adipisicing elit.</li>
+        <li>Veniam natus mollitia sunt veritatis atque a fugiat sed sit voluptas,</li>
+        <li>inventore impedit. Possimus aliquid provident vel fugiat repellat</li>
+        <li>assumenda ratione temporibus?</li>
+      </ul>
+    </aside>
+    <section>
+      <h2>Main Content</h2>
       Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis quasi expedita sapiente dolorem accusamus! Molestias laborum error voluptates eum repellendus, quod esse, ullam obcaecati a eveniet nam eligendi hic dolorum!
-    </div>
+    </section>
     <Switch>
 
     </Switch>
