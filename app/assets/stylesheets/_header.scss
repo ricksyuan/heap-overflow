@@ -2,7 +2,7 @@
 .header-logo {
   display: flex; // TODO: Are alternate solution then nesting flexes?
   & p {
-    border: 1px solid red;
+    border: 1px solid lightgray;
   }
 
   &:hover {

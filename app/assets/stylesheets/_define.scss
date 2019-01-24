@@ -16,5 +16,5 @@ $session-form-container-border-radius: 5px;
 
 // Use this mixin for development purposes for later removal
 @mixin set-dev-borders( $color: lightgray, $width: 5px) {   
-  border: $width solid $color;
+  // border: $width solid $color; // TOGGLE COMMENT TO DISABLE/ENABLE
 }
