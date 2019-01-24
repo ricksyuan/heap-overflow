@@ -1,11 +1,5 @@
 /* Layout using CSS Grid */
 
-$so-header-top-border-width: 3px;
-$so-header-height: 50px;
-$so-header-off-white-color: #fafafb; // TEMP: CONFIRMED from element inspector
-$so-left-nav-unselected-color: #535a60; // TEMP: CONFIRMED from element inspector
-$so-left-nav-selected-color: #0C0D0E; // TEMP: TO BE CONFIRMED
-
 // Inheritance for extension
 %top-bar-item {
   // Set properties to be extended in all header items.
@@ -51,7 +45,7 @@ $so-left-nav-selected-color: #0C0D0E; // TEMP: TO BE CONFIRMED
 
   & > input {
     background-color: #fff;
-    border: 1px solid #bbc0c4; // TEMP: from inspector
+    border: 1px solid $so-searchbar-border-color; // TEMP: from inspector
     border-radius: 3px;
     padding: 8px 9px;
     margin: 5px;

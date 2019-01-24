@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
       login!(@user)
       render "api/users/show"
     else
-      # Check if username already exists
+      # Check if email already exists
       render json: @user.errors.full_messages, status: 422            
     end
   end
@@ -52,6 +52,6 @@ class Api::UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username, :password, :email)
+    params.require(:user).permit(:email, :password, :display_name)
   end
 end

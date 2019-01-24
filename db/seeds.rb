@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.delete_all
-User.create!(username: "demouser", email: "demo@example.com", password: "password", reputation: 0)
-User.create!(username: "testuser", email: "test@example.com", password: "password", reputation: 0)
-User.create!(username: "rick", email: "rick@example.com", password: "password", reputation: 0)
-User.create!(username: "a", email: "a@a.com", password: "password", reputation: 0)
+User.create!(display_name: "demouser", email: "demo@example.com", password: "password", reputation: 0)
+User.create!(display_name: "testuser", email: "test@example.com", password: "password", reputation: 0)
+User.create!(display_name: "rick", email: "rick@example.com", password: "password", reputation: 0)
+User.create!(display_name: "Mr. T", email: "t@example.com", password: "password", reputation: 0)

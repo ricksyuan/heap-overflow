@@ -6,22 +6,22 @@ import LoginContainer from './session/login_container';
 import SignupContainer from './session/signup_container';
 
 const App = () => (
-  <div class="page">
-    <section class="item-a-header-logo">
-      <div class="header-logo">
+  <div className="page">
+    <section className="item-a-header-logo">
+      <div className="header-logo">
         <p>Heap Overflow Logo</p>
       </div>
     </section>
-    <section class="item-b-header-search-bar">
+    <section className="item-b-header-search-bar">
       <input placeholder="Search..." />
     </section>
 
-    <ul class="item-c-header-buttons">
+    <ul className="item-c-header-buttons">
       <Link className="header-login-link" to="/login">Log In</Link>
       <Link className="primary-btn header-signup-link " to="/signup">Sign Up</Link>
     </ul>
       
-    <section class="item-d-left-nav-bar">
+    <section className="item-d-left-nav-bar">
       <ul>
         <li><Link className="left-nav-bar-link" to="/">Home</Link></li>
         <li><Link className="left-nav-bar-link" to="/">PUBLIC</Link></li>
@@ -32,18 +32,18 @@ const App = () => (
     </section>
     { 
       true ? ( // TODO: make dynamic
-    <main class="item-ef-session">
-      <div class="session-form-container">
+    <main className="item-ef-session">
+      <div className="session-form-container">
       <AuthRoute exact path="/login" component={LoginContainer} />
       <AuthRoute exact path="/signup" component={SignupContainer} />      
       </div>      
     </main>
       ) : (
         <>
-          <main class="item-e-questions">          
+          <main className="item-e-questions">          
             Questions
           </main>
-          <aside class="item-f-sidebar">
+          <aside className="item-f-sidebar">
             Right Sidebar inside content
           </aside>
         </>

@@ -30,7 +30,7 @@ export default class SessionForm extends React.Component {
     }
   }
 
-  handleChange(field) {
+  handleChange(field) {    
     return (e) => this.setState({[field]: e.currentTarget.value});
   }
 
@@ -50,7 +50,7 @@ export default class SessionForm extends React.Component {
                   onChange={this.handleChange('displayName')}/>
               </>
           }
-          <label>Email{this.props.emailTag}</label>
+          <label>Email{this.props.type === 'Sign Up' && " (required, but never shown)"}</label>
           <input
             className="session-form-input"
             type="email"
