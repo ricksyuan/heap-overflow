@@ -1,17 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 export default class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {email: '', password: ''};
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     switch (this.props.type) {
-      case 'Log In':
+      case 'Log in':
         this.props.login({
           email: this.state.email,
           password: this.state.password,
@@ -19,14 +19,13 @@ export default class SessionForm extends React.Component {
         break;
       case 'Sign up':
         this.props.signup({
-          name: this.state.name,
+          name: this.state.displayName,
           email: this.state.email,
           password: this.state.password,
         });
         break;
       default:
         // TODO: How to implement a default
-        console.log('ERROR: Default case encountered. Neither login or signup reached');
         break;
     }
   }
@@ -37,39 +36,43 @@ export default class SessionForm extends React.Component {
 
   render() {
     return (
-      <div className="session">
+      <>
         <form className="session-form" onSubmit={this.handleSubmit}>
-          <label>Display Name</label>
+          {
+            this.props.type === 'Sign Up' &&
+              <>
+                <label>Display Name</label>
+                <input
+                  className="session-form-input"
+                  type="text"
+                  placeholder="J. Doe"
+                  value={this.state.displayName}
+                  onChange={this.handleChange('displayName')}/>
+              </>
+          }
+          <label>Email{this.props.emailTag}</label>
           <input
-            className="name"
-            type="text"
-            placeholder="J. Doe"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-
-          <label>Email (required, but never shown)</label>
-          <input
-            className="text"
-            type="text"
+            className="session-form-input"
+            type="email"
             placeholder="you@example.org"
             value={this.state.email}
-            onChange={this.handleChange}
+            onChange={this.handleChange('email')}
           />
           <label>Password</label>
           <input
-            className="password"
+            className="session-form-input"
             type="password"
             placeholder="********"
             value={this.state.password}
-            onChange={this.handleChange}
+            onChange={this.handleChange('password')}
           />
           <input
+            className="primary-btn session-form-submit-btn"
             type="submit"
             value={this.props.type}
           />
         </form>
-      </div>      
+      </>      
     );
   }
 }

@@ -3,7 +3,7 @@ import SessionForm from './session_form';
 import { login } from '../../actions/session_actions';
 
 const mapStateToProps = (state) => ({
-  type: 'Log In',
+  type: 'Log in',
 });
 
 const mapDispatchToProps = (dispatch) => ({

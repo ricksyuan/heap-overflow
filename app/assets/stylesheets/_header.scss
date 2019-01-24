@@ -1,0 +1,32 @@
+
+.header-logo {
+  display: flex; // TODO: Are alternate solution then nesting flexes?
+  & p {
+    border: 1px solid red;
+  }
+
+  &:hover {
+    background-color: rgba(239,240,241,0.75);
+  }
+}
+
+.header-signup-link {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.header-login-link {
+  color: #07C;
+  padding: 8px 11px;
+  // Center vertically
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    color: #005999; //TEMP: from inspector
+    background-color: rgba(0,119,204,0.1);//TEMP: from inspector
+    border-radius: 3px;
+  }
+}
+
