@@ -9,12 +9,12 @@ $so-placeholder-color: #bbc0c4;
 $so-searchbar-border-color: #bbc0c4;
 $so-left-nav-bar-text-normal-color: #535a60; // TEMP: CONFIRMED from element inspector
 $so-left-nav-bar-text-hover-color: #0C0D0E; // TEMP: TO BE CONFIRMED
-$session-form-container-border-color: #e4e6e8;
-$session-form-container-border-radius: 5px;
+$so-session-form-container-border-color: #e4e6e8;
+$so-session-form-container-border-radius: 5px;
 
 // define mixins
 
 // Use this mixin for development purposes for later removal
 @mixin set-dev-borders( $color: lightgray, $width: 5px) {   
-  // border: $width solid $color; // TOGGLE COMMENT TO DISABLE/ENABLE
+  border: $width solid $color; // TOGGLE COMMENT TO DISABLE/ENABLE
 }

@@ -3,7 +3,8 @@ import React from 'react';
 export default class SessionForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {email: '', password: ''};
+    
+    this.state = {displayName: '', email: '', password: ''};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -19,13 +20,14 @@ export default class SessionForm extends React.Component {
         break;
       case 'Sign up':
         this.props.signup({
-          name: this.state.displayName,
+          display_name: this.state.displayName,
           email: this.state.email,
           password: this.state.password,
         });
         break;
       default:
         // TODO: How to implement a default
+        return null;        
         break;
     }
   }
@@ -67,7 +69,7 @@ export default class SessionForm extends React.Component {
             onChange={this.handleChange('password')}
           />
           <input
-            className="primary-btn session-form-submit-btn"
+            className="session-form-submit-btn hoverable-primary-btn"
             type="submit"
             value={this.props.type}
           />

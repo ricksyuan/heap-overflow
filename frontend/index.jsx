@@ -1,4 +1,4 @@
-// QUESTION: rename to heap_overflow.jsx ?
+// TODO: rename to heap_overflow.jsx ?
 
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -11,7 +11,10 @@ document.addEventListener("DOMContentLoaded", () => {
   let store;
   if (window.currentUser) {
     const preloadedState = {
-      session: { currentUser: window.currentUser }
+      entities: {
+        users: { [window.currentUser.id]: window.currentUser }
+      },
+      session: { id: window.currentUser.id }
     };
     store = configureStore(preloadedState);
     delete window.currentUser;
@@ -31,6 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.logout = logout; // TEST: dispatch(login({email: 'demo@example.com', password: 'password'}))
   window.signup = signup;
   // TESTING END
-  const root = document.getElementById('root');
+  const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);
 });

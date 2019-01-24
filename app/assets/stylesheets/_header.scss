@@ -10,7 +10,12 @@
   }
 }
 
-.header-signup-link {
+.header-signup-btn {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.header-logout-btn {
   padding-top: 8px;
   padding-bottom: 8px;
 }
@@ -18,6 +23,7 @@
 .header-login-link {
   color: #07C;
   padding: 8px 11px;
+  margin-right: 3px;
   // Center vertically
   display: flex;
   justify-content: center;
