@@ -17,6 +17,9 @@
 }
 
 .page {
+  max-width: 900px;
+  background-color: white;
+  margin: 0 auto;
   // Define grid
   display: grid; 
   grid-template-rows: $so-header-height auto auto;

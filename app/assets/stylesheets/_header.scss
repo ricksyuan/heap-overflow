@@ -1,3 +1,13 @@
+.header {
+  border-top: 
+    $so-header-top-border-width
+    solid
+    $so-orange-color;
+  background-color: $so-header-off-white-color;
+  box-shadow: 0 1px 0 rgba(12,13,14,0.05), 0 1px 6px rgba(59,64,69,0.05); // TEMP: box-shadow cubic-bezier(.165, .84, .44, 1) .25s  
+
+}
+
 .header-logo {
 
   &:hover {

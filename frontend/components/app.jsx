@@ -8,6 +8,8 @@ import SignupContainer from './session/signup_container';
 
 const App = () => {
   return (
+
+    
     <div className="page">
       <Header />
       <section className="item-d-left-nav-bar">
