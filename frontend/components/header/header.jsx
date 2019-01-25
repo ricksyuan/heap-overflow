@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UserDash from './user_dash';
 
 const Header = (props) => {
-  debugger
   return (
     <>
       <section className="item-a-header-logo">
         <div className="header-logo">
-          <img src={window.headerLogo}/>
+          <img className="header-logo-img" src={window.headerLogo}/>
         </div>
       </section>
       <section className="item-b-header-search-bar">
@@ -17,7 +17,7 @@ const Header = (props) => {
         {
           props.currentUser ? (
             <>
-              <div>Hi, {props.currentUser.displayName}</div>
+              <UserDash currentUser={props.currentUser} />
               <button className="header-logout-btn hoverable-primary-btn" onClick={props.logout}>Logout</button>
             </>
           ) : (

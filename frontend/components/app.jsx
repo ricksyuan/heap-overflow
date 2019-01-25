@@ -19,13 +19,17 @@ const App = () => {
           <li><Link className="left-nav-bar-link" to="/">Users</Link></li>        
         </ul>
       </section>
-      // { 
+      { 
         true ? ( // TODO: make dynamic
       <main className="item-ef-session">
-        <div className="session-form-container">
+        <div className="session-page">
           <AuthRoute exact path="/login" component={LoginContainer} />
           <AuthRoute exact path="/signup" component={SignupContainer} />      
-        </div>      
+        </div>
+        {/* <div className="user-show-page"/>
+          <Route exact path={`/users/$
+          {current}`} component={LoginContainer} />
+        </div> */}
       </main>
         ) : (
           <>

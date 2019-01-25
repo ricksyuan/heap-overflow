@@ -5,6 +5,7 @@ import * as SessionAPIUtil from '../utils/session_api_util';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
+export const CLEAR_SESSION_ERRORS = 'CLEAR_SESSION_ERRORS';
 
 const receiveCurrentUser = (currentUser) => ({ // IMPLICIT RETURN
   type: RECEIVE_CURRENT_USER,
@@ -16,8 +17,12 @@ const logoutCurrentUser = () => ({ // IMPLICIT RETURN
 });
 
 const receiveErrors = (errors) => ({ // IMPLICIT RETURN
-  type: LOGOUT_CURRENT_USER,
+  type: RECEIVE_SESSION_ERRORS,
   errors: errors,
+});
+
+export const clearErrors = () => ({ // IMPLICIT RETURN
+  type: CLEAR_SESSION_ERRORS,
 });
 
 // TODO: USE THESE THUNKS IN COMPONENTS
@@ -41,7 +46,9 @@ export const signup = formUser => dispatch => (
   SessionAPIUtil.postUser(formUser)
     .then(
       newUser => dispatch(receiveCurrentUser(newUser)),
-      err => dispatch(receiveErrors(err.responseJSON))
+      err => {
+        return dispatch(receiveErrors(err.responseJSON));
+      }
     )
 );
 

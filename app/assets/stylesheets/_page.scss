@@ -12,7 +12,7 @@
 
   // Allow floating header.
   position: sticky;
-  top: 0;  
+  top: 0;
   z-index: 10; // Should go over content that scrolls beneath.
 }
 
@@ -37,13 +37,14 @@
 
 .item-b-header-search-bar {
   @extend %top-bar-item;
-  @include set-dev-borders(green);  
+  @include set-dev-borders(green);
   grid-row-start: 1;
   grid-column-start: 2;
   display: flex;
   align-content: center;
 
   & > input {
+    flex-grow: 1; // defaults to 0, which causes input not to ::-ms-expand;
     background-color: #fff;
     border: 1px solid $so-searchbar-border-color; // TEMP: from inspector
     border-radius: 3px;
@@ -54,12 +55,12 @@
 
 .item-c-header-buttons {
   @extend %top-bar-item;
-  @include set-dev-borders(brown);    
+  @include set-dev-borders(brown);
   grid-row-start: 1;
   grid-column-start: 3;
   display: flex;
-  padding: 2px;
-  justify-content: flex-end
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .item-d-left-nav-bar {
@@ -67,7 +68,7 @@
   grid-row-start: 2;
   grid-column-start: 1;
   top: $so-header-height; // FIXME: WHY DOES THIS OVERLAP?
-  position: fixed;
+  position: sticky;
   top: 50;
   z-index: 100; // Float above any content that scrolls left
 }
@@ -80,6 +81,7 @@
   z-index: 200;
 
   padding: 20px; // So that session form does not hit inside edges
+
 }
 
 .item-e-questions {

@@ -1,4 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+// For guest log in
+const DEMO_EMAIL = "demo@example.com";
+const DEMO_PASSWORD = "password";
 
 export default class SessionForm extends React.Component {
   constructor(props) {
@@ -9,9 +14,13 @@ export default class SessionForm extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.clearErrors();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    switch (this.props.type) {
+    switch (this.props.buttonText) {
       case 'Log in':
         this.props.login({
           email: this.state.email,
@@ -32,16 +41,29 @@ export default class SessionForm extends React.Component {
     }
   }
 
-  handleChange(field) {    
+  handleChange(field) {
     return (e) => this.setState({[field]: e.currentTarget.value});
   }
+
+  renderErrors() {
+    return (
+      <ul className="session-error-ul">
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
 
   render() {
     return (
       <>
         <form className="session-form" onSubmit={this.handleSubmit}>
           {
-            this.props.type === 'Sign Up' &&
+            this.props.buttonText === 'Sign up' &&
               <>
                 <label>Display Name</label>
                 <input
@@ -52,7 +74,7 @@ export default class SessionForm extends React.Component {
                   onChange={this.handleChange('displayName')}/>
               </>
           }
-          <label>Email{this.props.type === 'Sign Up' && " (required, but never shown)"}</label>
+          <label>Email{this.props.buttonText === 'Sign up' && " (required, but never shown)"}</label>
           <input
             className="session-form-input"
             type="email"
@@ -68,12 +90,38 @@ export default class SessionForm extends React.Component {
             value={this.state.password}
             onChange={this.handleChange('password')}
           />
+          {this.renderErrors()}
           <input
             className="session-form-submit-btn hoverable-primary-btn"
             type="submit"
-            value={this.props.type}
+            value={this.props.buttonText}
           />
         </form>
+
+        <div className="session-form-alternates">
+          <p>
+            {
+              this.props.buttonText === "Sign up" ? (
+                <>
+                  Already have an account? <Link className="session-alt-link" to="/login">Log in</Link>
+                </>
+              ) : (
+                <>
+                  Don't have an account? <Link className="session-alt-link" to="/signup">Sign up</Link>
+                </>
+              )
+            }
+          </p>
+          <br />
+          <p>Just trying it out? <button
+            className="session-alt-link"
+            onClick={() => this.props.login({
+              email: DEMO_EMAIL,
+              password: DEMO_PASSWORD,
+            })}>Log in as guest</button>
+          </p>
+          
+        </div>
       </>      
     );
   }

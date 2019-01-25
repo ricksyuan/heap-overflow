@@ -1,34 +1,50 @@
-
 .header-logo {
-  display: flex; // TODO: Are alternate solution then nesting flexes?
-  & p {
-    border: 1px solid lightgray;
-  }
 
   &:hover {
     background-color: rgba(239,240,241,0.75);
   }
+  & img {
+    object-fit: contain;
+    height: 100%;
+  }
+}
+
+.header-user-dash {
+  & > a {
+    // Padding allows for larger clickable area on link.
+    padding: 16px;    
+    margin-right: $so-header-icon-margin-right;
+    // Align text inside a using flex
+    display: flex;
+    align-items: center;
+    height: 100%;
+    vertical-align: middle;
+    font-weight: 700;
+    flex: 1;
+    &:hover {
+      background-color: $so-header-user-dash-hover-background-color;
+    }
+  }
 }
 
 .header-signup-btn {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  @extend %button-padding;
+  height: 33px;
 }
 
 .header-logout-btn {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  @extend %button-padding;
+  height: 33px;
 }
 
 .header-login-link {
+  @extend %button-padding;
+  padding: 8px;
   color: #07C;
-  padding: 8px 11px;
-  margin-right: 3px;
-  // Center vertically
+  margin-right: $so-header-icon-margin-right;
+  // Center text vertically & horizontally  
   display: flex;
-  justify-content: center;
   align-items: center;
-
   &:hover {
     color: #005999; //TEMP: from inspector
     background-color: rgba(0,119,204,0.1);//TEMP: from inspector
