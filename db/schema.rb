@@ -10,15 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_25_201447) do
+ActiveRecord::Schema.define(version: 2019_01_25_212023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "answers", force: :cascade do |t|
+    t.integer "answerer_id", null: false
+    t.integer "editor_id"
+    t.integer "question_id", null: false
+    t.string "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "accepted", default: false, null: false
+    t.index ["answerer_id"], name: "index_answers_on_answerer_id"
+    t.index ["body"], name: "index_answers_on_body"
+    t.index ["editor_id"], name: "index_answers_on_editor_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "commenter_id", null: false
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.string "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["body"], name: "index_comments_on_body"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.integer "asker_id", null: false
-    t.integer "editor_id", null: false
-    t.integer "views", null: false
+    t.integer "editor_id"
+    t.integer "views", default: 0, null: false
     t.string "title", null: false
     t.string "body", null: false
     t.datetime "created_at", null: false
@@ -27,6 +53,22 @@ ActiveRecord::Schema.define(version: 2019_01_25_201447) do
     t.index ["body"], name: "index_questions_on_body"
     t.index ["editor_id"], name: "index_questions_on_editor_id"
     t.index ["title"], name: "index_questions_on_title"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_taggings_on_question_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,6 +84,16 @@ ActiveRecord::Schema.define(version: 2019_01_25_201447) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["photo_id"], name: "index_users_on_photo_id"
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "voter_id", null: false
+    t.string "votable_type"
+    t.bigint "votable_id"
+    t.string "vote_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["votable_type", "votable_id"], name: "index_votes_on_votable_type_and_votable_id"
   end
 
 end

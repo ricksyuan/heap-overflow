@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint(8)        not null, primary key
+#  email           :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  display_name    :string           not null
+#  reputation      :integer          default(0), not null
+#  photo_id        :integer
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
     
   # validations
@@ -9,22 +24,11 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
   
   # associations
-  # TODO: Write associations
-  has_many :questions,
-    primary_key: :id,
-    foreign_key: :question_id,
-    class_name: :Question
 
-  # has_many :answers,
-  #   primary_key: :id,
-  #   foreign_key: :answer_id,
-  #   class_name: :Answer
+  has_many :questions
 
-  # has_many :question_comments,
-  #   primary_key: :id,
-  #   foreign_key: :comment_id,
-  #   class_name: :Comment
-
+  has_many :answers
+  
   # allows validation of password length without storing password in DB
   attr_reader :password
   
