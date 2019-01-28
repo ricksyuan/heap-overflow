@@ -8,7 +8,7 @@ const UserDash = ({currentUser}) => {
   return (
     <div className="user-dash">      
       <Link to={`/users/${currentUser.id}/${currentUser.displayName}`}>
-        <img className="gravatar" src={`https://www.gravatar.com/avatar/${000}?s=24&r=pg&d=identicon`} />
+        <img className="gravatar" src={`https://www.gravatar.com/avatar/${1234}?s=24&r=pg&d=identicon`} />
         <div className="reputation" title="your reputation">
           {currentUser.reputation}
         </div>
