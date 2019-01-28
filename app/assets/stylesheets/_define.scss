@@ -1,12 +1,31 @@
 // define shared variables
 
-$so-orange-color: #f48024; // TEMP: CONFIRMED from element inspector
-$so-header-top-border-width: 3px;
-$so-header-height: 50px;
+// Brand Color
+$so-princeton-orange-color: #f48024;
+
+$max-content-width: 1264px;
+$left-nav-bar-width: 164px;
+$right-bar-width: 348px;
+
+$header-height: 50px;
+$header-top-border-width: 3px;
+$header-content-height: $header-height - $header-top-border-width;
+
+$search-bar-border-color: #bbc0c4;
+
+$main-content-left-border-color: #d6d9dc;
+$main-child-top-padding: 24px;
+$link-text-normal-color: #07c;
+$link-text-hover-color: #3af;
+$learn-more-button-border-color: #0095ff;
+$search-button-color: #0095ff;
+$search-button-border-color: #07c;
+$search-button-hover-color: #07c;
+$search-button-hover-border-color: #005999;
+
 $so-header-off-white-color: #fafafb; // TEMP: CONFIRMED from element inspector
 $so-header-icon-margin-right: 3px;
 $so-placeholder-color: #bbc0c4;
-$so-searchbar-border-color: #bbc0c4;
 $so-left-nav-bar-text-normal-color: #535a60; // TEMP: CONFIRMED from element inspector
 $so-left-nav-bar-text-hover-color: #0C0D0E; // TEMP: TO BE CONFIRMED
 $so-session-form-container-border-color: #e4e6e8;
@@ -15,12 +34,6 @@ $so-session-form-width: 280px;
 $so-header-user-dash-hover-background-color: #eff0f1;
 $so-session-form-padding: 20px;
 $so-session-form-input-border-color: #e4e6e8;
-$so-link-normal-color: #07C;
-$so-link-hover-color: #3af;
-
-%button-padding {
-  padding: 8px 8.8px;
-}
 
 // define mixins
 

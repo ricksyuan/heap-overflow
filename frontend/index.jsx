@@ -33,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.login = login; // TEST: dispatch(login({user: {email: 'demo@example.com', password: 'password'}}))
   window.logout = logout; // TEST: dispatch(login({email: 'demo@example.com', password: 'password'}))
   window.signup = signup;
+  
   // TESTING END
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);

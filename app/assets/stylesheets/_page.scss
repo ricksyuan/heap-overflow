@@ -1,107 +1,302 @@
-/* Layout using CSS Grid */
-
-// Inheritance for extension
-%top-bar-item {
-  // Set properties to be extended in all header items.
+.header {
   border-top: 
-    $so-header-top-border-width
+    $header-top-border-width
     solid
-    $so-orange-color; // TEMP: Test
+    $so-princeton-orange-color;
+  
   background-color: $so-header-off-white-color;
-  box-shadow: 0 1px 0 rgba(12,13,14,0.05), 0 1px 6px rgba(59,64,69,0.05); // TEMP: box-shadow cubic-bezier(.165, .84, .44, 1) .25s  
+  box-shadow: rgba(12, 13, 14, 0.1) 0px 1px 0px 0px, rgba(59, 64, 69, 0.1) 0px 1px 6px 0px;
+  width: 100%;
+  position: fixed;
+  top: 0px;
+  height: $header-height;
 
-  // Allow floating header.
-  position: sticky;
-  top: 0;
-  z-index: 10; // Should go over content that scrolls beneath.
+  & .header-contents {
+    height: $header-content-height;
+    max-width: $max-content-width;
+    margin: 0 auto;
+    display: flex;
+
+    & .header-logo-img {              
+      object-fit: contain;
+      width: $left-nav-bar-width;    
+      &:hover {
+        background-color: rgba(239,240,241,0.75);
+      }
+      
+    }
+
+    & .search-bar {
+      position: relative;
+      display: flex;
+      flex: auto;      
+      & .search-bar-input {
+        flex: auto; // make search bar fill available space
+        background-color: #fff;
+        border: 1px solid $search-bar-border-color;
+        border-radius: 3px;
+        padding: 8px 9px 8px 12px;
+        margin: 7px 5px 7px 12px;
+      }
+
+      & .search-button {
+        visibility: hidden; // visibility toggled on search bar focus
+        position: absolute;
+        background: $search-button-color;
+        border: 1px solid $search-button-border-color;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        top: 7px;
+        right: 5px;
+        padding-left: 12px;
+        padding-right: 12px;
+        height: 33px;
+        color: white;
+
+        // center search icon vertically
+        display: flex;
+        align-items: center;
+      }
+
+    }
+
+    & .secondary-top-bar {      
+      width: $right-bar-width;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-left: 48px;
+
+      & .user-dash {        
+        & > a {                          
+          padding-left: 12px;
+          padding-right: 12px;
+          height: $header-content-height;
+          // Align text inside <a> using flex
+          display: flex;
+          align-items: center;
+          &:hover {
+            background-color: $so-header-user-dash-hover-background-color;
+          }
+
+          & .reputation {
+            font-weight: 700;
+            font-size: 12px;
+            padding-left: 8px;
+          }
+
+          & .badges {
+            & > span {
+              margin-left: 6px;
+            }
+
+            & .gold-badge {
+              color: #ffcc01;
+              padding-left: 2px;
+              padding-right: 3px;
+            }
+
+            & .gold-badge-count {
+              color: #ffcc01;
+              // color: #cda400;
+            }
+
+            & .silver-badge {
+              color: #b4b8bc;
+              padding-left: 2px;
+              padding-right: 3px;
+            }
+
+            & .silver-badge-count {
+              color: #b4b8bc;
+              // color: #8c9298;
+            }
+
+            & .bronze-badge {
+              color: #c38b5f;
+              padding-left: 2px;
+              padding-right: 3px;
+            }
+
+            & .bronze-badge-count {
+              color: #c38b5f;
+              // color: #d1a684;
+            }
+          }
+
+          & img {
+            height: 24px;
+            width: 24px;
+          }
+        }
+      }
+
+      .header-signup-btn-link {
+        display: flex;
+        align-items: center;
+        padding-left: 8.8px;
+        padding-right: 8.8px;
+        height: 33px;
+      }
+
+      .header-logout-btn {
+        padding-left: 8.8px;
+        padding-right: 8.8px;
+        height: 33px;
+      }
+
+      & .header-drop-down-icons {
+        display: flex; // show in rows
+        justify-items: stretch;
+        & .drop-down-link {
+          color: #848d95;
+          display: flex;
+          align-items: center;
+          height: 47px;
+          padding-left: 10px;
+          padding-right: 10px;          
+          height: $header-content-height;
+          &:hover {
+            color: #3b4045;
+            background: #eff0f1;
+        }
+        }        
+        
+      }
+
+      & .header-login-link {
+        padding: 8px 10.4px;
+        color: $link-text-normal-color;
+        margin-right: $so-header-icon-margin-right;
+        // Center text vertically & horizontally  
+        display: flex;
+        align-items: center;
+        &:hover {
+          color: #005999; //TEMP: from inspector
+          background-color: rgba(0,119,204,0.1);//TEMP: from inspector
+          border-radius: 3px;
+        }
+      }
+    }
+  }
 }
 
-.page {
-  max-width: 900px;
-  background-color: white;
+.main {
   margin: 0 auto;
-  // Define grid
-  display: grid; 
-  grid-template-rows: $so-header-height auto auto;
-  grid-template-columns: 164px auto 280px;
-  grid-template-areas:
-    "item-a-header-logo  item-b-header-search-bar item-c-header-buttons"
-    "item-d-left-nav-bar item-e                   item-f"
-    "footer              footer                   footer";
-}
+  max-width: $max-content-width;
 
-.item-a-header-logo {
-  @extend %top-bar-item;
-  @include set-dev-borders(purple);
-  grid-row-start: 1;
-  grid-column-start: 1;
-  display: flex;
-}
+  & .left-nav-bar {
+    padding-top: $main-child-top-padding;
+    display: block;
+    width: $left-nav-bar-width;
+    position: fixed;
+    top: $header-height;
 
-.item-b-header-search-bar {
-  @extend %top-bar-item;
-  @include set-dev-borders(green);
-  grid-row-start: 1;
-  grid-column-start: 2;
-  display: flex;
-  align-content: center;
+    .you-are-here {
+      font-weight: 700;
+      background-color: rgba(12,13,14,0.05);
+      color: #0C0D0E;
+      border-right: 3px solid $so-princeton-orange-color;
+    }
 
-  & > input {
-    flex-grow: 1; // defaults to 0, which causes input not to ::-ms-expand;
-    background-color: #fff;
-    border: 1px solid $so-searchbar-border-color; // TEMP: from inspector
-    border-radius: 3px;
-    padding: 8px 9px;
-    margin: 5px;
+    .nav-bar-link {
+      display: block;
+      color: $so-left-nav-bar-text-normal-color;
+      padding: 4px 4px 4px 8px;
+      line-height: 1.8;
+      &:hover {
+        color: $so-left-nav-bar-text-hover-color;
+        cursor: pointer;
+      }
+    }
+
+    & .home {
+      font-weight: 700;
+    }
+
+    & .public {
+      text-transform: uppercase;
+      color: $so-left-nav-bar-text-normal-color;
+      margin: 16px 0px 4px 8px;
+      font-size: 11px;
+      padding: 0px;
+      line-height: 13.933px;    
+    }
+
+    & .all {
+      padding: 8px 6px 8px 8px;
+      display: flex;
+      align-content: center;
+      & .globe-icon {
+        margin-top: -1px;
+        margin-right: 4px;
+        align-self: center;
+      }
+    }
+
+    & .tags, & .users, & .jobs {
+      padding: 4px 4px 4px 30px;
+    }
+
+    & .teams-box {      
+      padding: 6px;
+      & .teams-box-outline {
+        display: flex;
+        flex-direction: column;
+        padding: 16px;
+        border: 1px solid rgb(228, 230, 232);
+        border-radius: 3px;
+        position: relative; // for locked-speech bubble svg
+        overflow: hidden; // for locked-speech bubble svg
+
+        & .teams {
+          font-weight: 700;
+        }
+
+        & .for-work {
+          margin-top: 2px;
+          font-size: 12px;
+        }
+        
+        & .locked-speech-bubble-svg {
+          position: absolute;
+          right: -6px;
+          top: 4px;
+        }
+        
+        & .learn-more {
+          display: flex;
+          justify-content: center;
+          margin-top: 12px;
+          padding: 10.4px 10.4px;
+          line-height: 15px;
+          border: 1px solid $learn-more-button-border-color;
+          box-shadow: rgba(0, 149, 255, 0) 0px 0px 0px 0px;
+
+          color: $link-text-normal-color;
+          border-radius: 3px;
+          
+        }
+      }      
+    }
   }  
+
+  & .content {
+    border-left: 1px solid $main-content-left-border-color;
+    margin-top: $header-height;
+    margin-left: $left-nav-bar-width;
+    padding-top: $main-child-top-padding;
+  }
 }
 
-.item-c-header-buttons {
-  @extend %top-bar-item;
-  @include set-dev-borders(brown);
-  grid-row-start: 1;
-  grid-column-start: 3;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
 
-.item-d-left-nav-bar {
-  @include set-dev-borders(orange);  
-  grid-row-start: 2;
-  grid-column-start: 1;
-  top: $so-header-height; // FIXME: WHY DOES THIS OVERLAP?
-  position: sticky;
-  top: 50;
-  z-index: 100; // Float above any content that scrolls left
-}
+.footer {  
+  background: purple;
+  & .footer-contents {
+    max-width: $max-content-width;
+    margin: 0 auto;
 
-.item-ef-session {
-  @include set-dev-borders(red);
-  grid-row-start: 2;
-  grid-column-start: 2;
-  grid-column-end: 4;
-  z-index: 200;
-
-  padding: 20px; // So that session form does not hit inside edges
-
-}
-
-.item-e-questions {
-  grid-row-start: 2;
-  grid-column-start: 2;
-  z-index: 50;
-}
-
-.item-f-sidebar {
-  grid-row-start: 2;
-  grid-column-start: 3;
-  background-color: yellowgreen;
-  z-index: 50;
-  margin: 0 auto;
-}
-
-footer {
-  grid-area: footer;
-  @include set-dev-borders(blue);
+    color: white;
+    background: black;
+  }
 }

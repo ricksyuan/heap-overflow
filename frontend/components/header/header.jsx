@@ -1,35 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import UserDash from './user_dash';
 
-const Header = (props) => {
+import Logo from './logo';
+import SearchBar from './search_bar';
+import SecondaryTopBar from './secondary_top_bar_container';
+
+const Header = () => {
   return (
-    <>
-      <section className="item-a-header-logo">
-        <div className="header-logo">
-          <img className="header-logo-img" src={window.headerLogo}/>
-        </div>
-      </section>
-      <section className="item-b-header-search-bar">
-        <input placeholder="Search..." />
-      </section>
-      <ul className="item-c-header-buttons">
-        {
-          props.currentUser ? (
-            <>
-              <UserDash currentUser={props.currentUser} />
-              <button className="header-logout-btn hoverable-primary-btn" onClick={props.logout}>Logout</button>
-            </>
-          ) : (
-            <>
-              <Link className="header-login-link" to="/login">Log In</Link>
-              <Link className="header-signup-btn hoverable-primary-btn" to="/signup">Sign Up</Link>
-            </>
-          )
-        }
-       
-      </ul>
-    </>
+    <div className="header">
+      <div className="header-contents">
+        <Logo />
+        <SearchBar />
+        <SecondaryTopBar />
+      </div>
+    </div>      
   );
 };
 

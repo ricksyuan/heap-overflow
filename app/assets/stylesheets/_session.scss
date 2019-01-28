@@ -1,11 +1,3 @@
-// .session-page {
-//   background-color: red;
-//   border: 1px solid #e4e6e8; // rgb(228, 230, 232)
-//   border-radius: 5px;
-//   width: 280px; // TEMP: FROM ELEMENT INSPECTOR
-//   margin: 0 auto;
-// }
-
 .session-page {
   width: 280px;
   margin: 0 auto;
@@ -42,7 +34,7 @@
 }
 
 .session-form-submit-btn {
-  @extend %button-padding;
+  padding: 8px 8.8px;
   font-size: 17px;
   align-self: flex-start;
 } 
@@ -59,9 +51,9 @@
 }
 
 .session-alt-link {
-  color: $so-link-normal-color;
+  color: $link-text-normal-color;
   &:hover {
-    color: $so-link-hover-color;
+    color: $link-text-hover-color;
   }
 }
 

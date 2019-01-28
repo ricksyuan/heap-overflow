@@ -51,10 +51,11 @@ input[type='submit'] {
   opacity: 1; /* Firefox */
 }
 
+.svg-icon {
+	fill: currentColor;
+}
+
 // Put additional imports after application wide styles
 
-@import "app";
 @import "page";
-@import "header";
-@import "left_nav_bar";
 @import "session";
