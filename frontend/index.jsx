@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 import { login, logout, signup } from './actions/session_actions';
+import { fetchAllQuestions } from './actions/question_actions';
 import { postUser, postSession, deleteSession } from './utils/session_api_util';
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -33,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.login = login; // TEST: dispatch(login({user: {email: 'demo@example.com', password: 'password'}}))
   window.logout = logout; // TEST: dispatch(login({email: 'demo@example.com', password: 'password'}))
   window.signup = signup;
-  
+  window.fetchAllQuestions = fetchAllQuestions;
   // TESTING END
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);
