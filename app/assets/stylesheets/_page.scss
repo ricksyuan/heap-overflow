@@ -17,13 +17,15 @@
     margin: 0 auto;
     display: flex;
 
-    & .header-logo-img {              
-      object-fit: contain;
-      width: $left-nav-bar-width;    
-      &:hover {
-        background-color: rgba(239,240,241,0.75);
-      }
-      
+    & .header-logo-link {
+      display: flex;
+      & .header-logo-img {              
+        object-fit: contain;
+        width: $left-nav-bar-width;    
+        &:hover {
+          background-color: rgba(239,240,241,0.75);
+        }
+      }      
     }
 
     & .search-bar {
