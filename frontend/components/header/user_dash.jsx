@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import md5 from 'md5';
+import md5 from 'md5';
 
 const UserDash = ({currentUser}) => {
   const email = currentUser.email.trim().toLowerCase();
-  // const md5_hash = md5(email);
+  const md5_hash = md5(email);
   return (
     <div className="user-dash">      
       <Link to={`/users/${currentUser.id}/${currentUser.displayName}`}>
-        {/* <img className="gravatar" src={`https://www.gravatar.com/avatar/${1234}?s=24&r=pg&d=identicon`} /> */}
+        <img className="gravatar" src={`https://www.gravatar.com/avatar/${1234}?s=24&r=pg&d=identicon`} />
         <div className="reputation" title="your reputation">
           {currentUser.reputation}
         </div>
