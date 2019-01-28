@@ -4,9 +4,6 @@ export const postUser = newUser => (
     method: 'POST',
     url: '/api/users',
     data: { user: newUser },
-    // TODO: Can use for debugging
-    error: (err) => console.log(err),
-
   })// REVIEW: no semi-colon!
 );
 

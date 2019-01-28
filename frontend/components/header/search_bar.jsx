@@ -3,25 +3,21 @@ import React from 'react';
 class SearchBar extends React.Component {
   
   handleChange(e) {
-    console.log(e.currentTarget.value);
   }
 
   handleFocus(e) {
-    console.log("Focused on search bar");
     // Show search button.
     const searchButton = document.querySelector(".search-button");
     searchButton.style.visibility = "visible";    
   }
 
   handleBlur(e) {
-    console.log("Lost focus on search bar");
     // Hide focus.
     const searchButton = document.querySelector(".search-button");
     searchButton.style.visibility = "hidden";
   }
 
   handleSearchButtonClick(e) {
-    console.log("Search button clicked");
   }
 
 
