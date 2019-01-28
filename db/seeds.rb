@@ -14,4 +14,4 @@ test_user = User.create!(display_name: "testuser", email: "test@example.com", pa
 me = User.create!(display_name: "Rick", email: "rick@example.com", password: "password", reputation: 0)
 mr_t = User.create!(display_name: "Mr. T", email: "t@example.com", password: "password", reputation: 0)
 
-Question.create!(views: 994558, askerId: XXX, tagIds: XX)
+# Question.create!(views: 994558, askerId: XXX, tagIds: XX)
