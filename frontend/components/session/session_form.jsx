@@ -34,10 +34,6 @@ export default class SessionForm extends React.Component {
           password: this.state.password,
         });
         break;
-      default:
-        // TODO: How to implement a default
-        return null;        
-        break;
     }
   }
 
