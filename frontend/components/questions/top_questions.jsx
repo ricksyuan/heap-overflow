@@ -16,12 +16,12 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class TopQuestions extends React.Component {
+  
   constructor(props) {
     super(props);
-    this.state = {questions: {}};
   }
+
   componentDidMount() {
-    console.log("Component mounted!");
     this.props.fetchAllQuestions();
   }
 
