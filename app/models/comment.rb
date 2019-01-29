@@ -12,7 +12,8 @@
 #
 
 class Comment < ApplicationRecord
-
+  include Commentable
+  
   belongs_to :commentable, polymorphic: true
 
   has_many :votes, as: :votable

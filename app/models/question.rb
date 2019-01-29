@@ -13,6 +13,10 @@
 #
 
 class Question < ApplicationRecord
+
+  include Commentable
+  include Votable
+
   validates :views, :title, :body, :body, presence: true
   
   belongs_to :asker,
@@ -22,11 +26,7 @@ class Question < ApplicationRecord
     class_name: :User
   
   has_many :answers
-  
-  has_many :comments, as: :commentable
-  
-  has_many :votes, as: :votable
-
+    
   has_many :taggings
   has_many :tags, through: :taggings
 

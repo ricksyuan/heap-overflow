@@ -11,6 +11,7 @@ Question.delete_all
 Tag.delete_all
 Answer.delete_all
 Tagging.delete_all
+Vote.delete_all
 
 demo_user = User.create!(display_name: "demouser", email: "demo@example.com", password: "password")
 test_user = User.create!(display_name: "testuser", email: "test@example.com", password: "password")
@@ -60,6 +61,9 @@ Tagging.create!(tag_id: syntax_tag.id, question_id: q1.id)
 Tagging.create!(tag_id: jslint_tag.id, question_id: q1.id)
 Tagging.create!(tag_id: use_strict_tag.id, question_id: q1.id)
 
+Vote.create!(voter_id: code_cranker.id, votable_type: :Question, votable_id: q1.id, vote_type: "up_vote")
+Vote.create!(voter_id: cranky_coder.id, votable_type: :Question, votable_id: q1.id, vote_type: "down_vote")
+Vote.create!(voter_id: mr_t.id, votable_type: :Question, votable_id: q1.id, vote_type: "up_vote")
 
 q2 = Question.create!(
   views: 302919,

@@ -6,6 +6,8 @@ json.questions do
       json.askerId question.asker_id
       json.title question.title
       json.answerCount question.answers.length
+      json.score question.score
+      json.views question.views
       json.tag_ids question.tag_ids
     end
   end

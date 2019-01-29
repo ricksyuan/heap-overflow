@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import QuestionStat from './question_stat';
+import { kFormatter } from '../../utils/formatting_util';
 
 const mapStateToProps = (state, ownProps) => {
   const asker = state.entities.users[ownProps.question.askerId];
@@ -21,25 +23,31 @@ class QuestionSummary extends React.Component {
 
   render() {
     const tags = this.props.tags.map(tag => {
-      return <div className="tag" key={tag.id}>{tag.name}</div>
+      return <Link className="question-tag" to={`questions/tagged/${tag.name}`} key={tag.id}>{tag.name}</Link>
     });
-    // const asker = this.props.users[this.props.question.askerId];
     return (
-      
-      <div className="question-summary">
-        <Link className="question-title-link" to={`questions/${this.props.question.id}`}>
-          {this.props.question.title}
+      <div className="question-list-item">
+        <Link className="question-stats" to={`/questions/${this.props.question.id}`}>
+          <QuestionStat className="votes" statName="votes" statCount={this.props.question.score}/>
+          <QuestionStat className="answers" statName="answers" statCount={this.props.question.answerCount}/>
+          <QuestionStat className="views" statName="views" statCount={kFormatter(this.props.question.views, 0)}/>          
         </Link>
-        <div className="question-subtitle">
-          <div className="tags">
-            {tags}
-          </div>
-          <div className="started">
-            asked by {this.props.asker.displayName}
+        
+        <div className="question-summary">
+          <Link className="question-title-link" to={`questions/${this.props.question.id}`}>
+            {this.props.question.title}
+          </Link>
+          <div className="question-subtitle">
+            <div className="question-tags">
+              {tags}
+            </div>
+            <div className="question-asker-info">
+              <Link className="question-recency-link" to={`/questions/${this.props.question.id}`}>asked by </Link>
+              <Link className="question-user-link" to={`/users/${this.props.asker.id}/${this.props.asker.displayName}`}>{this.props.asker.displayName}</Link>
+            </div>
           </div>
         </div>
       </div>
-      
     );
   }
 }

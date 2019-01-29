@@ -3,30 +3,94 @@
   padding-bottom: 27px;
 }
 
-.question-summary {
-  font-size: 16px;
-
-  & a {
-    color: $link-text-normal-color;
-    &:hover {
-      color: $link-text-hover-color;
-    }
-  }
-  & .question-subtitle {
+.question-list-item {
+  display: flex;
+  padding: 12px 8px;
+  border-top: 1px solid #eff0f1;
+  border-bottom: 1px solid #eff0f1;
+  & .question-stats {
     display: flex;
-    justify-content: space-between;
-    & .tags {
-      & .tag {
-        display: inline-block;
-        background-color: #E1ECF4;
-        border: 1px solid red;
+    flex-direction: row;
+    padding-right: 8px;
+    & .question-stat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 50px;
+      padding: 6px;
+      & .stat-count {
+        color: #6a737c;
+        font-size: 17px;
+      }
+
+      & .stat-name {
+        font-size: 11px;
+        color: #848d95;
       }
     }
 
-    & .started {
-      color: #9199a1;
-    }  
-  }
-  
-}
+    & .votes {
+      width: 50px;
+      margin-right: 3px;
+    }
 
+    & .answers {
+      width: 58px;
+      margin-right: 3px;
+    }
+
+    & .views {
+      width: 50px;
+      margin-right: 7px;
+    }
+
+  }
+
+  & .question-summary {
+    flex-grow: 1;
+    font-size: 16px;
+    & a {
+      color: $link-text-normal-color;
+      &:hover {
+        color: $link-text-hover-color;
+      }
+    }
+    & .question-subtitle {
+      display: flex;
+      justify-content: space-between;
+      & .question-tags {
+        & .question-tag {
+          display: inline-block;
+          font-size: 12px;
+          color: #39739d;
+          background-color: #E1ECF4;
+          border-radius: 3px;
+          margin-right: 3px;
+          padding: 4.8px 6px;
+          &:hover {
+            color: #33658a;
+            background-color: #cee0ed;
+          }
+        }
+      }
+
+      & .question-asker-info {
+        & .question-recency-link {
+          font-size: 12px;
+          color: #9199a1;
+          &:hover {
+            color: #07C;
+          }  
+        }
+
+        & .question-user-link {
+          font-size: 12px;
+          color: #07C;
+          &:hover {
+            color: #3af;
+          }
+        }
+      }
+    }
+  }
+}
