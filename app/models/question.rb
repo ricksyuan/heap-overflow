@@ -26,6 +26,7 @@ class Question < ApplicationRecord
     class_name: :User
   
   has_many :answers
+  has_many :answerers, through: :answers
     
   has_many :taggings
   has_many :tags, through: :taggings

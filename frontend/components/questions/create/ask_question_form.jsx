@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { createQuestion } from '../../actions/question_actions';
-import { createTags } from '../../actions/tag_actions';
+import { createQuestion } from '../../../actions/question_actions';
+import { createTags } from '../../../actions/tag_actions';
 
 const mapStateToProps = (state) => {
   return {

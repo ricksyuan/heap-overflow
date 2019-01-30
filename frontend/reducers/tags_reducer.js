@@ -8,7 +8,7 @@ const tagReducer = (state = {}, action) => {
     case RECEIVE_ALL_QUESTIONS:
       return merge({}, state, action.tags);
     case RECEIVE_QUESTION:
-      return merge({}, state, { [action.tag.id]: action.tag} );
+      return merge({}, state, action.tags);
     case RECEIVE_TAGS:
       return merge({}, state, action.tags);
     case RECEIVE_TAG:

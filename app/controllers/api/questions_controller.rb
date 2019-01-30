@@ -6,6 +6,15 @@ class Api::QuestionsController < ApplicationController
     @questions = Question.all.includes(:asker, :answers, :tags)
   end
 
+  def show
+    @question = Question.includes(:asker, :answerers, :votes, { answers: [:votes] }).find(params[:id])
+    if @question
+      render :show
+    else
+      render json: ["Question not found"], status: 404
+    end
+  end
+
   def create
     @question = Question.new(question_params)
     @question.asker_id = current_user.id

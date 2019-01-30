@@ -13,7 +13,6 @@ export const receiveAllQuestions = (payload) => {
 };
 
 export const receiveQuestion = (payload) => {
-  debugger
   return {
     type: RECEIVE_QUESTION,
     question: payload.question,
@@ -28,6 +27,14 @@ export const fetchAllQuestions = () => (dispatch) => {
       return dispatch(receiveAllQuestions(payload));
   });
 };
+
+export const fetchQuestion = (questionId) => (dispatch) => {
+  return QuestionAPIUtil.fetchQuestion(questionId).then(
+    (payload) => {
+      return dispatch(receiveQuestion(payload));
+    });
+};
+
 
 export const createQuestion = (question) => (dispatch) => {
   return QuestionAPIUtil.createQuestion(question);
