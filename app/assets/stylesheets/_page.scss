@@ -19,13 +19,17 @@
 
     & .header-logo-link {
       display: flex;
+      width: $left-nav-bar-width;    
+      align-items: center;
+      justify-content: center;
       & .header-logo-img {              
         object-fit: contain;
-        width: $left-nav-bar-width;    
-        &:hover {
-          background-color: rgba(239,240,241,0.75);
-        }
-      }      
+        width: 150px;
+        height: 30px;
+      }
+      &:hover {
+        background-color: rgba(239,240,241,0.75);
+      }
     }
 
     & .search-bar {
@@ -277,7 +281,15 @@
 
           color: $link-text-normal-color;
           border-radius: 3px;
+          &:hover {
+            background-color: rgba(0,119,204,0.05);
+            color: #005999;
+          }
           
+          &:active {
+            background-color: rgba(0,119,204,0.15);
+            color: #005999;
+          }
         }
       }      
     }

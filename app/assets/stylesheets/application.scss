@@ -30,7 +30,7 @@ input[type='submit'] {
 	cursor: pointer;	
 }
 
-.hoverable-primary-btn {
+.primary-btn {
 	color: #fff; // TEMP: from inspector
 	background-color: #0095ff; // TEMP: from inspector
 	border: 1px solid #07c;
@@ -39,9 +39,16 @@ input[type='submit'] {
 	font-weight: 400;
 }
 
-.hoverable-primary-btn:hover {
+.primary-btn:hover {
   color: rgba(255,255,255,0.9);
   background-color: #07c;
+  box-shadow: inset 0 1px 0 #3af;
+  border-color: #005999;
+}
+
+.primary-btn:active {
+  color: rgba(255,255,255,0.9);
+  background-color: #0068b3;
   box-shadow: inset 0 1px 0 #3af;
   border-color: #005999;
 }
@@ -60,3 +67,4 @@ input[type='submit'] {
 @import "page";
 @import "session";
 @import "top-questions";
+@import "ask-question";

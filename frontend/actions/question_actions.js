@@ -1,6 +1,7 @@
 import * as QuestionAPIUtil from '../utils/question_api_util';
 
 export const RECEIVE_ALL_QUESTIONS = 'RECEIVE_ALL_QUESTIONS';
+export const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
 
 export const receiveAllQuestions = (payload) => {
   return {
@@ -11,9 +12,23 @@ export const receiveAllQuestions = (payload) => {
   };
 };
 
+export const receiveQuestion = (payload) => {
+  debugger
+  return {
+    type: RECEIVE_QUESTION,
+    question: payload.question,
+    tags: payload.tags,
+  };
+};
+
+
 export const fetchAllQuestions = () => (dispatch) => {
   return QuestionAPIUtil.fetchAllQuestions().then(
     (payload) => {
       return dispatch(receiveAllQuestions(payload));
   });
+};
+
+export const createQuestion = (question) => (dispatch) => {
+  return QuestionAPIUtil.createQuestion(question);
 };

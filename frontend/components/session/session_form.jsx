@@ -88,7 +88,7 @@ export default class SessionForm extends React.Component {
           />
           {this.renderErrors()}
           <input
-            className="session-form-submit-btn hoverable-primary-btn"
+            className="session-form-submit-btn primary-btn"
             type="submit"
             value={this.props.buttonText}
           />

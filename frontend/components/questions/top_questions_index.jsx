@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchAllQuestions } from '../../actions/question_actions';
 import QuestionSummary from './question_summary';
 const mapStateToProps = (state) => {
@@ -15,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-class TopQuestions extends React.Component {
+class TopQuestionsIndex extends React.Component {
   
   constructor(props) {
     super(props);
@@ -31,7 +32,16 @@ class TopQuestions extends React.Component {
     ));
     return (
       <>
-        <h1 className="top-questions-headline">Top Questions</h1>
+        <div className="top-questions-header">
+          <h1 className="top-questions-headline">
+            Top Questions
+          </h1>
+          <Link className="ask-question-link primary-btn" to={'/questions/ask'}>
+            Ask Question
+          </Link>
+        </div>
+        
+        
         <ul>
           {questionSummaries}
         </ul>
@@ -40,4 +50,4 @@ class TopQuestions extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopQuestions);
+export default connect(mapStateToProps, mapDispatchToProps)(TopQuestionsIndex);

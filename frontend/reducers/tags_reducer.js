@@ -1,5 +1,5 @@
 import merge from 'lodash/merge';
-import { RECEIVE_ALL_QUESTIONS } from '../actions/question_actions';
+import { RECEIVE_ALL_QUESTIONS, RECEIVE_QUESTION } from '../actions/question_actions';
 import { RECEIVE_TAGS, RECEIVE_TAG } from '../actions/tag_actions';
 
 const tagReducer = (state = {}, action) => {
@@ -7,6 +7,8 @@ const tagReducer = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_ALL_QUESTIONS:
       return merge({}, state, action.tags);
+    case RECEIVE_QUESTION:
+      return merge({}, state, { [action.tag.id]: action.tag} );
     case RECEIVE_TAGS:
       return merge({}, state, action.tags);
     case RECEIVE_TAG:

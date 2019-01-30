@@ -17,7 +17,7 @@ class Question < ApplicationRecord
   include Commentable
   include Votable
 
-  validates :views, :title, :body, :body, presence: true
+  validates :views, :title, :body, presence: true
   
   belongs_to :asker,
     class_name: :User

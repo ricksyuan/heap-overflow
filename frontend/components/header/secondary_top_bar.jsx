@@ -11,13 +11,13 @@ const SecondaryTopBar = (props) => {
           <>
             <UserDash currentUser={props.currentUser} />
             <DropIcons />
-            <button className="header-logout-btn hoverable-primary-btn" onClick={props.logout}>Logout</button>
+            <button className="header-logout-btn primary-btn" onClick={props.logout}>Logout</button>
           </>
         ) : (
           <>
             <DropIcons />
             <Link className="header-login-link" to="/login">Log In</Link>
-            <Link className="header-signup-btn-link hoverable-primary-btn" to="/signup">Sign Up</Link>
+            <Link className="header-signup-btn-link primary-btn" to="/signup">Sign Up</Link>
           </>
         )
       }

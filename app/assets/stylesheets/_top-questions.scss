@@ -1,6 +1,18 @@
-.top-questions-headline {
-  font-size: 27px;
+.top-questions-header {
+  display: flex;
   padding-bottom: 27px;
+  padding-left: 24px;
+  & .top-questions-headline {
+    flex-grow: 1;
+    font-size: 27px;
+    padding-bottom: 27px;
+  }
+
+  & .ask-question-link {
+    line-height: 15px;
+    height: 38px;
+    padding: 10.4px;
+  }
 }
 
 .question-list-item {

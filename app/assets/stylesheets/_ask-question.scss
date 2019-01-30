@@ -1,0 +1,89 @@
+.ask-container {
+  padding-left: 24px;
+  & .ask-form {
+    display: flex;
+    flex-direction: column;
+    & .ask-headline {
+      font-size: 27px;
+      padding-bottom: 24px;
+    }
+    & .ask-title {
+      padding: 10px 0px 15px 0px;
+      display: flex;
+      flex-direction: column;
+      & .ask-title-label {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        padding: 0px 2px;
+      }
+
+      & .ask-title-input {
+        border: 1px solid #bbc0c4;
+        padding: 0.6em 0.7em;
+        border-radius: 3px;
+      }
+    }
+
+    & .ask-body-editor {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      & .ask-body-label {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        padding: 0px 2px;
+      }
+      
+      & .ask-body-textarea {
+        border: 1px solid #bbc0c4;
+        padding: 0.6em 0.7em;
+        border-radius: 3px;
+      }
+    }
+    
+    & .ask-tags {
+      display: flex;
+      flex-direction: column;
+      & .ask-tags-label {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 4px;
+        padding: 0px 2px;
+      }
+      & .ask-tags-input {
+        border: 1px solid #bbc0c4;
+        padding: 0.6em 0.7em;
+        border-radius: 3px;
+      }
+    }
+
+    & .ask-submit {
+      margin-top: 32px;
+      & .ask-submit-btn {
+        padding: 10.4px;
+        margin-right: 5px;
+      }
+
+      & .ask-discard-btn {
+        color: #C91D2E;
+        padding: 10.4px;
+        border-radius: 3px;
+        &:hover {
+          background-color: rgba(207,23,41,0.05);
+          color: #9c1724;
+        }
+        &:active {
+          color: #9c1724;
+          background-color: rgba(218,12,32,0.15);
+        }
+      }
+    }
+
+    
+
+  }
+  
+}
+
