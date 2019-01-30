@@ -1,8 +1,6 @@
 json.question do 
   json.set! @question.id do
-    json.title @question.title
-    json.body @question.body
-    json.score @question.score
+    json.extract! @question, :id, :asker_id, :title, :body, :score
   end
 end
 

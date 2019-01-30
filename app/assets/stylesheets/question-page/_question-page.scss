@@ -1,0 +1,22 @@
+.question-page {
+  padding-left: 24px;
+
+  // header
+  & .question-page-header {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 27px;
+    & .question-page-headline-link {
+      flex-grow: 1;
+      font-size: 27px;
+      color: #242729
+    }
+
+    & .ask-question-link {
+      line-height: 15px;
+      height: 38px;
+      padding: 10.4px;
+      
+    }
+  }
+}

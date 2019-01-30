@@ -15,7 +15,7 @@ const answersReducer = (oldState = {}, action) => {
     case RECEIVE_ALL_ANSWERS:
       return merge({}, oldState, action.answers);
     case RECEIVE_ANSWER:
-      return merge({}, action.answer);
+      return merge({}, oldState, action.answer);
     default:
       return oldState;
   }

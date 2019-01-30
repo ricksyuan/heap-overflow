@@ -9,6 +9,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+
   };
 };
 
@@ -39,9 +40,17 @@ class Question extends React.Component {
             <svg className="svg-icon down-arrow" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>
           </button>
         </div>
-
-        <div className="question-body">
-          {this.props.question.body}
+        <div className="question-main">
+          <div className="question-body">
+            {this.props.question.body}
+          </div>
+          <div className="question-footer">
+            <div className="question-buttons">
+            </div>
+            <div className="question-user">
+              Asked by {this.props.asker.displayName}
+            </div>
+          </div>
         </div>
       </div>
     );

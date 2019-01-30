@@ -8,14 +8,14 @@ export const fetchAllAnswers = () => {
 export const fetchAnswer = (answerId) => {
   return $.ajax({
     method: 'GET',
-    url: `/api/questions/${answerId}`,
+    url: `/api/answers/${answerId}`,
   });
 };
 
-export const createAnswer = (answer) => {
+export const postAnswer = (questionId, answer) => {
   return $.ajax({
     method: 'POST',
-    url: '/api/questions',
+    url: `/api/questions/${questionId}/answers`,
     data: { answer }
   });
 };

@@ -36,6 +36,7 @@ export const fetchAnswer = (answerId) => (dispatch) => {
     });
 };
 
-export const createAnswer = (answer) => (dispatch) => {
-  return AnswerAPIUtil.createAnswer(answer);
+export const postAnswer = (questionId, answer) => (dispatch) => {
+  return AnswerAPIUtil.postAnswer(questionId, answer)
+    .then(payload => dispatch(receiveAnswer(payload)));
 };
