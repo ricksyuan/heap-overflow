@@ -19,6 +19,7 @@ json.answers do
   @question.answers.each do |answer|
     json.set! answer.id do
       json.id answer.id
+      json.answererId answer.answerer_id
       json.score answer.score
       json.body answer.body
     end

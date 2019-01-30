@@ -2,10 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchQuestion } from '../../../actions/question_actions';
 import { Link } from 'react-router-dom';
+import Question from './question';
+import Answer from '../../answers/answer';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    question: state.entities.questions[ownProps.match.params.questionId]
+    question: state.entities.questions[ownProps.match.params.questionId],
+    answers: Object.keys(state.entities.answers).map(id => state.entities.answers[id]),
+    users: state.entities.users
   };
 };
 
@@ -25,10 +29,14 @@ class QuestionPage extends React.Component {
   }
 
   render() {
-    const { question } = this.props;
+    const { question, users } = this.props;
     if (!question) {
       return <div>Loading...</div>;
     }
+    const answers = this.props.answers.map(answer => {
+      const answerer = users[answer.answererId];
+      return <Answer key={answer.id} answer={answer} answerer={answerer}/>;
+    });
     return (
       <div className="question-page-container">
         <div className="question-page-header">
@@ -39,12 +47,11 @@ class QuestionPage extends React.Component {
             Ask question
           </Link>
         </div>
-        <div className="question-body">
-          {question.body}
+        <div className="question-page-content">
+          <Question question={question}/>
+          {answers}
         </div>
-        <div>
-          {question.score}
-        </div>
+          
       </div>
     );
   }
