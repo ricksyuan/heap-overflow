@@ -1,3 +1,15 @@
+export const vote = (voteType, votableType, votableId) => {
+  return $.ajax({
+    method: 'POST',
+    url: 'api/votes/',
+    data: {
+      vote_type: voteType,
+      votable_type: votableType,
+      votable_id: votableId,
+    }
+  });
+};
+
 export const upvoteAnswer = (answerId) => {
   return $.ajax({
     method: 'POST',

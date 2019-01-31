@@ -19,7 +19,7 @@ Rails.application.routes.draw do
         post 'downvote'
       end
     end
-    resources :votes, only: [:create, :destroy]
+    resources :votes, only: [:create]
     # resources :comments, only: [:create, :update, :destroy]
     resources :tags, only: [:index, :update, :destroy]
   end

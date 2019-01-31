@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     
   };
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
     upvoteAnswer: (answerId) => dispatch(upvoteAnswer(answerId)),
     downvoteAnswer: (answerId) => dispatch(downvoteAnswer(answerId)),
   };
-}
+};
 
 class Answer extends React.Component {
   constructor(props) {

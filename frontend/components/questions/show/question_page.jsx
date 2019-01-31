@@ -76,6 +76,7 @@ class QuestionPage extends React.Component {
             </ul>
           </div>
         </div>
+        
         <form className="your-answer-form" onSubmit={this.handleAnswerSubmission}>
           <h2 className="your-answer-form-headline">Your Answer</h2>
           <textarea name="body" onChange={this.handleChange} value={this.state.body}></textarea>
