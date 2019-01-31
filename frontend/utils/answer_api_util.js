@@ -19,3 +19,10 @@ export const postAnswer = (questionId, answer) => {
     data: { answer }
   });
 };
+
+export const deleteAnswer = (answerId) => {
+  return $.ajax({
+    method: 'DELETE',
+    url: `/api/answers/${answerId}`,
+  });
+};

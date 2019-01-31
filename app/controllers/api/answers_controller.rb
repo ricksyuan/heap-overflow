@@ -8,7 +8,17 @@ class Api::AnswersController < ApplicationController
     if @answer.save
       render :show
     else
-      render :json, @answer.errors.full_messages, status: 422
+      render json: @answer.errors.full_messages, status: 422
+    end
+  end
+
+  def destroy
+    @answer = Answer.find(params[:id])
+    if @answer
+      @answer.destroy
+      render json: @answer.id
+    else
+      render json: ["Answer not found"], status: 404
     end
   end
 

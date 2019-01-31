@@ -2,6 +2,7 @@ import * as AnswerAPIUtil from '../utils/answer_api_util';
 
 export const RECEIVE_ALL_ANSWERS = 'RECEIVE_ALL_ANSWERS';
 export const RECEIVE_ANSWER = 'RECEIVE_ANSWER';
+export const REMOVE_ANSWER = 'REMOVE_ANSWER';
 
 export const receiveAllAnswers = (payload) => {
   return {
@@ -21,6 +22,12 @@ export const receiveAnswer = (payload) => {
   };
 };
 
+export const removeAnswer = (answerId) => {
+  return {
+    type: REMOVE_ANSWER,
+    answerId: answerId,
+  };
+};
 
 export const fetchAllAnswers = () => (dispatch) => {
   return AnswerAPIUtil.fetchAllAnswers().then(
@@ -39,4 +46,11 @@ export const fetchAnswer = (answerId) => (dispatch) => {
 export const postAnswer = (questionId, answer) => (dispatch) => {
   return AnswerAPIUtil.postAnswer(questionId, answer)
     .then(payload => dispatch(receiveAnswer(payload)));
+};
+
+export const deleteAnswer = (answerId) => (dispatch) => {
+  return AnswerAPIUtil.deleteAnswer(answerId)
+    .then(answerId => {
+      return dispatch(removeAnswer(answerId));
+    });
 };

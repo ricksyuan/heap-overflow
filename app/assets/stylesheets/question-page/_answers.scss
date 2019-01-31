@@ -34,12 +34,20 @@
     flex-grow: 1;
     & .answer-body {
       font-size: 15px;
+      margin-bottom: 13px;
     }
     & .answer-footer {
       display: flex;
       flex-direction: row;
       & .answer-buttons {
         flex-grow: 1;
+
+        & .delete-answer-btn {
+          color: #848d95;
+          &:hover {
+            color: #3b4045;
+          }
+        }
       }
       & .answer-user {
         background: rgb(227, 236, 243);

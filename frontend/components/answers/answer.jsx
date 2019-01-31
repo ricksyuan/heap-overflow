@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { deleteAnswer } from '../../actions/answer_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -9,13 +10,14 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-
+    deleteAnswer: (answerId) => dispatch(deleteAnswer(answerId)),
   };
 }
 
 class Answer extends React.Component {
   constructor(props) {
     super(props);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   upVote() {
@@ -24,6 +26,11 @@ class Answer extends React.Component {
 
   downVote() {
     
+  }
+
+  handleDelete(e) {
+    e.preventDefault();
+    this.props.deleteAnswer(this.props.answer.id);
   }
 
   render() {
@@ -46,6 +53,7 @@ class Answer extends React.Component {
           </div>
           <div className="answer-footer">
             <div className="answer-buttons">
+              <button className="delete-answer-btn" onClick={this.handleDelete}>delete</button>
             </div>
             <div className="answer-user">
               Answered by {answerer.displayName}
