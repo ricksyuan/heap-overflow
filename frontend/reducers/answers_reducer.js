@@ -4,6 +4,7 @@ import {
   RECEIVE_ANSWER,
   REMOVE_ANSWER,
 } from '../actions/answer_actions';
+import { RECEIVE_ANSWER_VOTE } from '../actions/vote_actions';
 import {
   RECEIVE_QUESTION,
 } from '../actions/question_actions';
@@ -16,6 +17,8 @@ const answersReducer = (oldState = {}, action) => {
     case RECEIVE_ALL_ANSWERS:
       return merge({}, oldState, action.answers);
     case RECEIVE_ANSWER:
+      return merge({}, oldState, action.answer);
+    case RECEIVE_ANSWER_VOTE:
       return merge({}, oldState, action.answer);
     case REMOVE_ANSWER:
       const newState = merge({}, oldState);

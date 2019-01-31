@@ -6,23 +6,20 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :users, only: [:index, :show, :create, :update, :destroy]
     resources :questions, only: [:index, :show, :create, :update] do
-      # member do
-      #   post 'upvote'
-      #   delete 'upvote/undo'
-      #   post 'downvote'
-      #   delete 'downvote/undo'
-      # end
+      member do
+        post 'upvote'         
+        post 'downvote'
+      end
+      
       resources :answers, only: [:create]
     end
     resources :answers, only: [:update, :destroy] do
-    #   member do
-    #     post 'upvote'
-    #     delete 'upvote/undo'
-    #     post 'downvote'
-    #     delete 'downvote/undo'
-    #   end
-    # end
-    # resources :votes, only: [:create, :destroy]
+      member do
+        post 'upvote'
+        post 'downvote'
+      end
+    end
+    resources :votes, only: [:create, :destroy]
     # resources :comments, only: [:create, :update, :destroy]
     resources :tags, only: [:index, :update, :destroy]
   end

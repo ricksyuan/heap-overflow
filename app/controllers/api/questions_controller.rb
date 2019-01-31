@@ -26,6 +26,10 @@ class Api::QuestionsController < ApplicationController
     end
   end
 
+  def upvote
+
+  end
+
   private
 
   def question_params

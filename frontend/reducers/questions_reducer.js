@@ -3,6 +3,7 @@ import {
   RECEIVE_ALL_QUESTIONS,
   RECEIVE_QUESTION,
 } from '../actions/question_actions';
+import { RECEIVE_QUESTION_VOTE } from '../actions/vote_actions';
 
 const questionsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
@@ -11,6 +12,8 @@ const questionsReducer = (oldState = {}, action) => {
       return merge({}, oldState, action.questions);
     case RECEIVE_QUESTION:
       return merge({}, action.question);
+    case RECEIVE_QUESTION_VOTE:
+      return merge({}, oldState, action.question);
     default:
       return oldState;
   }

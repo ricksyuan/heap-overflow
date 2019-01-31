@@ -7,6 +7,7 @@ import configureStore from './store/store';
 import { login, logout, signup } from './actions/session_actions';
 import { fetchAllQuestions } from './actions/question_actions';
 import { postUser, postSession, deleteSession } from './utils/session_api_util';
+import merge from 'lodash/merge';
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
@@ -34,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.login = login; // TEST: dispatch(login({user: {email: 'demo@example.com', password: 'password'}}))
   window.logout = logout; // TEST: dispatch(login({email: 'demo@example.com', password: 'password'}))
   window.signup = signup;
+  window.merge = merge;
   window.fetchAllQuestions = fetchAllQuestions;
   // TESTING END
   const root = document.getElementById("root");
