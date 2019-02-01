@@ -8,7 +8,6 @@ class Api::QuestionsController < ApplicationController
 
 
   def search
-    # @questions = Question.all.includes(:asker, :answers, :tags)
     query = params[:query]
     if query == ''
       @questions = Question.all.includes(:asker, :answers, :tags)
@@ -19,14 +18,14 @@ class Api::QuestionsController < ApplicationController
     query_terms = query.split
     if query_terms.length == 1 
       # search as a tag
-      @questions = Question.joins(:tags).where(tags: { name: query }).includes(:asker, :answers, :tags)
+      @questions = Question.joins(:tags).where(tags: { name: query }).includes(:asker, :answers, :tags, :taggings)
       if @questions.empty?
         @questions = Question.where("title ILIKE ?", "%#{query}%")   
       end
     else
       @questions = Question.where("title ILIKE ?", "%#{query}%")
     end
-    render :index
+    render :search
   end
 
   def show

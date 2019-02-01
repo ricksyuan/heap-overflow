@@ -2,8 +2,11 @@
 json.question do 
   json.extract! @question, :id, :asker_id, :title, :body, :score, :tag_ids
 
-  current_user_vote = @question.votes.find_by(voter_id: current_user.id)  
-  json.currentUserVote current_user_vote ? current_user_vote.vote_type : "none"
+  if current_user
+    current_user_vote = @question.votes.find_by(voter_id: current_user.id)  
+    json.currentUserVote current_user_vote ? current_user_vote.vote_type : "none"
+  end
+  
 end
 
 json.tags do
@@ -24,8 +27,10 @@ json.answers do
       json.answererId answer.answerer_id
       json.score answer.score
       json.body answer.body
-      current_user_vote = answer.votes.find_by(voter_id: current_user.id)
-      json.currentUserVote current_user_vote ? current_user_vote.vote_type : "none"
+      if current_user
+        current_user_vote = answer.votes.find_by(voter_id: current_user.id)
+        json.currentUserVote current_user_vote ? current_user_vote.vote_type : "none"
+      end
     end
   end
 end
