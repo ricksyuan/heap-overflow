@@ -39,7 +39,6 @@ class Question extends React.Component {
   }
 
   render() {
-    debugger
     return (
       <div className="question-container">
         <div className="question-voting">
@@ -49,7 +48,7 @@ class Question extends React.Component {
         
           <div className="question-score">{this.props.question.score}</div>
           <button className={`down-arrow ${this.props.question.currentUserVote === 'down_vote' ? 'current-user-vote' : ''}`} onClick={this.downvote} >
-            <svg className="svg-icon down-arrow" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>
+            <svg className="svg-icon" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>
           </button>
         </div>
         <div className="question-main">

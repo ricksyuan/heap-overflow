@@ -49,7 +49,7 @@ class Answer extends React.Component {
 
           <div className="answer-score">{this.props.answer.score}</div>
           <button className={`down-arrow ${this.props.answer.currentUserVote === 'down_vote' ? 'current-user-vote' : ''}`} onClick={this.handleDownvote} >
-            <svg className="svg-icon down-arrow" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>
+            <svg className="svg-icon" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>
           </button>
         </div>
         <div className="answer-main">
