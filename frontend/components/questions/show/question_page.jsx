@@ -62,7 +62,6 @@ class QuestionPage extends React.Component {
       return <></>;
     }
     const asker = users[question.askerId];
-    debugger
     const answers = this.props.answers.map(answer => {
       const answerer = users[answer.answererId];
       return <Answer key={answer.id} answer={answer} answerer={answerer}/>;
