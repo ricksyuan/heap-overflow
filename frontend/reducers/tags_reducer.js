@@ -1,20 +1,26 @@
 import merge from 'lodash/merge';
-import { RECEIVE_ALL_QUESTIONS, RECEIVE_QUESTION } from '../actions/question_actions';
+import {
+  RECEIVE_ALL_QUESTIONS,
+  RECEIVE_SEARCH_RESULTS,
+  RECEIVE_QUESTION,
+} from '../actions/question_actions';
 import { RECEIVE_TAGS, RECEIVE_TAG } from '../actions/tag_actions';
 
-const tagReducer = (state = {}, action) => {
-  Object.freeze(state);
+const tagReducer = (oldState = {}, action) => {
+  Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_ALL_QUESTIONS:
-      return merge({}, state, action.tags);
+      return merge({}, oldState, action.tags);
+    case RECEIVE_ALL_QUESTIONS:
+      return merge({}, oldState, action.tags);
     case RECEIVE_QUESTION:
-      return merge({}, state, action.tags);
+      return merge({}, oldState, action.tags);
     case RECEIVE_TAGS:
-      return merge({}, state, action.tags);
+      return merge({}, oldState, action.tags);
     case RECEIVE_TAG:
-      return merge({}, state, { [action.tag.id]: action.tag });
+      return merge({}, oldState, { [action.tag.id]: action.tag });
     default:
-      return state;
+      return oldState;
   }
 };
 

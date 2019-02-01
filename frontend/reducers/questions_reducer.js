@@ -3,6 +3,7 @@ import {
   RECEIVE_ALL_QUESTIONS,
   RECEIVE_QUESTION,
   REMOVE_QUESTION,
+  RECEIVE_SEARCH_RESULTS,
 } from '../actions/question_actions';
 import { RECEIVE_QUESTION_VOTE } from '../actions/vote_actions';
 
@@ -11,6 +12,8 @@ const questionsReducer = (oldState = {}, action) => {
   switch (action.type) {
     case RECEIVE_ALL_QUESTIONS:
       return merge({}, oldState, action.questions);
+    case RECEIVE_SEARCH_RESULTS:
+      return merge({}, action.questions);
     case RECEIVE_QUESTION:
       return merge({}, oldState, { [action.question.id]: action.question });
     case REMOVE_QUESTION:

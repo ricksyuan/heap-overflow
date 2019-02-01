@@ -7,9 +7,27 @@ class Api::QuestionsController < ApplicationController
   end
 
 
-  # def search
+  def search
+    # @questions = Question.all.includes(:asker, :answers, :tags)
+    query = params[:query]
+    if query == ''
+      @questions = Question.all.includes(:asker, :answers, :tags)
+      render :index
+      return
+    end
 
-  # end
+    query_terms = query.split
+    if query_terms.length == 1 
+      # search as a tag
+      @questions = Question.joins(:tags).where(tags: { name: query }).includes(:asker, :answers, :tags)
+      if @questions.empty?
+        @questions = Question.where("title ILIKE ?", "%#{query}%")   
+      end
+    else
+      @questions = Question.where("title ILIKE ?", "%#{query}%")
+    end
+    render :index
+  end
 
   def show
     @question = Question.includes(:asker, :answerers, :votes, { answers: [:votes] }).find(params[:id])
