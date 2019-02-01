@@ -27,7 +27,6 @@ class AskQuestionForm extends React.Component {
 
   handleChange(field) {
     return (event) => {
-      console.log(event.currentTarget.value);  
       this.setState({[field]: event.currentTarget.value});
     };
   }
