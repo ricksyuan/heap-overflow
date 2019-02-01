@@ -73,7 +73,7 @@ export const createQuestion = (question) => (dispatch) => {
 
 export const deleteQuestion = (questionId) => (dispatch) => {
   return QuestionAPIUtil.deleteQuestion(questionId)
-    .then((question) => {
-      return dispatch(removeQuestion(question));
+    .then((questionId) => {
+      return dispatch(removeQuestion(questionId));
     });
 };

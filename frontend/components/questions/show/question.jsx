@@ -1,11 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { vote } from '../../../actions/vote_actions';
 import { deleteQuestion } from '../../../actions/question_actions';
+import Tag from '../tag';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  const tags = ownProps.question.tagIds.map(tagId => (
+    state.entities.tags[tagId]
+  ));
   return {
-
+    tags: tags,
   };
 };
 
@@ -30,15 +35,21 @@ class Question extends React.Component {
   }
 
   downvote() {
-    this.props.vote("down_vote", "Question", this.props.question.id);
+    this.props.vote('down_vote', 'Question', this.props.question.id);
   }
 
   handleDelete(e) {
     e.preventDefault();
-    this.props.deleteQuestion(this.props.question.id);
+    this.props.deleteQuestion(this.props.question.id)
+      .then(({questionId}) => {
+        return this.props.history.push('/');
+      });
   }
 
   render() {
+    const tags = this.props.tags.map(tag => {
+      return <Tag key={tag.id} tag={tag}/>;
+    });
     return (
       <div className="question-container">
         <div className="question-voting">
@@ -55,6 +66,9 @@ class Question extends React.Component {
           <div className="question-body">
             {this.props.question.body}
           </div>
+          <div className="question-tags">
+            {tags}
+          </div>
           <div className="question-footer">
             <div className="question-buttons">
               <button className="question-delete-btn" onClick={this.handleDelete}>delete</button>
@@ -69,4 +83,4 @@ class Question extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Question);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Question));

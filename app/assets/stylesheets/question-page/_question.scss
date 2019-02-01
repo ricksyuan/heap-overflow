@@ -23,6 +23,24 @@
 
   & .question-main {
     flex-grow: 1;
+
+    & .question-tags {
+      padding: 0px 2px;
+      margin-top: 5px;
+      & .question-tag {
+          display: inline-block;
+          font-size: 12px;
+          color: #39739d;
+          background-color: #E1ECF4;
+          border-radius: 3px;
+          margin-right: 3px;
+          padding: 4.8px 6px;
+          &:hover {
+            color: #33658a;
+            background-color: #cee0ed;
+          }
+        }
+    }
     & .question-body {
       
     }

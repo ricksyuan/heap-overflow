@@ -42,7 +42,14 @@ class Api::QuestionsController < ApplicationController
     @question = Question.new(question_params)
     @question.asker_id = current_user.id
     @question.editor_id = current_user.id
+    
     if @question.save
+      tag_string = params[:question][:tags]
+      tags_array = tag_string.split
+      tags_array.each do |tag_name|
+        tag = Tag.find_or_create_by(name:tag_name)
+        Tagging.find_or_create_by(question_id: @question.id, tag_id: tag.id)
+      end
       render :show
     else
       render json: @question.errors.full_messages, status: 422

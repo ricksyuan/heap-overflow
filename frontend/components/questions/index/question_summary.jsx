@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import QuestionStat from './question_stat';
 import { kFormatter } from '../../../utils/formatting_util';
+import Tag from '../tag';
 
 const mapStateToProps = (state, ownProps) => {
   const asker = state.entities.users[ownProps.question.askerId];
@@ -23,7 +24,7 @@ class QuestionSummary extends React.Component {
 
   render() {
     const tags = this.props.tags.map(tag => {
-      return <Link className="question-tag" to={`questions/tagged/${tag.name}`} key={tag.id}>{tag.name}</Link>
+      return <Tag key={tag.id} tag={tag}/>
     });
     return (
       <div className="question-list-item">

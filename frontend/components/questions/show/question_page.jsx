@@ -82,7 +82,7 @@ class QuestionPage extends React.Component {
         <form className="your-answer-form" onSubmit={this.handleAnswerSubmission}>
           <h2 className="your-answer-form-headline">Your Answer</h2>
           <textarea className="answer-form-textarea-body" name="body" onChange={this.handleChange} value={this.state.body}></textarea>
-          {/* <AnswerForm /> */}
+          {/* <AnswerForm className="answer-form-textarea-body"/> */}
           <input type="submit" className="answer-submit-btn primary-btn" value="Post Your Answer" />
           
         </form>
