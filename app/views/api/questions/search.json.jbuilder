@@ -9,6 +9,8 @@ json.questions do
       json.score question.score
       json.views question.views
       json.tag_ids question.taggings.pluck(:tag_id)
+      json.answerIds question.answer_ids
+
     end
   end
 end

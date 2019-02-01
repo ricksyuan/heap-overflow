@@ -9,6 +9,7 @@ json.questions do
       json.score question.score
       json.views question.views
       json.tag_ids question.tag_ids
+      json.answerIds question.answer_ids
     end
   end
 end

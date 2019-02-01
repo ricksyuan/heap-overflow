@@ -9,9 +9,18 @@ import AnswerForm from '../../forms/answer_form';
 
 
 const mapStateToProps = (state, ownProps) => {
+  // let answers = Object.keys(state.entities.answers).map(id => state.entities.answers[id])    
+  const question = state.entities.questions[ownProps.match.params.questionId]; //TODO: add empty values
+  let answers = [];
+  if (question) {
+    question.answerIds.forEach(answerId => {    
+      const answer = state.entities.answers[answerId];
+      if (answer) answers.push(answer);
+    });
+  }
   return {
-    question: state.entities.questions[ownProps.match.params.questionId],
-    answers: Object.keys(state.entities.answers).map(id => state.entities.answers[id]),
+    question: question,
+    answers: answers,
     users: state.entities.users
   };
 };
@@ -52,7 +61,8 @@ class QuestionPage extends React.Component {
     if (!question) {
       return <></>;
     }
-    const asker = users[this.props.question.askerId];
+    const asker = users[question.askerId];
+    debugger
     const answers = this.props.answers.map(answer => {
       const answerer = users[answer.answererId];
       return <Answer key={answer.id} answer={answer} answerer={answerer}/>;

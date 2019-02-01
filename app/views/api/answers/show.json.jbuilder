@@ -1,6 +1,6 @@
 json.answer do
   json.set! @answer.id do
-    json.extract! @answer, :id, :body, :answerer_id
+    json.extract! @answer, :id, :body, :answerer_id, :question_id
     json.score @answer.score
   end
 end
