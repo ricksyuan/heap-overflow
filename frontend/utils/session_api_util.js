@@ -1,5 +1,5 @@
 // create a user
-export const postUser = newUser => (
+export const postUser = (newUser) => (
   $.ajax({
     method: 'POST',
     url: '/api/users',
@@ -7,7 +7,7 @@ export const postUser = newUser => (
   })// REVIEW: no semi-colon!
 );
 
-export const postSession = returningUser => (
+export const postSession = (returningUser) => (
   $.ajax({
     method: 'POST',
     url: '/api/session',

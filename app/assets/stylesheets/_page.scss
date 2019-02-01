@@ -306,12 +306,34 @@
 
 
 .footer {  
-  background: purple;
+  background: #242729;
   & .footer-contents {
+    display: flex;
+    flex-direction: row;
+    padding: 32px 12px 12px 12px;
     max-width: $max-content-width;
     margin: 0 auto;
-
     color: white;
-    background: black;
+    & .footer-col {
+      padding-right: 12px;
+      padding-bottom: 24px;
+      margin-right: 50px;
+      & .footer-col-label {
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      & .footer-list {
+        
+        & .footer-list-item {
+          padding: 4px 0px;
+          color: #bbc0c4
+        }
+      }
+
+    }
+    
+
   }
 }

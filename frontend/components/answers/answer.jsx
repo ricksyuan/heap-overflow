@@ -43,12 +43,12 @@ class Answer extends React.Component {
     return (
       <div className="answer-container">
         <div className="answer-voting">
-          <button className="up-arrow" onClick={this.handleUpvote}>
+          <button className={`up-arrow ${this.props.answer.currentUserVote === 'up_vote' ? 'current-user-vote' : ''}`} onClick={this.handleUpvote}>
             <svg className="svg-icon" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10z"></path></svg>
           </button>
 
           <div className="answer-score">{this.props.answer.score}</div>
-          <button className="down-arrow" onClick={this.handleDownvote} >
+          <button className={`down-arrow ${this.props.answer.currentUserVote === 'down_vote' ? 'current-user-vote' : ''}`} onClick={this.handleDownvote} >
             <svg className="svg-icon down-arrow" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>
           </button>
         </div>
@@ -58,7 +58,7 @@ class Answer extends React.Component {
           </div>
           <div className="answer-footer">
             <div className="answer-buttons">
-              <button className="delete-answer-btn" onClick={this.handleDelete}>delete</button>
+              <button className="answer-delete-btn" onClick={this.handleDelete}>delete</button>
             </div>
             <div className="answer-user">
               Answered by {answerer.displayName}

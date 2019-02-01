@@ -2,6 +2,7 @@ import * as QuestionAPIUtil from '../utils/question_api_util';
 
 export const RECEIVE_ALL_QUESTIONS = 'RECEIVE_ALL_QUESTIONS';
 export const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
+export const REMOVE_QUESTION = 'REMOVE_QUESTION';
 
 export const receiveAllQuestions = (payload) => {
   return {
@@ -22,6 +23,14 @@ export const receiveQuestion = (payload) => {
   };
 };
 
+export const removeQuestion = (questionId) => {
+  // TODO: clean up additional state like tags
+  return {
+    type: REMOVE_QUESTION,
+    questionId: questionId,
+  };
+};
+
 
 export const fetchAllQuestions = () => (dispatch) => {
   return QuestionAPIUtil.fetchAllQuestions().then(
@@ -39,5 +48,15 @@ export const fetchQuestion = (questionId) => (dispatch) => {
 
 
 export const createQuestion = (question) => (dispatch) => {
-  return QuestionAPIUtil.createQuestion(question);
+  return QuestionAPIUtil.createQuestion(question)
+    .then((question) => {
+      return dispatch(receiveQuestion(question));
+    });
+};
+
+export const deleteQuestion = (questionId) => (dispatch) => {
+  return QuestionAPIUtil.deleteQuestion(questionId)
+    .then((question) => {
+      return dispatch(removeQuestion(question));
+    });
 };

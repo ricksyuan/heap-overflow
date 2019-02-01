@@ -34,14 +34,16 @@ def downvote
     unless Vote.vote_types.include? vote_type
       render json: ["Unknown vote type #{vote_type}"]
       return
-    end
+    end    
     @answer = Answer.find(params[:id])
     voter_id = current_user.id
-    @vote = @answer.votes.find_by(voter_id: voter_id)
-    if @vote.nil?
-      @vote = Vote.create(voter_id: voter_id, votable_type: :Answer, votable_id: @answer.id, vote_type: vote_type)
+    new_vote = Vote.new(vote_type: vote_type, voter_id: voter_id, votable_type: :Answer, votable_id: @answer.id)
+    existing_vote = @answer.votes.find_by(voter_id: voter_id)
+    if existing_vote.nil?
+      new_vote.save!
     else
-      @vote.destroy      
+      new_vote.save! unless new_vote.vote_type == existing_vote.vote_type
+      existing_vote.destroy
     end
     render :vote
   end

@@ -25,6 +25,7 @@
     & .up-arrow, & .down-arrow {
       color: #bbc0c4;
     }
+    
     & .answer-score {
       color: #6a737c;
       font-size: 21px;
@@ -42,7 +43,7 @@
       & .answer-buttons {
         flex-grow: 1;
 
-        & .delete-answer-btn {
+        & .answer-delete-btn {
           color: #848d95;
           &:hover {
             color: #3b4045;
@@ -50,6 +51,7 @@
         }
       }
       & .answer-user {
+        padding: 10px;
         background: rgb(227, 236, 243);
       }
     }

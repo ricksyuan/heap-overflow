@@ -1,63 +1,47 @@
 import * as SessionAPIUtil from '../utils/session_api_util';
 
-// REGULAR ACTION CREATORS
+// Action Creators
 
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 export const CLEAR_SESSION_ERRORS = 'CLEAR_SESSION_ERRORS';
 
-const receiveCurrentUser = (currentUser) => ({ // IMPLICIT RETURN
+const receiveCurrentUser = (currentUser) => ({
   type: RECEIVE_CURRENT_USER,
   currentUser: currentUser,
 });
 
-const logoutCurrentUser = () => ({ // IMPLICIT RETURN
+const logoutCurrentUser = () => ({
   type: LOGOUT_CURRENT_USER,
 });
 
-const receiveErrors = (errors) => ({ // IMPLICIT RETURN
+const receiveSessionErrors = (errors) => ({
   type: RECEIVE_SESSION_ERRORS,
   errors: errors,
 });
 
-export const clearErrors = () => ({ // IMPLICIT RETURN
+export const clearErrors = () => ({
   type: CLEAR_SESSION_ERRORS,
 });
 
-// TODO: USE THESE THUNKS IN COMPONENTS
-
-// TODO: LONG FORM EQUIVALENT FOR SIGNUP WITHOUT FAT ARROWS
-// TODO: export const signup = (formUser) => {
-// TODO: return (dispatch) => {
-// TODO:   return SessionUtils.postUser(formUser).then(newUser => {
-// TODO:     return dispatch(receiveCurrentUser(newUser));
-// TODO:     });
-// TODO:  };
-// TODO: }
-
-// TODO: dispatch in middle required for thunk actions!
-
-// TODO: Can have errors when logging out!
-
-// THUNK ACTION CREATORS
+// Thunk Action Creators
 
 export const signup = formUser => dispatch => (
   SessionAPIUtil.postUser(formUser)
     .then(
       newUser => dispatch(receiveCurrentUser(newUser)),
       err => {
-        return dispatch(receiveErrors(err.responseJSON));
+        return dispatch(receiveSessionErrors(err.responseJSON));
       }
     )
 );
 
-// TODO: Can have errors when logging out!
 export const login = formUser => dispatch => (
   SessionAPIUtil.postSession(formUser)
     .then(
       returningUser => dispatch(receiveCurrentUser(returningUser)),
-      err => dispatch(receiveErrors(err.responseJSON))
+      err => dispatch(receiveSessionErrors(err.responseJSON))
     )
 );
 

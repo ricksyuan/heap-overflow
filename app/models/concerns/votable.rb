@@ -3,6 +3,7 @@ module Votable
 
   included do
     has_many :votes, as: :votable
+    has_many :voters, through: :votes
   end
 
   def score

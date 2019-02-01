@@ -14,6 +14,7 @@
     & .up-arrow, & .down-arrow {
       color: #bbc0c4;
     }
+
     & .question-score {
       color: #6a737c;
       font-size: 21px;
@@ -33,9 +34,16 @@
       
       & .question-buttons {
         flex-grow: 1;
+         & .question-delete-btn {
+          color: #848d95;
+          &:hover {
+            color: #3b4045;
+          }
+        }
       }
 
       & .question-user {
+        padding: 10px;
         background: rgb(227,236,243);
       }
     }

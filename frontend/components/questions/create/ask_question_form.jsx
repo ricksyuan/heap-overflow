@@ -19,11 +19,10 @@ const mapDispatchToProps = (dispatch) => {
 class AskQuestionForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {title: '', body: ''};
+    this.state = {title: '', body: '', tags: ''};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDiscard = this.handleDiscard.bind(this);
     this.handleChange = this.handleChange.bind(this);
-
   }
 
   handleChange(field) {
@@ -36,12 +35,14 @@ class AskQuestionForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.createQuestion(this.state)
-      .then((newQuestionId)=>this.props.history.push(`/questions/${newQuestionId}`));
+      .then(({question})=> { // question destructured from receiveQuestion action
+        return this.props.history.push(`/questions/${question.id}`);
+      });
   }
 
   handleDiscard(e) {
     e.preventDefault();
-
+    this.setState({ title: '', body: '', tags: ''});
   }
 
   render () {

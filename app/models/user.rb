@@ -28,6 +28,8 @@ class User < ApplicationRecord
   has_many :questions
 
   has_many :answers
+
+  has_many :votes
   
   # allows validation of password length without storing password in DB
   attr_reader :password

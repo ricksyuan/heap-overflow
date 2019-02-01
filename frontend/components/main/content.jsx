@@ -13,10 +13,9 @@ const Content = () => {
       <Route exact path="/" component={TopQuestionsIndex} />
       <Route exact path="/questions/:questionId" component={QuestionPage} />
       <ProtectedRoute exact path="/questions/ask" component={AskQuestionForm} />
-
       <div className="session-page">
         <AuthRoute exact path="/login" component={LoginContainer} />
-        <AuthRoute exact path="/signup" component={SignupContainer} />
+        <AuthRoute exact path="/signup" component={SignupContainer} />        
       </div>
 
     </div>

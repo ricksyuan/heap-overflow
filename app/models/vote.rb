@@ -18,16 +18,18 @@ class Vote < ApplicationRecord
   belongs_to :voter,
     class_name: :User
 
-  VOTE_TYPES = ['up_vote', 'down_vote']
-
+  UPVOTE = 'up_vote'
+  DOWNVOTE = 'down_vote'
+  VOTE_TYPES = [UPVOTE, DOWNVOTE]
+  
   def self.vote_types
     VOTE_TYPES
   end
 
   def opposite_vote_type
-    if self.vote_type == "up_vote"
+    if self.vote_type == UPVOTE
       "down_vote"
-    elsif self.vote_type == "down_vote"
+    elsif self.vote_type == DOWNVOTE
       "up_vote"
     else
       nil

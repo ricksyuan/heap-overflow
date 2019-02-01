@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { vote } from '../../../actions/vote_actions';
+import { deleteQuestion } from '../../../actions/question_actions';
+
 const mapStateToProps = (state) => {
   return {
 
@@ -9,6 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    deleteQuestion: (questionId) => dispatch(deleteQuestion(questionId)),
     vote: (voteType, votableType, votableId) => dispatch(vote(voteType, votableType, votableId)),
   };
 };
@@ -16,6 +19,8 @@ const mapDispatchToProps = (dispatch) => {
 class Question extends React.Component {
   constructor(props) {
     super(props);
+    this.handleDelete = this.handleDelete.bind(this);
+
     this.upvote = this.upvote.bind(this);
     this.downvote = this.downvote.bind(this);
   }
@@ -28,16 +33,22 @@ class Question extends React.Component {
     this.props.vote("down_vote", "Question", this.props.question.id);
   }
 
-  render() {    
+  handleDelete(e) {
+    e.preventDefault();
+    this.props.deleteQuestion(this.props.question.id);
+  }
+
+  render() {
+    debugger
     return (
       <div className="question-container">
         <div className="question-voting">
-          <button className="up-arrow" onClick={this.upvote}>
+          <button className={`up-arrow ${this.props.question.currentUserVote === 'up_vote' ? 'current-user-vote' : ''}`} onClick={this.upvote}>
             <svg className="svg-icon" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10z"></path></svg>
           </button>
         
           <div className="question-score">{this.props.question.score}</div>
-          <button className="down-arrow" onClick={this.downvote} >
+          <button className={`down-arrow ${this.props.question.currentUserVote === 'down_vote' ? 'current-user-vote' : ''}`} onClick={this.downvote} >
             <svg className="svg-icon down-arrow" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>
           </button>
         </div>
@@ -47,6 +58,7 @@ class Question extends React.Component {
           </div>
           <div className="question-footer">
             <div className="question-buttons">
+              <button className="question-delete-btn" onClick={this.handleDelete}>delete</button>
             </div>
             <div className="question-user">
               Asked by {this.props.asker.displayName}

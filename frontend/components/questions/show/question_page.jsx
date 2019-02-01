@@ -5,6 +5,8 @@ import { postAnswer } from '../../../actions/answer_actions';
 import { Link } from 'react-router-dom';
 import Question from './question';
 import Answer from '../../answers/answer';
+import AnswerForm from '../../forms/answer_form';
+
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -48,7 +50,7 @@ class QuestionPage extends React.Component {
   render() {
     const { question, users } = this.props;
     if (!question) {
-      return <div>Loading...</div>;
+      return <></>;
     }
     const asker = users[this.props.question.askerId];
     const answers = this.props.answers.map(answer => {
@@ -79,8 +81,10 @@ class QuestionPage extends React.Component {
         
         <form className="your-answer-form" onSubmit={this.handleAnswerSubmission}>
           <h2 className="your-answer-form-headline">Your Answer</h2>
-          <textarea name="body" onChange={this.handleChange} value={this.state.body}></textarea>
-          <input type="submit" className="post-answer-btn primary-btn" value="Post Your Answer"/>
+          <textarea className="answer-form-textarea-body" name="body" onChange={this.handleChange} value={this.state.body}></textarea>
+          {/* <AnswerForm /> */}
+          <input type="submit" className="answer-submit-btn primary-btn" value="Post Your Answer" />
+          
         </form>
           
       </div>

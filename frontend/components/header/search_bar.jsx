@@ -2,7 +2,15 @@ import React from 'react';
 
 class SearchBar extends React.Component {
   
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   handleChange(e) {
+    this.setState = {
+      filterVal: e.currentTarget.value,
+    };
   }
 
   handleFocus(e) {
@@ -12,7 +20,6 @@ class SearchBar extends React.Component {
   }
 
   handleBlur(e) {
-    // Hide focus.
     const searchButton = document.querySelector(".search-button");
     searchButton.style.visibility = "hidden";
   }

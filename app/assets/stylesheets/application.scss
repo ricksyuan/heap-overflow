@@ -62,10 +62,16 @@ input[type='submit'] {
 	fill: currentColor;
 }
 
+// Styles voting arrow color if user
+// previously voted
+.current-user-vote {
+	color: $so-princeton-orange-color !important; 
+}
+
 // Put additional imports after application wide styles
 
 @import "page";
 @import "session";
 @import "top-questions";
 @import "ask-question";
-@import "question-page";
+@import "question-page"; // folder
