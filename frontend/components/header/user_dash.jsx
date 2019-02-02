@@ -17,7 +17,7 @@ const UserDash = ({currentUser}) => {
             <span className="gold-badge">●</span>
             <span className="gold-badge-count">1</span>
           </span>
-          <span title="2 silver badge">
+          <span title="2 silver badges">
             <span className="silver-badge">●</span>
             <span className="silver-badge-count">2</span>
           </span>
