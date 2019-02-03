@@ -1,7 +1,6 @@
 
 json.question do 
-  json.extract! @question, :id, :asker_id, :title, :body, :score, :tag_ids
-  json.answerIds @question.answer_ids
+  json.extract! @question, :id, :asker_id, :title, :body, :score, :tag_ids, :answer_ids
   if current_user
     current_user_vote = @question.votes.find_by(voter_id: current_user.id)  
     json.currentUserVote current_user_vote ? current_user_vote.vote_type : "none"
