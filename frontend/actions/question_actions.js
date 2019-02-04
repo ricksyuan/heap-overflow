@@ -28,6 +28,7 @@ export const receiveQuestion = (payload) => {
     type: RECEIVE_QUESTION,
     question: payload.question,
     answers: payload.answers,
+    comments: payload.comments,
     users: payload.users,
     tags: payload.tags,
   };

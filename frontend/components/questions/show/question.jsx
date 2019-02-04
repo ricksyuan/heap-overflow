@@ -4,13 +4,18 @@ import { withRouter } from 'react-router-dom';
 import { vote } from '../../../actions/vote_actions';
 import { deleteQuestion } from '../../../actions/question_actions';
 import Tag from '../tag';
+import CommentIndex from '../../comments/comment_index';
 
 const mapStateToProps = (state, ownProps) => {
+  const comments = ownProps.question.commentIds.map(commentId => (
+    state.entities.comments[commentId]
+  ));
   const tags = ownProps.question.tagIds.map(tagId => (
     state.entities.tags[tagId]
   ));
   return {
     tags: tags,
+    comments: comments,
   };
 };
 
@@ -25,7 +30,6 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
-
     this.upvote = this.upvote.bind(this);
     this.downvote = this.downvote.bind(this);
   }
@@ -37,6 +41,7 @@ class Question extends React.Component {
   downvote() {
     this.props.vote('down_vote', 'Question', this.props.question.id);
   }
+
 
   handleDelete(e) {
     e.preventDefault();
@@ -75,8 +80,9 @@ class Question extends React.Component {
             </div>
             <div className="question-user">
               Asked by {this.props.asker.displayName}
-            </div>
+            </div>            
           </div>
+          <CommentIndex comments={this.props.comments} commentableType="Question" commentableId={this.props.question.id} />
         </div>
       </div>
     );

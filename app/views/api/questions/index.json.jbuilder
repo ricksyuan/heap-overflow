@@ -5,11 +5,11 @@ json.questions do
       json.id question.id
       json.askerId question.asker_id
       json.title question.title
-      json.answerCount question.answers.length
       json.score question.score
       json.views question.views
       json.tag_ids question.tag_ids
       json.answerIds question.answer_ids
+      json.commentIds question.comments.ids
     end
   end
 end

@@ -12,6 +12,7 @@ Tag.delete_all
 Answer.delete_all
 Tagging.delete_all
 Vote.delete_all
+Comment.delete_all
 
 demo_user = User.create!(display_name: "demouser", email: "demo@example.com", password: "password")
 test_user = User.create!(display_name: "testuser", email: "test@example.com", password: "password")

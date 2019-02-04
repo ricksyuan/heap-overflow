@@ -42,14 +42,16 @@
         }
     }
     & .question-body {
-      
+      font-size: 15px;
     }
     & .question-footer {
       margin-top: 16px;
       padding-top: 4px;
+      padding-bottom: 8px;
       display: flex;
       flex-direction: row;
-      
+      border-bottom: 1px solid #eff0f1;
+
       & .question-buttons {
         flex-grow: 1;
          & .question-delete-btn {

@@ -30,7 +30,7 @@ class QuestionSummary extends React.Component {
       <div className="question-list-item">
         <Link className="question-stats" to={`/questions/${this.props.question.id}`}>
           <QuestionStat className="votes" statName="votes" statCount={this.props.question.score}/>
-          <QuestionStat className="answers" statName="answers" statCount={this.props.question.answerCount}/>
+          <QuestionStat className="answers" statName="answers" statCount={this.props.question.answerIds.length}/>
           <QuestionStat className="views" statName="views" statCount={kFormatter(this.props.question.views, 0)}/>          
         </Link>
         

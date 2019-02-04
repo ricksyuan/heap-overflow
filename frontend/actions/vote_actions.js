@@ -9,6 +9,7 @@ import * as VoteAPIUtil from '../utils/vote_api_util';
 
 export const RECEIVE_QUESTION_VOTE = 'RECEIVE_QUESTION_VOTE';
 export const RECEIVE_ANSWER_VOTE = 'RECEIVE_ANSWER_VOTE';
+export const RECEIVE_COMMENT_VOTE = 'RECEIVE_COMMENT_VOTE';
 
 const receiveAnswerVote = ({answer}) => {
   return {
@@ -44,6 +45,11 @@ const receiveVote = ({ payload, votableType }) => {
       type = RECEIVE_ANSWER_VOTE;
       field = 'answer';
       votable = payload.answer;
+      break;
+    case 'Comment':
+      type = RECEIVE_COMMENT_VOTE;
+      field = 'comment';
+      votable = payload.comment;
       break;
     default:
       type = "UNKNOWN_VOTABLE_TYPE";

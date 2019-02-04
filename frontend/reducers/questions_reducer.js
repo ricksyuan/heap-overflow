@@ -7,23 +7,44 @@ import {
   
 } from '../actions/question_actions';
 import { RECEIVE_ANSWER } from '../actions/answer_actions';
+import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_QUESTION_VOTE } from '../actions/vote_actions';
 
 const questionsReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
   let newState;
+  let question;
   switch (action.type) {
     case RECEIVE_ALL_QUESTIONS:
       return merge({}, oldState, action.questions);
     case RECEIVE_ANSWER:
       newState = merge({}, oldState);
-      const answer = Object.values(action.answer)[0]
+      const answer = Object.values(action.answer)[0];
       if (newState[answer.questionId].answerIds) {
         newState[answer.questionId].answerIds.push(answer.id);
       } else {
         newState[answer.questionId].answerIds = [answer.id];
       }
       return newState;
+    case RECEIVE_COMMENT:
+      newState = merge({}, oldState);
+      question = newState[action.comment.commentableId];
+      question.commentIds.push(action.comment.id);
+      return newState;
+    case REMOVE_COMMENT:
+      if (action.commentableType !== 'Question') {
+        return oldState;
+      } else {
+        newState = merge({}, oldState);
+
+        question = newState[action.commentableId];
+        const index = question.commentIds.indexOf(action.commentId);
+        if (index > -1) {
+          // Remove one element at index
+          question.commentIds.splice(index, 1);
+        }
+        return newState;
+      }
     case RECEIVE_SEARCH_RESULTS:
       return merge({}, action.questions);
     case RECEIVE_QUESTION:
