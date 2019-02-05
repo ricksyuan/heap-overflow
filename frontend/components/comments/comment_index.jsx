@@ -43,13 +43,16 @@ class CommentIndex extends React.Component {
   }
 
   render() {
+    debugger
+    
     const comments = this.props.comments.map(comment => {
+      debugger
       return <CommentListItem key={comment.id} comment={comment} />;
     });
     return (
       <div className="comment-index">
         <ul>
-          {comments}
+          {comments.length > 0 && comments}
         </ul>
         { 
           this.state.showCommentField === false ? <button className="show-comment-form-btn link" onClick={this.handleAddCommentClick} value="Add a comment">Add a comment</button> : 

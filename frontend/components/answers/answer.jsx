@@ -43,7 +43,9 @@ class Answer extends React.Component {
   }
 
   render() {
+    debugger
     const { answer, answerer, comments } = this.props;
+
     return (
       <div className="answer-container">
         <div className="answer-voting">

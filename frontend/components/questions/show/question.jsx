@@ -7,9 +7,12 @@ import Tag from '../tag';
 import CommentIndex from '../../comments/comment_index';
 
 const mapStateToProps = (state, ownProps) => {
-  const comments = ownProps.question.commentIds.map(commentId => (
-    state.entities.comments[commentId]
-  ));
+  let comments = [];
+  ownProps.question.commentIds.forEach(commentId => {
+    if (state.entities.comments[commentId]) {
+      comments.push(state.entities.comments[commentId]);
+    }    
+  });
   const tags = ownProps.question.tagIds.map(tagId => (
     state.entities.tags[tagId]
   ));
