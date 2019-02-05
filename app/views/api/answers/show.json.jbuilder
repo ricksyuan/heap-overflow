@@ -8,7 +8,6 @@ end
 json.comments do
   @answer.comments.each do |comment|
     json.set! comment.id do
-      debugger
       json.extract! comment, :id, :body, :commenter_id, :commentable_type, :commentable_id
       json.score comment.score
 
