@@ -94,6 +94,15 @@ json.users do
       json.id commenter.id
       json.displayName commenter.display_name
     end
+  end
+
+  @question.answers.each do |answer|
+    answer.comments.each do |comment|
+      json.set! comment.commenter.id do
+        json.id comment.commenter.id
+        json.displayName comment.commenter.display_name
+      end
+    end
   end  
 end
 
