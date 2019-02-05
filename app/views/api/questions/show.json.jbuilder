@@ -27,6 +27,7 @@ json.answers do
       json.questionId answer.question_id
       json.score answer.score
       json.body answer.body
+      json.commentIds answer.comment_ids
 
       if current_user
         current_user_vote = answer.votes.find_by(voter_id: current_user.id)
@@ -39,8 +40,10 @@ end
 json.comments do
   # Make partial
   @question.comments.each do |comment|
+
     json.set! comment.id do
       json.id comment.id
+      json.commentableType comment.commentable_type
       json.commentableId comment.commentable_id
       json.commenterId comment.commenter_id
       json.body comment.body
@@ -50,6 +53,24 @@ json.comments do
       if current_user
         current_user_vote = comment.votes.find_by(voter_id: current_user.id)  
         json.currentUserVote current_user_vote ? current_user_vote.vote_type : "none"
+      end
+    end
+  end
+  @question.answers.each do |answer|
+    answer.comments.each do |comment|
+      json.set! comment.id do
+        json.id comment.id
+        json.commentableType comment.commentable_type
+        json.commentableId comment.commentable_id
+        json.commenterId comment.commenter_id
+        json.body comment.body
+
+        json.score comment.score
+
+        if current_user
+          current_user_vote = comment.votes.find_by(voter_id: current_user.id)  
+          json.currentUserVote current_user_vote ? current_user_vote.vote_type : "none"
+        end
       end
     end
   end

@@ -39,7 +39,7 @@ class CommentIndex extends React.Component {
         body: this.state.commentBody,
         commentable_type: this.props.commentableType,
         commentable_id: this.props.commentableId,
-      }).then(() => this.setState({commentBody: ''}));
+      }).then(() => this.setState({ commentBody: '', showCommentField: false }));
   }
 
   render() {

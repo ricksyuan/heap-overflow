@@ -2,10 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { deleteAnswer } from '../../actions/answer_actions';
 import { upvoteAnswer, downvoteAnswer } from '../../actions/vote_actions';
+import CommentIndex from '../comments/comment_index';
 
 const mapStateToProps = (state, ownProps) => {
+  const comments = ownProps.answer.commentIds.map(commentId => (
+    state.entities.comments[commentId]
+  ));
   return {
-    
+    comments: comments,
   };
 };
 
@@ -39,16 +43,16 @@ class Answer extends React.Component {
   }
 
   render() {
-    const { answer, answerer } = this.props;
+    const { answer, answerer, comments } = this.props;
     return (
       <div className="answer-container">
         <div className="answer-voting">
-          <button className={`up-arrow ${this.props.answer.currentUserVote === 'up_vote' ? 'current-user-vote' : ''}`} onClick={this.handleUpvote}>
+          <button className={`up-arrow ${answer.currentUserVote === 'up_vote' ? 'current-user-vote' : ''}`} onClick={this.handleUpvote}>
             <svg className="svg-icon" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10z"></path></svg>
           </button>
 
-          <div className="answer-score">{this.props.answer.score}</div>
-          <button className={`down-arrow ${this.props.answer.currentUserVote === 'down_vote' ? 'current-user-vote' : ''}`} onClick={this.handleDownvote} >
+          <div className="answer-score">{answer.score}</div>
+          <button className={`down-arrow ${answer.currentUserVote === 'down_vote' ? 'current-user-vote' : ''}`} onClick={this.handleDownvote} >
             <svg className="svg-icon" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>
           </button>
         </div>
@@ -64,7 +68,7 @@ class Answer extends React.Component {
               Answered by {answerer.displayName}
             </div>
           </div>
-          
+          <CommentIndex comments={comments} commentableType="Answer" commentableId={answer.id} />
         </div>
         
       </div>

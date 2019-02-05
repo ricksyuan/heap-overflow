@@ -11,7 +11,7 @@ class Api::VotesController < ApplicationController
     votable_type = params[:votable_type]
     votable_id = params[:votable_id]
 
-    new_vote = Vote.new(vote_type: vote_type, voter_id: voter_id, votable_type: votable_type, votable_id: votable_id)    
+    new_vote = Vote.new(vote_type: vote_type, voter_id: voter_id, votable_type: votable_type, votable_id: votable_id)
     @votable = new_vote.votable
     existing_vote = Vote.find_by(voter_id: voter_id, votable_type: votable_type, votable_id: votable_id)
     if existing_vote.nil?

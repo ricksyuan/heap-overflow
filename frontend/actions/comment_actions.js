@@ -13,15 +13,14 @@ const receiveComment = (payload) => {
 const removeComment = (comment) => {
   return {
     type: REMOVE_COMMENT,
-    commentId: comment.id,
-    commentableType: comment.commentableType,
-    commentableId: comment.commentableId,
+    comment: comment,
   };
 };
 
 export const postComment = (formComment) => (dispatch) => {
   return CommentAPIUtil.createComment(formComment)
     .then(newComment => {
+      
       return dispatch(receiveComment(newComment));
     });
 };

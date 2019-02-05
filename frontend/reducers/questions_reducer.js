@@ -27,18 +27,22 @@ const questionsReducer = (oldState = {}, action) => {
       }
       return newState;
     case RECEIVE_COMMENT:
-      newState = merge({}, oldState);
-      question = newState[action.comment.commentableId];
-      question.commentIds.push(action.comment.id);
-      return newState;
+      if (action.comment.commentableType !== 'Question') {
+        return oldState;
+      } else {
+        newState = merge({}, oldState);
+        question = newState[action.comment.commentableId];
+        question.commentIds.push(action.comment.id);
+        return newState;
+      }
     case REMOVE_COMMENT:
-      if (action.commentableType !== 'Question') {
+      if (action.comment.commentableType !== 'Question') {
         return oldState;
       } else {
         newState = merge({}, oldState);
 
-        question = newState[action.commentableId];
-        const index = question.commentIds.indexOf(action.commentId);
+        question = newState[action.comment.commentableId];
+        const index = question.commentIds.indexOf(action.comment.id);
         if (index > -1) {
           // Remove one element at index
           question.commentIds.splice(index, 1);
