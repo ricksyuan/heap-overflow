@@ -43,7 +43,6 @@ class Answer extends React.Component {
   }
 
   render() {
-    debugger
     const { answer, answerer, comments } = this.props;
 
     return (

@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
   ownProps.question.commentIds.forEach(commentId => {
     if (state.entities.comments[commentId]) {
       comments.push(state.entities.comments[commentId]);
-    }    
+    }
   });
   const tags = ownProps.question.tagIds.map(tagId => (
     state.entities.tags[tagId]
@@ -55,9 +55,16 @@ class Question extends React.Component {
   }
 
   render() {
+
+    if (this.props.comments.nil?) {
+
+    } 
+
     const tags = this.props.tags.map(tag => {
       return <Tag key={tag.id} tag={tag}/>;
     });
+    
+
     return (
       <div className="question-container">
         <div className="question-voting">
