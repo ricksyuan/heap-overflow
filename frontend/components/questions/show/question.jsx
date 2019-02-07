@@ -7,18 +7,26 @@ import Tag from '../tag';
 import CommentIndex from '../../comments/comment_index';
 
 const mapStateToProps = (state, ownProps) => {
-  let comments = [];
-  ownProps.question.commentIds.forEach(commentId => {
-    if (state.entities.comments[commentId]) {
-      comments.push(state.entities.comments[commentId]);
-    }
+  // let comments = [];
+  // ownProps.question.commentIds.forEach(commentId => {
+  //   if (state.entities.comments[commentId]) {
+  //     comments.push(state.entities.comments[commentId]);
+  //   }
+  // });
+
+  const comments = ownProps.question.commentIds.map(commentId => {
+    return state.entities.comments[commentId];
   });
+
   const tags = ownProps.question.tagIds.map(tagId => (
     state.entities.tags[tagId]
   ));
+
+  const asker = state.entities.users[ownProps.question.askerId];
   return {
     tags: tags,
     comments: comments,
+    asker: asker,
   };
 };
 
@@ -55,10 +63,6 @@ class Question extends React.Component {
   }
 
   render() {
-
-    if (this.props.comments.nil?) {
-
-    } 
 
     const tags = this.props.tags.map(tag => {
       return <Tag key={tag.id} tag={tag}/>;

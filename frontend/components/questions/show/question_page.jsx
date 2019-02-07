@@ -9,11 +9,10 @@ import AnswerForm from '../../forms/answer_form';
 
 
 const mapStateToProps = (state, ownProps) => {
-  // let answers = Object.keys(state.entities.answers).map(id => state.entities.answers[id])    
   const question = state.entities.questions[ownProps.match.params.questionId]; //TODO: add empty values
   let answers = [];
   if (question) {
-    question.answerIds.forEach(answerId => {    
+    question.answerIds.forEach(answerId => { 
       const answer = state.entities.answers[answerId];
       if (answer) answers.push(answer);
     });
@@ -21,7 +20,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     question: question,
     answers: answers,
-    users: state.entities.users
   };
 };
 
@@ -36,17 +34,23 @@ class QuestionPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      loaded: false,
       body: '',
-    }
-    this.handleChange = this.handleChange.bind(this);
+    };
+    this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
     this.handleAnswerSubmission = this.handleAnswerSubmission.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchQuestion(this.props.match.params.questionId);
+    this.props.fetchQuestion(this.props.match.params.questionId)
+    .then((payload) => {
+      return this.setState({
+        loaded: true,        
+      });
+    });
   }
 
-  handleChange(event) {
+  handleTextAreaChange(event) {
     this.setState({body: event.currentTarget.value});
   }
 
@@ -57,14 +61,16 @@ class QuestionPage extends React.Component {
   }
 
   render() {
-    const { question, users } = this.props;
-    if (!question) {
+    if (!this.state.loaded) {
       return <></>;
     }
-    const asker = users[question.askerId];
+
+    if (!this.props.question) {
+      return <></>;
+    }
+    const question = this.props.question;
     const answers = this.props.answers.map(answer => {
-      const answerer = users[answer.answererId];
-      return <Answer key={answer.id} answer={answer} answerer={answerer}/>;
+      return <Answer key={answer.id} answer={answer}/>;
     });
     return (
       <div className="question-page">
@@ -77,7 +83,7 @@ class QuestionPage extends React.Component {
           </Link>
         </div>
         <div className="question-page-content">
-          <Question question={question} asker={asker}/>
+          <Question question={question}/>
           <div className="answers-container">
             <header className="answers-header">
               {answers.length} Answer{answers.length === 1  ? '' : 's'}
@@ -90,7 +96,7 @@ class QuestionPage extends React.Component {
         
         <form className="your-answer-form" onSubmit={this.handleAnswerSubmission}>
           <h2 className="your-answer-form-headline">Your Answer</h2>
-          <textarea className="answer-form-textarea-body" name="body" onChange={this.handleChange} value={this.state.body}></textarea>
+          <textarea className="answer-form-textarea-body" name="body" onChange={this.handleTextAreaChange} value={this.state.body}></textarea>
           {/* <AnswerForm className="answer-form-textarea-body"/> */}
           <input type="submit" className="answer-submit-btn primary-btn" value="Post Your Answer" />
           

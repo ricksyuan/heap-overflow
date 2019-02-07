@@ -9,7 +9,6 @@ export const receiveAllAnswers = (payload) => {
     type: RECEIVE_ALL_ANSWERS,
     answers: payload.answers,
     users: payload.users,
-    tags: payload.tags,
   };
 };
 
@@ -18,7 +17,6 @@ export const receiveAnswer = (payload) => {
     type: RECEIVE_ANSWER,
     answer: payload.answer,
     user: payload.user,
-    tags: payload.tags,
   };
 };
 

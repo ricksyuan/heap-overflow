@@ -8,8 +8,10 @@ const mapStateToProps = (state, ownProps) => {
   const comments = ownProps.answer.commentIds.map(commentId => (
     state.entities.comments[commentId]
   ));
+  const answerer = state.entities.users[ownProps.answer.answererId];
   return {
     comments: comments,
+    answerer: answerer,
   };
 };
 
