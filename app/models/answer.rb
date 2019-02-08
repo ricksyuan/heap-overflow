@@ -13,6 +13,9 @@
 #
 
 class Answer < ApplicationRecord
+
+  validates :body, presence: true, allow_blank: false
+
   include Commentable
   include Votable
   

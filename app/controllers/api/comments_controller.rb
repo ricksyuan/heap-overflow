@@ -11,13 +11,20 @@ class Api::CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
-    if @comment
-      @comment.destroy
-      render :destroy
-    else
-      render json: ["Comment not found"], status: 404
+    @comment = Comment.find_by(id: params[:id])
+    if @comment.nil?
+      render json: ['Comment does not exist'], status: 404
+      return
     end
+
+    if current_user.id != @comment.commenter_id
+      render json: ["Not authorized to delete other users' comments"], status: 403
+      return
+    end
+
+    @comment.destroy
+    render :destroy
+    
   end
 
   private

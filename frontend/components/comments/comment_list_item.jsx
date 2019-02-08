@@ -5,7 +5,8 @@ import { vote } from '../../actions/vote_actions';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    commenter: state.entities.users[ownProps.comment.commenterId]
+    commenter: state.entities.users[ownProps.comment.commenterId],
+    errors: state.errors.comments,
   };
 };
 
@@ -31,9 +32,22 @@ class CommentListItem extends React.Component {
     this.props.vote("up_vote", "Comment", this.props.comment.id);
   }
 
+  renderErrors() {
+    return (
+      <ul className="comment-error-ul">
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   render() {
     return (
       <li className="comment-list-item">
+        {this.renderErrors()}
         <div className="comment-left-aside">
           <div className="comment-review-actions">
             <div className="comment-score">
@@ -49,7 +63,8 @@ class CommentListItem extends React.Component {
         <div className="comment-text">
           {this.props.comment.body} - {this.props.commenter.displayName}
         </div>
-        <div className="comment-delete">
+        
+        <div className="comment-delete">          
           <button onClick={this.handleDeleteCommentClicked}>delete</button>
         </div>
       </li>

@@ -5,7 +5,7 @@ import { upvoteAnswer, downvoteAnswer } from '../../actions/vote_actions';
 import CommentIndex from '../comments/comment_index';
 
 const mapStateToProps = (state, ownProps) => {
-  const comments = ownProps.answer.commentIds.map(commentId => (
+  const comments = ownProps.answer.commentIds.map(commentId => (    
     state.entities.comments[commentId]
   ));
   const answerer = state.entities.users[ownProps.answer.answererId];

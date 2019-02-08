@@ -2,6 +2,7 @@ import * as CommentAPIUtil from '../utils/comment_api_util';
 
 export const RECEIVE_COMMENT = 'RECEIVE_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
+export const RECEIVE_COMMENT_ERRORS = 'RECEIVE_COMMENT_ERRORS';
 
 const receiveComment = (payload) => {
   return {
@@ -17,6 +18,13 @@ const removeComment = (comment) => {
   };
 };
 
+const receiveCommentErrors = (errors) => {
+  return {
+    type: RECEIVE_COMMENT_ERRORS,
+    errors: errors,
+  };
+};
+
 export const postComment = (formComment) => (dispatch) => {
   return CommentAPIUtil.createComment(formComment)
     .then(newComment => {
@@ -27,8 +35,8 @@ export const postComment = (formComment) => (dispatch) => {
 
 export const deleteComment = (commentId) => (dispatch) => {
   return CommentAPIUtil.deleteComment(commentId)
-
-    .then(({comment}) => {
-      return dispatch(removeComment(comment));
-    });
+  .then(
+    ({comment}) => dispatch(removeComment(comment)),
+    (errors) => dispatch(receiveCommentErrors(errors.responseJSON))
+  );
 };

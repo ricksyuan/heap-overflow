@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchQuestion } from '../../../actions/question_actions';
-import { postAnswer } from '../../../actions/answer_actions';
 import { Link } from 'react-router-dom';
 import Question from './question';
 import Answer from '../../answers/answer';
@@ -26,7 +25,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchQuestion: (questionId) => dispatch(fetchQuestion(questionId)),
-    postAnswer: (questionId, answer) => dispatch(postAnswer(questionId, answer)),
   };
 };
 
@@ -35,10 +33,7 @@ class QuestionPage extends React.Component {
     super(props);
     this.state = {
       loaded: false,
-      body: '',
     };
-    this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
-    this.handleAnswerSubmission = this.handleAnswerSubmission.bind(this);
   }
 
   componentDidMount() {
@@ -48,16 +43,6 @@ class QuestionPage extends React.Component {
         loaded: true,        
       });
     });
-  }
-
-  handleTextAreaChange(event) {
-    this.setState({body: event.currentTarget.value});
-  }
-
-  handleAnswerSubmission(e) {
-    e.preventDefault();
-    this.props.postAnswer(this.props.question.id, {body: this.state.body})
-      .then(this.setState({body: ''}));
   }
 
   render() {
@@ -93,15 +78,7 @@ class QuestionPage extends React.Component {
             </ul>
           </div>
         </div>
-        
-        <form className="your-answer-form" onSubmit={this.handleAnswerSubmission}>
-          <h2 className="your-answer-form-headline">Your Answer</h2>
-          <textarea className="answer-form-textarea-body" name="body" onChange={this.handleTextAreaChange} value={this.state.body}></textarea>
-          {/* <AnswerForm className="answer-form-textarea-body"/> */}
-          <input type="submit" className="answer-submit-btn primary-btn" value="Post Your Answer" />
-          
-        </form>
-          
+        <AnswerForm className="answer-form-textarea-body" questionId={question.id}/>                  
       </div>
     );
   }
