@@ -23,7 +23,7 @@ const answersReducer = (oldState = {}, action) => {
       return merge({}, oldState, action.answer);
     case REMOVE_ANSWER:
       newState = merge({}, oldState);
-      delete newState[action.answerId];
+      delete newState[action.answer.id];
       return newState;
     case RECEIVE_ANSWER_VOTE:
       return merge({}, oldState, action.answer);

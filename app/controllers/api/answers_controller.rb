@@ -16,7 +16,7 @@ class Api::AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
     if @answer
       @answer.destroy
-      render json: @answer.id
+      render :destroy
     else
       render json: ["Answer not found"], status: 404
     end

@@ -20,10 +20,10 @@ export const receiveAnswer = (payload) => {
   };
 };
 
-export const removeAnswer = (answerId) => {
+export const removeAnswer = (payload) => {
   return {
     type: REMOVE_ANSWER,
-    answerId: answerId,
+    answer: payload.answer,
   };
 };
 
@@ -48,7 +48,7 @@ export const postAnswer = (questionId, answer) => (dispatch) => {
 
 export const deleteAnswer = (answerId) => (dispatch) => {
   return AnswerAPIUtil.deleteAnswer(answerId)
-    .then(answerId => {
-      return dispatch(removeAnswer(answerId));
+    .then(payload => {
+      return dispatch(removeAnswer(payload));
     });
 };
