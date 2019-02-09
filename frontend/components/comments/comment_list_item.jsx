@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { deleteComment } from '../../actions/comment_actions';
 import { vote } from '../../actions/vote_actions';
+import Popup from '../../components/popup/popup';
+import { openPopup } from '../../actions/popup_actions';
+
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -14,6 +17,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     vote: (voteType, votableType, votableId) => dispatch(vote(voteType, votableType, votableId)),
     deleteComment: (commentId) => dispatch(deleteComment(commentId)),
+    openPopup: (popup) => dispatch(openPopup(popup)),
   };
 };
 
@@ -25,10 +29,17 @@ class CommentListItem extends React.Component {
   }
 
   handleDeleteCommentClicked(e) {
-    this.props.deleteComment(this.props.comment.id);
+    
+    const clickCoordinate = { x: e.pageX, y: e.pageY };
+    const popup = {
+      name: 'comment_error', 
+      clickCoordinate: clickCoordinate,
+    };
+    this.props.openPopup(popup);
+    // this.props.deleteComment(this.props.comment.id);
   }
 
-  handleUpvote(e) {
+  handleUpvote(e) {    
     this.props.vote("up_vote", "Comment", this.props.comment.id);
   }
 
@@ -47,7 +58,8 @@ class CommentListItem extends React.Component {
   render() {
     return (
       <li className="comment-list-item">
-        {this.renderErrors()}
+        <Popup />
+        {/* {this.renderErrors()} */}
         <div className="comment-left-aside">
           <div className="comment-review-actions">
             <div className="comment-score">

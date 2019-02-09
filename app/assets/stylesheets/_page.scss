@@ -1,15 +1,16 @@
 .header {
-  border-top: 
+  border-top:
     $header-top-border-width
     solid
     $so-princeton-orange-color;
   
   background-color: $so-header-off-white-color;
   box-shadow: rgba(12, 13, 14, 0.1) 0px 1px 0px 0px, rgba(59, 64, 69, 0.1) 0px 1px 6px 0px;
+  height: $header-height;
   width: 100%;
   position: fixed;
   top: 0px;
-  height: $header-height;
+  z-index: 20;
 
   & .header-contents {
     height: $header-content-height;
