@@ -59,7 +59,8 @@ export const postAnswer = (questionId, answer) => (dispatch) => {
 
 export const deleteAnswer = (answerId) => (dispatch) => {
   return AnswerAPIUtil.deleteAnswer(answerId)
-    .then(payload => {
-      return dispatch(removeAnswer(payload));
-    });
+    .then(
+      (payload) =>  dispatch(removeAnswer(payload)),
+      (errors) => dispatch(receiveAnswerErrors(errors.responseJSON))
+    );
 };

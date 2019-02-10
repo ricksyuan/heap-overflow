@@ -2,16 +2,20 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CommentListItem from './comment_list_item';
 import { postComment } from '../../actions/comment_actions';
+import { openPopup } from '../../actions/popup_actions';
 
 const mapStateToProps = (state) => {
+  const isLoggedIn = !!state.session.id;
   return {
-
+    isLoggedIn: isLoggedIn,
+    errors: state.errors.comments,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     postComment: (comment) => dispatch(postComment(comment)),
+    openPopup: (popup) => dispatch(openPopup(popup)),
   };
 };
 
@@ -28,8 +32,15 @@ class CommentIndex extends React.Component {
     this.setState({ commentBody: e.currentTarget.value });
   }
 
-  handleAddCommentClick() {
-    this.setState({ showCommentField: true });
+  handleAddCommentClick(e) {
+    if (this.props.isLoggedIn) {
+      this.setState({ showCommentField: true });
+    } else {
+      this.props.openPopup({
+        name: 'comment_error',
+        clickCoordinate: {x: e.pageX, y: e.pageY},
+      });
+    }
   }
 
   handleCommentSubmit(e) {
@@ -42,12 +53,25 @@ class CommentIndex extends React.Component {
       }).then(() => this.setState({ commentBody: '', showCommentField: false }));
   }
 
+  renderErrors() {
+    return (
+      <ul className="comment-error-ul">
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   render() {
     const comments = this.props.comments.map(comment => {
       return <CommentListItem key={comment.id} comment={comment} />;
     });
     return (
       <div className="comment-index">
+        {this.renderErrors()}
         <ul>
           {comments.length > 0 && comments}
         </ul>

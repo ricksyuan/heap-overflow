@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { deleteAnswer } from '../../actions/answer_actions';
 import { upvoteAnswer, downvoteAnswer } from '../../actions/vote_actions';
+import { openPopup } from '../../actions/popup_actions';
 import CommentIndex from '../comments/comment_index';
 
 const mapStateToProps = (state, ownProps) => {
@@ -9,9 +10,13 @@ const mapStateToProps = (state, ownProps) => {
     state.entities.comments[commentId]
   ));
   const answerer = state.entities.users[ownProps.answer.answererId];
+  const isLoggedIn = !!state.session.id;
+  const isAuthor = (state.session.id === answerer.id);
   return {
     comments: comments,
     answerer: answerer,
+    isLoggedIn: isLoggedIn,
+    isAuthor: isAuthor,
   };
 };
 
@@ -20,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
     deleteAnswer: (answerId) => dispatch(deleteAnswer(answerId)),
     upvoteAnswer: (answerId) => dispatch(upvoteAnswer(answerId)),
     downvoteAnswer: (answerId) => dispatch(downvoteAnswer(answerId)),
+    openPopup: (popup) => dispatch(openPopup(popup)),
   };
 };
 
@@ -32,11 +38,25 @@ class Answer extends React.Component {
   }
 
   handleUpvote() {
-    this.props.upvoteAnswer(this.props.answer.id);
+    if (this.props.isLoggedIn) {
+      this.props.upvoteAnswer(this.props.answer.id);
+    } else {
+      this.props.openPopup({
+        name: 'vote_error',
+        clickCoordinate: { x: event.pageX, y: event.pageY },
+      });
+    }
   }
 
   handleDownvote() {
-    this.props.downvoteAnswer(this.props.answer.id);
+    if (this.props.isLoggedIn) {
+      this.props.downvoteAnswer(this.props.answer.id);
+    } else {
+      this.props.openPopup({
+        name: 'vote_error',
+        clickCoordinate: { x: event.pageX, y: event.pageY },
+      });
+    }
   }
 
   handleDelete(e) {
@@ -65,7 +85,7 @@ class Answer extends React.Component {
           </div>
           <div className="answer-footer">
             <div className="answer-buttons">
-              <button className="answer-delete-btn" onClick={this.handleDelete}>delete</button>
+              {this.props.isAuthor && <button className="answer-delete-btn" onClick={this.handleDelete}>delete</button>}
             </div>
             <div className="answer-user">
               Answered by {answerer.displayName}

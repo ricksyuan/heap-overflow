@@ -2,13 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { deleteComment } from '../../actions/comment_actions';
 import { vote } from '../../actions/vote_actions';
-import Popup from '../../components/popup/popup';
 import { openPopup } from '../../actions/popup_actions';
 
 
 const mapStateToProps = (state, ownProps) => {
+  const commenter = state.entities.users[ownProps.comment.commenterId];
+  const isLoggedIn = !!state.session.id;
+  const isAuthor = (state.session.id === commenter.id);
   return {
-    commenter: state.entities.users[ownProps.comment.commenterId],
+    commenter: commenter,
+    isLoggedIn: isLoggedIn,
+    isAuthor: isAuthor,
     errors: state.errors.comments,
   };
 };
@@ -29,18 +33,30 @@ class CommentListItem extends React.Component {
   }
 
   handleDeleteCommentClicked(e) {
-    
-    const clickCoordinate = { x: e.pageX, y: e.pageY };
-    const popup = {
-      name: 'comment_error', 
-      clickCoordinate: clickCoordinate,
-    };
-    this.props.openPopup(popup);
-    // this.props.deleteComment(this.props.comment.id);
+    if (this.props.isLoggedIn) {
+      this.props.deleteComment(this.props.comment.id);
+    } else {
+      const clickCoordinate = { x: e.pageX, y: e.pageY };
+      const popup = {
+        name: 'comment_error',
+        clickCoordinate: clickCoordinate,
+      };
+      this.props.openPopup(popup);
+    }
   }
 
-  handleUpvote(e) {    
-    this.props.vote("up_vote", "Comment", this.props.comment.id);
+  handleUpvote(e) {
+    if (this.props.isLoggedIn) {
+      this.props.vote('up_vote', 'Comment', this.props.comment.id);
+    } else {
+      const clickCoordinate = { x: e.pageX, y: e.pageY };
+      const popup = {
+        name: 'vote_error',
+        clickCoordinate: clickCoordinate,
+      };
+      this.props.openPopup(popup);
+    }
+    
   }
 
   renderErrors() {
@@ -58,8 +74,7 @@ class CommentListItem extends React.Component {
   render() {
     return (
       <li className="comment-list-item">
-        <Popup />
-        {/* {this.renderErrors()} */}
+        {this.renderErrors()}
         <div className="comment-left-aside">
           <div className="comment-review-actions">
             <div className="comment-score">
@@ -76,8 +91,8 @@ class CommentListItem extends React.Component {
           {this.props.comment.body} - {this.props.commenter.displayName}
         </div>
         
-        <div className="comment-delete">          
-          <button onClick={this.handleDeleteCommentClicked}>delete</button>
+        <div className="comment-delete">
+          {this.props.isAuthor && <button onClick={this.handleDeleteCommentClicked}>delete</button>}
         </div>
       </li>
     );

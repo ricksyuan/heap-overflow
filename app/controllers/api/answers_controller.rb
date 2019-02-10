@@ -1,5 +1,12 @@
 class Api::AnswersController < ApplicationController
-  
+
+  before_action :require_logged_in, only: [
+    :create,
+    :destroy,
+    :downvote,
+    :upvote
+  ]
+
   def create
     @answer = Answer.new(answer_params)
     @answer.answerer_id = current_user.id
@@ -13,16 +20,22 @@ class Api::AnswersController < ApplicationController
   end
 
   def destroy
-    @answer = Answer.find(params[:id])
-    if @answer
-      @answer.destroy
-      render :destroy
-    else
-      render json: ["Answer not found"], status: 404
+    @answer = Answer.find_by(id: params[:id])
+    if @answer.nil?
+      render json: ["Answer not found."], status: 404
+      return
     end
+
+    if current_user.id != @answer.answerer_id
+      render json: ["Cannot delete answers of other users."], status: 403
+      return
+    end
+
+    @answer.destroy
+    render :destroy
   end
 
-def downvote
+  def downvote
     vote('down_vote')
   end
 
@@ -32,10 +45,14 @@ def downvote
 
   def vote(vote_type)
     unless Vote.vote_types.include? vote_type
-      render json: ["Unknown vote type #{vote_type}"]
+      render json: ["Unknown vote type #{vote_type}"], status: 422
       return
     end    
-    @answer = Answer.find(params[:id])
+    @answer = Answer.find_by(id: params[:id])
+    if @answer.nil?
+      render json: ["Answer not found"], status: 404
+      return 
+    end
     voter_id = current_user.id
     new_vote = Vote.new(vote_type: vote_type, voter_id: voter_id, votable_type: :Answer, votable_id: @answer.id)
     existing_vote = @answer.votes.find_by(voter_id: voter_id)

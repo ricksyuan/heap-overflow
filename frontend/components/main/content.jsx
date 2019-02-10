@@ -6,10 +6,12 @@ import { Switch, Route } from 'react-router';
 import TopQuestionsIndex from '../questions/index/top_questions_index';
 import AskQuestionForm from '../questions/create/ask_question_form';
 import QuestionPage from '../questions/show/question_page';
+import Popup from '../../components/popup/popup';
 
 const Content = () => {
   return (
     <div className="content">
+      <Popup />
       <Route exact path="/" component={TopQuestionsIndex} />
       <Switch>
         <ProtectedRoute exact path="/questions/ask" component={AskQuestionForm} />

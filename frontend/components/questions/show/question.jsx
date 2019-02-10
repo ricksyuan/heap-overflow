@@ -3,30 +3,26 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { vote } from '../../../actions/vote_actions';
 import { deleteQuestion } from '../../../actions/question_actions';
+import { openPopup } from '../../../actions/popup_actions';
 import Tag from '../tag';
 import CommentIndex from '../../comments/comment_index';
 
 const mapStateToProps = (state, ownProps) => {
-  // let comments = [];
-  // ownProps.question.commentIds.forEach(commentId => {
-  //   if (state.entities.comments[commentId]) {
-  //     comments.push(state.entities.comments[commentId]);
-  //   }
-  // });
-
   const comments = ownProps.question.commentIds.map(commentId => {
     return state.entities.comments[commentId];
   });
-
   const tags = ownProps.question.tagIds.map(tagId => (
     state.entities.tags[tagId]
   ));
-
   const asker = state.entities.users[ownProps.question.askerId];
+  const isLoggedIn = !!state.session.id;
+  const isAuthor = (state.session.id === asker.id);
   return {
     tags: tags,
     comments: comments,
     asker: asker,
+    isLoggedIn: isLoggedIn,
+    isAuthor: isAuthor,
   };
 };
 
@@ -34,6 +30,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteQuestion: (questionId) => dispatch(deleteQuestion(questionId)),
     vote: (voteType, votableType, votableId) => dispatch(vote(voteType, votableType, votableId)),
+    openPopup: (popup) => dispatch(openPopup(popup)),
   };
 };
 
@@ -41,16 +38,21 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
-    this.upvote = this.upvote.bind(this);
-    this.downvote = this.downvote.bind(this);
+    this.handleVote = this.handleVote.bind(this);
   }
 
-  upvote() {
-    this.props.vote("up_vote", "Question", this.props.question.id);
-  }
-
-  downvote() {
-    this.props.vote('down_vote', 'Question', this.props.question.id);
+  handleVote(voteType) {
+    return (event) => {
+      event.preventDefault();
+      if (this.props.isLoggedIn) {
+        this.props.vote(voteType, 'Question', this.props.question.id);
+      } else {
+        this.props.openPopup({
+          name: 'vote_error',
+          clickCoordinate: {x: event.pageX, y: event.pageY},
+        });
+      }
+    };
   }
 
 
@@ -72,12 +74,12 @@ class Question extends React.Component {
     return (
       <div className="question-container">
         <div className="question-voting">
-          <button className={`up-arrow ${this.props.question.currentUserVote === 'up_vote' ? 'current-user-vote' : ''}`} onClick={this.upvote}>
+          <button className={`up-arrow ${this.props.question.currentUserVote === 'up_vote' ? 'current-user-vote' : ''}`} onClick={this.handleVote("up_vote")}>
             <svg className="svg-icon" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10z"></path></svg>
           </button>
         
           <div className="question-score">{this.props.question.score}</div>
-          <button className={`down-arrow ${this.props.question.currentUserVote === 'down_vote' ? 'current-user-vote' : ''}`} onClick={this.downvote} >
+          <button className={`down-arrow ${this.props.question.currentUserVote === 'down_vote' ? 'current-user-vote' : ''}`} onClick={this.handleVote("down_vote")} >
             <svg className="svg-icon" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>
           </button>
         </div>
@@ -90,7 +92,7 @@ class Question extends React.Component {
           </div>
           <div className="question-footer">
             <div className="question-buttons">
-              <button className="question-delete-btn" onClick={this.handleDelete}>delete</button>
+              {this.props.isAuthor && <button className="question-delete-btn" onClick={this.handleDelete}>delete</button>}
             </div>
             <div className="question-user">
               Asked by {this.props.asker.displayName}

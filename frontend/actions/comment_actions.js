@@ -27,10 +27,10 @@ const receiveCommentErrors = (errors) => {
 
 export const postComment = (formComment) => (dispatch) => {
   return CommentAPIUtil.createComment(formComment)
-    .then(newComment => {
-      
-      return dispatch(receiveComment(newComment));
-    });
+    .then(
+      (newComment) => dispatch(receiveComment(newComment)),
+      (errors) => dispatch(receiveCommentErrors(errors.responseJSON))
+    );
 };
 
 export const deleteComment = (commentId) => (dispatch) => {

@@ -6,6 +6,7 @@ import Root from './components/root';
 import configureStore from './store/store';
 import { login, logout, signup } from './actions/session_actions';
 import { fetchAllQuestions } from './actions/question_actions';
+import { closePopup } from './actions/popup_actions';
 import { postUser, postSession, deleteSession } from './utils/session_api_util';
 import merge from 'lodash/merge';
 
@@ -40,4 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // TESTING END
   const root = document.getElementById("root");
   ReactDOM.render(<Root store={store} />, root);
+
+  // Close popup whenever hash changes
+  window.addEventListener('hashchange', function () {
+    store.dispatch(closePopup());
+  });
 });

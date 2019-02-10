@@ -2,6 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import UserDash from './user_dash';
 import DropIcons from './drop_icons';
+import { connect } from 'react-redux';
+import { logout } from '../../actions/session_actions';
+
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.entities.users[state.session.id],
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(logout()).then(),
+  };
+};
 
 const SecondaryTopBar = (props) => {
   return (
@@ -26,4 +40,4 @@ const SecondaryTopBar = (props) => {
   );
 };
 
-export default SecondaryTopBar;
+export default connect(mapStateToProps, mapDispatchToProps)(SecondaryTopBar);

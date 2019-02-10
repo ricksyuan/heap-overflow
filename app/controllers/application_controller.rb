@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
   def require_logged_in
     # Redirect user login for certain pages
     unless current_user
-      render json: { base: ['invalid credentials'] }, status: 401
+      render json: ['Must be logged in.'], status: 401
     end
   end
 

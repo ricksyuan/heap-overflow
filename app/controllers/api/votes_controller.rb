@@ -1,5 +1,9 @@
 class Api::VotesController < ApplicationController
 
+  before_action :require_logged_in, only: [
+    :vote,
+  ]
+
   def vote
     vote_type = params[:vote_type]
     unless Vote.vote_types.include? vote_type
@@ -8,6 +12,7 @@ class Api::VotesController < ApplicationController
     end
 
     voter_id = current_user.id
+    
     votable_type = params[:votable_type]
     votable_id = params[:votable_id]
 

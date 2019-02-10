@@ -2,7 +2,7 @@ import React from 'react';
 
 import Logo from './logo';
 import SearchBar from './search_bar';
-import SecondaryTopBar from './secondary_top_bar_container';
+import SecondaryTopBar from './secondary_top_bar';
 
 const Header = () => {
   return (
