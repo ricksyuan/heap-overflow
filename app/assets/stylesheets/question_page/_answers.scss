@@ -36,12 +36,13 @@
       font-size: 15px;
       margin-bottom: 13px;
     }
+    
     & .answer-footer {
       display: flex;
       flex-direction: row;
       & .answer-buttons {
         flex-grow: 1;
-
+        padding-left: 3px;
         & .answer-delete-btn {
           color: #848d95;
           &:hover {

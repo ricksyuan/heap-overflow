@@ -2,6 +2,7 @@ import React from 'react';
 import ReactQuill from 'react-quill';
 import { connect } from 'react-redux';
 import { postAnswer } from '../../actions/answer_actions';
+import { toolbarOptions } from '../../utils/quill_toolbar_options'
 
 const mapStateToProps = (state) => {
   return {
@@ -21,6 +22,7 @@ class AnswerForm extends React.Component {
     this.state = {
       body: '',
     };
+    this.handleQuillChange = this.handleQuillChange.bind(this);
     this.handleTextAreaChange = this.handleTextAreaChange.bind(this);
     this.handleAnswerSubmission = this.handleAnswerSubmission.bind(this);
   }
@@ -58,14 +60,16 @@ class AnswerForm extends React.Component {
       <>
         <form className="your-answer-form" onSubmit={this.handleAnswerSubmission}>
           <h2 className="your-answer-form-headline">Your Answer</h2>
-          <textarea className="answer-form-textarea-body" name="body" onChange={this.handleTextAreaChange} value={this.state.body}></textarea>
+          <ReactQuill
+            modules={{ toolbar: toolbarOptions }}
+            value={this.state.body}
+            onChange={this.handleQuillChange}
+          />
           {this.renderErrors()}
           <input type="submit" className="answer-submit-btn primary-btn" value="Post Your Answer" />
         </form>
-        {/* <ReactQuill 
-          value={this.state.body}
-          onChange={this.handleQuillChange}/> */}
       </>
+
     );
   }
 

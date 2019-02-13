@@ -1,0 +1,19 @@
+.ql-container.ql-snow.ql-disabled {
+  border: 0px solid #ccc;
+}
+
+.ql-editor { 
+  min-height: 200px;  
+}
+
+.question-body .ql-editor {
+  padding-left: 0px;
+  min-height: 0;
+  font-size: 15px;
+}
+
+.answer-main .ql-editor {
+  padding-left: 0px;
+  min-height: 0;
+  font-size: 15px;
+}

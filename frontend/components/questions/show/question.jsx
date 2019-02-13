@@ -6,6 +6,7 @@ import { deleteQuestion } from '../../../actions/question_actions';
 import { openPopup } from '../../../actions/popup_actions';
 import Tag from '../tag';
 import CommentIndex from '../../comments/comment_index';
+import ReactQuill from 'react-quill';
 
 const mapStateToProps = (state, ownProps) => {
   const comments = ownProps.question.commentIds.map(commentId => {
@@ -85,7 +86,11 @@ class Question extends React.Component {
         </div>
         <div className="question-main">
           <div className="question-body">
-            {this.props.question.body}
+            <ReactQuill
+              readOnly
+              modules={{ toolbar: null }}
+              value={this.props.question.body}
+            />
           </div>
           <div className="question-tags">
             {tags}

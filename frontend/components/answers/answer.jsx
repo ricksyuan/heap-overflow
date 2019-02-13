@@ -4,6 +4,7 @@ import { deleteAnswer } from '../../actions/answer_actions';
 import { upvoteAnswer, downvoteAnswer } from '../../actions/vote_actions';
 import { openPopup } from '../../actions/popup_actions';
 import CommentIndex from '../comments/comment_index';
+import ReactQuill from 'react-quill';
 
 const mapStateToProps = (state, ownProps) => {
   const comments = ownProps.answer.commentIds.map(commentId => (    
@@ -80,9 +81,12 @@ class Answer extends React.Component {
           </button>
         </div>
         <div className="answer-main">
-          <div className="answer-body">
-            {answer.body}
-          </div>
+          <ReactQuill
+            readOnly
+            modules={{ toolbar: null }}
+            value={answer.body}
+          />
+          
           <div className="answer-footer">
             <div className="answer-buttons">
               {this.props.isAuthor && <button className="answer-delete-btn" onClick={this.handleDelete}>delete</button>}

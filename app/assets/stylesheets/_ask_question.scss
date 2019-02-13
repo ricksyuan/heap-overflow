@@ -27,6 +27,7 @@
 
     & .ask-body-editor {
       margin-top: 10px;
+      margin-bottom: 15px;
       display: flex;
       flex-direction: column;
       & .ask-body-label {
@@ -35,17 +36,12 @@
         margin-bottom: 4px;
         padding: 0px 2px;
       }
-      
-      & .ask-body-textarea {
-        border: 1px solid #bbc0c4;
-        padding: 0.6em 0.7em;
-        border-radius: 3px;
-      }
     }
-    
+
     & .ask-tags {
       display: flex;
       flex-direction: column;
+      margin-top: 10px;
       & .ask-tags-label {
         font-size: 15px;
         font-weight: 700;

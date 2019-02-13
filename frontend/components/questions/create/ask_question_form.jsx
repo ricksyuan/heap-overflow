@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createQuestion } from '../../../actions/question_actions';
 import { createTags } from '../../../actions/tag_actions';
+import ReactQuill from 'react-quill';
+import { toolbarOptions } from '../../../utils/quill_toolbar_options';
 
 const mapStateToProps = (state) => {
   return {
@@ -23,12 +25,17 @@ class AskQuestionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDiscard = this.handleDiscard.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleQuillChange = this.handleQuillChange.bind(this);
   }
 
   handleChange(field) {
     return (event) => {
       this.setState({[field]: event.currentTarget.value});
     };
+  }
+
+  handleQuillChange(value) {
+    this.setState({ body: value });
   }
 
   handleSubmit(e) {
@@ -65,14 +72,11 @@ class AskQuestionForm extends React.Component {
           </div>
           <div className="ask-body-editor">
             <label className="ask-body-label">Body</label>
-            <textarea
-              className="ask-body-textarea"
+            <ReactQuill
+              modules={{ toolbar: toolbarOptions }}
               value={this.state.body}
-              onChange={this.handleChange('body')}
-              name="body"
-              tabIndex="101"
-              autoComplete="off"
-            ></textarea>
+              onChange={this.handleQuillChange}
+            />
           </div>
           <div className="ask-tags">
             <label className="ask-tags-label">Tags</label>
