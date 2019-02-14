@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     end
     
     post 'vote', to: "votes#vote"
-    get 'search', to: "questions#search"
+    get 'search', to: "search#search"
 
     resources :comments, only: [:create, :update, :destroy]
     resources :tags, only: [:index, :update, :destroy]

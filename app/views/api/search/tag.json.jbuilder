@@ -1,4 +1,3 @@
-
 json.questions do
   @questions.each do |question|
     json.set! question.id do
@@ -34,3 +33,5 @@ json.tags do
     end
   end
 end
+
+json.query @query

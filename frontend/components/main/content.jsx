@@ -7,12 +7,14 @@ import TopQuestionsIndex from '../questions/index/top_questions_index';
 import AskQuestionForm from '../questions/create/ask_question_form';
 import QuestionPage from '../questions/show/question_page';
 import Popup from '../../components/popup/popup';
+import SearchPage from '../../components/search/search_page';
 
 const Content = () => {
   return (
     <div className="content">
       <Popup />
       <Route exact path="/" component={TopQuestionsIndex} />
+      <Route path="/search" component={SearchPage} />
       <Switch>
         <ProtectedRoute exact path="/questions/ask" component={AskQuestionForm} />
         <Route exact path="/questions/:questionId" component={QuestionPage} />

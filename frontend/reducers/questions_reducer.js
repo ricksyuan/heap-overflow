@@ -2,10 +2,12 @@ import merge from 'lodash/merge';
 import {
   RECEIVE_ALL_QUESTIONS,
   RECEIVE_QUESTION,
-  REMOVE_QUESTION,
-  RECEIVE_SEARCH_RESULTS,
-  
+  REMOVE_QUESTION,  
 } from '../actions/question_actions';
+import {
+  RECEIVE_SEARCH_RESULTS,
+  RECEIVE_SEARCH_ERRORS,
+} from '../actions/search_actions';
 import { RECEIVE_ANSWER, REMOVE_ANSWER } from '../actions/answer_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_QUESTION_VOTE } from '../actions/vote_actions';
@@ -59,6 +61,8 @@ const questionsReducer = (oldState = {}, action) => {
       }
     case RECEIVE_SEARCH_RESULTS:
       return merge({}, action.questions);
+    case RECEIVE_SEARCH_ERRORS:
+      return {};
     case RECEIVE_QUESTION:
       return merge({}, oldState, { [action.question.id]: action.question });
     case REMOVE_QUESTION:

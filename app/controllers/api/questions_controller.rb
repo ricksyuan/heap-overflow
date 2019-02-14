@@ -9,28 +9,6 @@ class Api::QuestionsController < ApplicationController
     @questions = Question.all.includes(:asker, :answers, :tags)
   end
 
-
-  def search
-    query = params[:query]
-    if query == ''
-      @questions = Question.all.includes(:asker, :answers, :tags)
-      render :index
-      return
-    end
-
-    query_terms = query.split
-    if query_terms.length == 1 
-      # search as a tag
-      @questions = Question.joins(:tags).where(tags: { name: query }).includes(:asker, :answers, :tags, :taggings)
-      if @questions.empty?
-        @questions = Question.where("title ILIKE ?", "%#{query}%")   
-      end
-    else
-      @questions = Question.where("title ILIKE ?", "%#{query}%")
-    end
-    render :search
-  end
-
   def show
     @question = Question.includes(:asker, :answerers, :votes, { answers: [:votes] }).find(params[:id])
     if @question
@@ -46,6 +24,29 @@ class Api::QuestionsController < ApplicationController
     @question.editor_id = current_user.id
     
     if @question.save
+      tag_string = params[:question][:tags]
+      tags_array = tag_string.split
+      tags_array.each do |tag_name|
+        tag = Tag.find_or_create_by(name:tag_name)
+        Tagging.find_or_create_by(question_id: @question.id, tag_id: tag.id)
+      end
+      render :show
+    else
+      render json: @question.errors.full_messages, status: 422
+    end
+  end
+
+  def update
+    @question = Question.find_by(id: params[:id])
+    @question.editor_id = current_user.id
+    
+    if @question.update_attributes(question_params)
+      old_tags = @question.taggings
+      old_tags.each do |tag|
+        tag.destroy
+      end
+      # Destroy taggings not contained in updated question
+      # TODO: Fix
       tag_string = params[:question][:tags]
       tags_array = tag_string.split
       tags_array.each do |tag_name|

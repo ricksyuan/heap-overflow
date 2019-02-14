@@ -5,16 +5,6 @@ export const fetchAllQuestions = () => {
   });
 };
 
-export const searchQuestions = (query) => {
-
-  return $.ajax({
-    method: 'GET',
-    url: '/api/search',
-    data: { query }
-  });
-};
-
-
 export const fetchQuestion = (questionId) => {
   return $.ajax({
     method: 'GET',

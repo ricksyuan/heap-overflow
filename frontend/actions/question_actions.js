@@ -1,22 +1,12 @@
 import * as QuestionAPIUtil from '../utils/question_api_util';
 
 export const RECEIVE_ALL_QUESTIONS = 'RECEIVE_ALL_QUESTIONS';
-export const RECEIVE_SEARCH_RESULTS = 'RECEIVE_SEARCH_RESULTS';
 export const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
 export const REMOVE_QUESTION = 'REMOVE_QUESTION';
 
 export const receiveAllQuestions = (payload) => {
   return {
     type: RECEIVE_ALL_QUESTIONS,
-    questions: payload.questions,
-    users: payload.users,
-    tags: payload.tags,
-  };
-};
-
-export const receiveSearchResults = (payload) => {
-  return {
-    type: RECEIVE_SEARCH_RESULTS,
     questions: payload.questions,
     users: payload.users,
     tags: payload.tags,
@@ -48,13 +38,6 @@ export const fetchAllQuestions = () => (dispatch) => {
     (payload) => {
       return dispatch(receiveAllQuestions(payload));
   });
-};
-
-export const searchQuestions = (query) => (dispatch) => {
-  return QuestionAPIUtil.searchQuestions(query).then(
-    (payload) => {
-      return dispatch(receiveSearchResults(payload));
-    });
 };
 
 export const fetchQuestion = (questionId) => (dispatch) => {

@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { searchQuestions } from '../../actions/question_actions';
+import { searchQuestions } from '../../actions/search_actions';
+import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
+
   return {
-    
   };
 };
 
@@ -25,7 +26,11 @@ class SearchBar extends React.Component {
 
   handleKeyPress(e) {
     if (e.key === 'Enter') {
-      this.props.searchQuestions(this.state.query);
+      this.props.searchQuestions(this.state.query)
+        .then((action) => {
+          this.setState({query: action.query});
+        });
+      this.props.history.push(`/search/`);
     }
   }
 
@@ -53,7 +58,7 @@ class SearchBar extends React.Component {
   render() {
     return (
       <div className="search-bar">
-        <input className="search-bar-input" onKeyPress={this.handleKeyPress} onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange} placeholder="Search..." />
+        <input className="search-bar-input" value={this.state.query} onKeyPress={this.handleKeyPress} onFocus={this.handleFocus} onBlur={this.handleBlur} onChange={this.handleChange} placeholder="Search..." />
         <button className="search-button" type="submit" onClick={this.handleSearchButtonClick}>
           <svg aria-hidden="true" className="svg-icon" width="18" height="18" viewBox="0 0 18 18"><path d="M12.86 11.32L18 16.5 16.5 18l-5.18-5.14v-.35a7 7 0 1 1 1.19-1.19h.35zM7 12A5 5 0 1 0 7 2a5 5 0 0 0 0 10z"></path></svg>
         </button>
@@ -62,4 +67,4 @@ class SearchBar extends React.Component {
   }
 
 }
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchBar));

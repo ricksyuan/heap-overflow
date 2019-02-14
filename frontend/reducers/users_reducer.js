@@ -2,9 +2,9 @@ import merge from 'lodash/merge';
 import { RECEIVE_ANSWER } from '../actions/answer_actions';
 import {
   RECEIVE_ALL_QUESTIONS,
-  RECEIVE_SEARCH_RESULTS,
   RECEIVE_QUESTION,
 } from '../actions/question_actions';
+import { RECEIVE_SEARCH_RESULTS } from '../actions/search_actions';
 import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 
 const usersReducer = (state = {}, action) => {
