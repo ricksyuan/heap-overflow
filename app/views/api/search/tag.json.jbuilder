@@ -1,15 +1,15 @@
+
 json.questions do
   @questions.each do |question|
     json.set! question.id do
       json.id question.id
       json.askerId question.asker_id
       json.title question.title
-      json.answerCount question.answers.length
+      json.answerCount question.answers.size
       json.score question.score
       json.views question.views
-      json.tag_ids question.taggings.pluck(:tag_id)
+      json.tagIds question.tag_ids
       json.answerIds question.answer_ids
-
     end
   end
 end

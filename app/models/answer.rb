@@ -19,7 +19,7 @@ class Answer < ApplicationRecord
   include Commentable
   include Votable
   
-  belongs_to :question
+  belongs_to :question, counter_cache: true
 
   belongs_to :answerer,
     class_name: :User

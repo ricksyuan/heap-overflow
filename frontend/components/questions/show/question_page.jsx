@@ -63,7 +63,7 @@ class QuestionPage extends React.Component {
             {question.title}
           </Link>
           <Link className="ask-question-link primary-btn" to={'/questions/ask'}>
-            Ask question
+            Ask Question
           </Link>
         </div>
         <div className="question-page-content">

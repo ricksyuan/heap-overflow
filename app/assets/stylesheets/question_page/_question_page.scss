@@ -11,14 +11,16 @@
     & .question-page-headline-link {
       flex-grow: 1;
       font-size: 27px;
-      color: #242729
+      color: #242729;
     }
 
+    
     & .ask-question-link {
+      display: block;
+      white-space: nowrap;
       line-height: 15px;
       height: 38px;
       padding: 10.4px;
-      
     }
   }
 }

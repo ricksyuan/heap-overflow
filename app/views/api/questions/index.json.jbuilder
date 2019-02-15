@@ -7,7 +7,7 @@ json.questions do
       json.title question.title
       json.score question.score
       json.views question.views
-      json.tag_ids question.tag_ids
+      json.tagIds question.tag_ids
       json.answerIds question.answer_ids
       json.commentIds question.comments.ids
     end

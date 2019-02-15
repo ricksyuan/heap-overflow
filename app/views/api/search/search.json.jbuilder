@@ -10,7 +10,7 @@ else
         json.answerCount question.answers.length
         json.score question.score
         json.views question.views
-        json.tag_ids question.taggings.pluck(:tag_id)
+        json.tagIds question.taggings.pluck(:tag_id)
         json.answerIds question.answer_ids
 
       end

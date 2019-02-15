@@ -13,15 +13,14 @@ class Api::SearchController < ApplicationController
     tag_match = /\[(.+)\]/.match(@query)
     if tag_match
       tag_name = tag_match[1]
-      @questions = Question.joins(:tags).where(tags: { name: tag_name }).includes(:asker, :answers, :tags, :taggings)
-      
+      @questions = Question.joins(:tags).where(tags: { name: tag_name })
       render :tag
       return
     end
 
     tag = Tag.find_by(name: @query)
     if tag
-      @questions = Question.joins(:tags).where(tags: { name: tag.name }).includes(:asker, :answers, :tags, :taggings)
+      @questions = Question.joins(:tags).where(tags: { name: tag.name })
       @query = "[#{@query}]"
       render :tag
       return
