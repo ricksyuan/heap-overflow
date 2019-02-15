@@ -11,14 +11,14 @@ const tagReducer = (oldState = {}, action) => {
   switch (action.type) {
     case RECEIVE_ALL_QUESTIONS:
       return merge({}, oldState, action.tags);
-    case RECEIVE_SEARCH_RESULTS:
-      return merge({}, oldState, action.tags);
     case RECEIVE_QUESTION:
       return merge({}, oldState, action.tags);
     case RECEIVE_TAGS:
       return merge({}, oldState, action.tags);
     case RECEIVE_TAG:
       return merge({}, oldState, { [action.tag.id]: action.tag });
+    case RECEIVE_SEARCH_RESULTS:
+      return action.tags;
     case RECEIVE_SEARCH_ERRORS:
       return {};
     default:
