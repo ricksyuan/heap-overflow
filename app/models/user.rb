@@ -24,13 +24,11 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
   
   # associations
+  has_many :questions, foreign_key: :asker_id, dependent: :destroy
+  has_many :answers, foreign_key: :answerer_id, dependent: :destroy
+  has_many :comments, foreign_key: :commenter_id, dependent: :destroy
+  has_many :votes, foreign_key: :voter_id, dependent: :destroy
 
-  has_many :questions
-
-  has_many :answers
-
-  has_many :votes
-  
   # allows validation of password length without storing password in DB
   attr_reader :password
   

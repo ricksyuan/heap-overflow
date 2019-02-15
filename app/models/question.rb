@@ -25,7 +25,7 @@ class Question < ApplicationRecord
   belongs_to :editor,
     class_name: :User
   
-  has_many :answers
+  has_many :answers, dependent: :destroy
   has_many :answerers, through: :answers
     
   has_many :taggings
