@@ -9,7 +9,7 @@ export const receiveSearchResults = (payload) => {
     questions: payload.questions,
     users: payload.users,
     tags: payload.tags,
-    parsedQuery: payload.parsedQuery,
+    query: payload.query,
   };
 };
 

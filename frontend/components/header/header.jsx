@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = (state) => {
   return {
-    parsedQuery: state.ui.parsedQuery || "",
+    parsedQueryString: state.ui.query.parsedString,
   }
 }
 
@@ -16,7 +16,7 @@ const Header = (props) => {
     <div className="header">
       <div className="header-contents">
         <Logo />
-        <SearchBar key={props.parsedQuery} searchButton={true}/>
+        <SearchBar key={props.parsedQueryString} searchButton={true}/>
         <SecondaryTopBar />
       </div>
     </div>      

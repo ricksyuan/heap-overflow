@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
   const questions = Object.keys(state.entities.questions).map(id => state.entities.questions[id]);  
   return {
     questions: questions,
-    parsedQuery: state.ui.parsedQuery || "",
+    parsedQueryString: state.ui.query.parsedString,
   };
 };
 
@@ -34,7 +34,7 @@ class SearchPage extends React.Component {
             Search
           </h1>
           <div>
-            <SearchBar key={this.props.parsedQuery}/>
+            <SearchBar key={this.props.parsedQueryString}/>
           </div>
           <Link className="ask-question-link primary-btn" to={'/questions/ask'}>
             Ask Question

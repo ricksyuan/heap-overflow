@@ -48,4 +48,7 @@ if tag_count == 0
   json.tags({})
 end
 
-json.parsedQuery @query
+json.query do
+  json.type @query_type
+  json.parsedString @query_string
+end

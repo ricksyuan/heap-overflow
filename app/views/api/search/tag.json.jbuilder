@@ -34,4 +34,7 @@ json.tags do
   end
 end
 
-json.parsedQuery @query
+json.query do
+  json.parsedString @query_string
+  json.type @query_type
+end

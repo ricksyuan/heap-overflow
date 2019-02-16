@@ -5,7 +5,8 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state) => {
   return {
-    parsedQuery: state.ui.parsedQuery,
+    parsedQueryString: state.ui.query.parsedString || '',
+    queryType: state.ui.query.type || '',
   };
 };
 
@@ -26,7 +27,7 @@ class SearchBar extends React.Component {
     this.handleSearchButtonClick = this.handleSearchButtonClick.bind(this);
     this.state = {
       showSearchButton: false,
-      searchQuery: props.parsedQuery,
+      searchQuery: props.parsedQueryString,
     }
     
   }

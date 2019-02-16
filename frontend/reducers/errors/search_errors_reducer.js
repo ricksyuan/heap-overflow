@@ -8,6 +8,7 @@ const searchErrorsReducer = (state = _nullErrors, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_SEARCH_ERRORS:
+    debugger
       return action.errors;
     default:
       return _nullErrors;
