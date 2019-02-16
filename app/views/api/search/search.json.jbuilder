@@ -44,6 +44,8 @@ json.tags do
   end
 end
 
-if tag_count = 0
+if tag_count == 0
   json.tags({})
 end
+
+json.parsedQuery @query

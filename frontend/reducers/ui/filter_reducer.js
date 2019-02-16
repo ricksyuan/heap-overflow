@@ -7,4 +7,4 @@ const filterReducer = (oldState = {}, action) => {
   }
 };
 
-export default filterReducer
+export default filterReducer;

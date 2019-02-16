@@ -13,16 +13,3 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-
-// DEFAULT APPLICATION STATE LOOKS LIKE:
-// {
-//   entities: {
-//     users: { }
-//   },
-//   session: {
-//     id: null,
-//   },
-//   errors: {
-//     session: []
-//   }
-// }

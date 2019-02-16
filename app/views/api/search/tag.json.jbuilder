@@ -34,4 +34,4 @@ json.tags do
   end
 end
 
-json.query @query
+json.parsedQuery @query

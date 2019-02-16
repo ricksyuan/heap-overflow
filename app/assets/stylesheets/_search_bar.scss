@@ -1,0 +1,32 @@
+.search-bar {
+  position: relative;
+  display: flex;
+  flex: auto;      
+  & .search-bar-input {
+    flex: auto; // make search bar fill available space
+    background-color: #fff;
+    border: 1px solid $search-bar-border-color;
+    border-radius: 3px;
+    padding: 8px 9px 8px 12px;
+    margin: 7px 5px 7px 12px;
+  }
+
+  & .search-button {
+    position: absolute;
+    background: $search-button-color;
+    border: 1px solid $search-button-border-color;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    top: 7px;
+    right: 5px;
+    padding-left: 12px;
+    padding-right: 12px;
+    height: 33px;
+    color: white;
+
+    // center search icon vertically
+    display: flex;
+    align-items: center;
+  }
+
+}
