@@ -2,17 +2,18 @@
   display: flex;
   padding-bottom: 27px;
   padding-left: 24px;
-  & .top-questions-headline {
-    flex-grow: 1;
-    font-size: 27px;
-    padding-bottom: 27px;
-  }
+}
 
-  & .ask-question-link {
-    line-height: 15px;
-    height: 38px;
-    padding: 10.4px;
-  }
+.top-questions-headline {
+  flex-grow: 1;
+  font-size: 27px;
+  padding-bottom: 27px;
+}
+
+.ask-question-link {
+  line-height: 15px;
+  height: 38px;
+  padding: 10.4px;
 }
 
 .question-list-item {
@@ -78,6 +79,7 @@
           background-color: #E1ECF4;
           border-radius: 3px;
           margin-right: 3px;
+          margin-bottom: 3px;
           padding: 4.8px 6px;
           &:hover {
             color: #33658a;

@@ -16,7 +16,7 @@ class Api::SearchController < ApplicationController
     # tag
     tag_match = /\[(.+)\]/.match(@query_string)
     if tag_match
-      @query_type = 'TAG'
+      @query_type = 'TAGS'
       tag_name = tag_match[1]
       @questions = Question.joins(:tags).where(tags: { name: tag_name })
       render :tag
@@ -28,6 +28,8 @@ class Api::SearchController < ApplicationController
       @questions = Question.joins(:tags).where(tags: { name: tag.name })
       # Update query string to indicate was treated as tag
       @query_string = "[#{@query_string}]"
+      @query_type = 'TAG'
+
       render :tag
       return
     end

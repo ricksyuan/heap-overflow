@@ -9,6 +9,10 @@
     border-radius: 3px;
     padding: 8px 9px 8px 12px;
     margin: 7px 5px 7px 12px;
+    &:focus {
+      border: 1px solid $search-bar-focus-border-color;
+      box-shadow: 0 0 0 4px rgba(0,149,255,0.15);
+    }
   }
 
   & .search-button {

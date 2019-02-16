@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Logo from './logo';
-import SearchBar from './../search/search_bar';
+import HeaderSearchBar from './../search/header_search_bar';
 import SecondaryTopBar from './secondary_top_bar';
 import { connect } from 'react-redux';
 
@@ -16,7 +16,8 @@ const Header = (props) => {
     <div className="header">
       <div className="header-contents">
         <Logo />
-        <SearchBar key={props.parsedQueryString} searchButton={true}/>
+
+        <HeaderSearchBar key={props.parsedQueryString}/>
         <SecondaryTopBar />
       </div>
     </div>      

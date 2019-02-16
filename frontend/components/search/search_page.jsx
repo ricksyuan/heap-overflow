@@ -2,13 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import QuestionSummary from '../../components/questions/index/question_summary';
 import { Link } from 'react-router-dom';
-import SearchBar from '../../components/search/search_bar';
+import SearchPageSearchBar from './search_page_search_bar';
+import SearchSyntaxTable from './search_syntax';
 
 const mapStateToProps = (state) => {
   const questions = Object.keys(state.entities.questions).map(id => state.entities.questions[id]);  
   return {
     questions: questions,
-    parsedQueryString: state.ui.query.parsedString,
+    query: state.ui.query,
   };
 };
 
@@ -28,24 +29,32 @@ class SearchPage extends React.Component {
       <QuestionSummary key={question.id} question={question} />
     ));
     return (
-      <>
-        <div className="search-header">
-          <h1 className="search-headline">
+      <div className="search-page">
+        <div className="search-page-header">
+          <h1 className="search-page-headline">
             Search
+            {this.props.query.type === 'QUESTION_TITLE' &&
+              ' Results'
+            }
+
+            {this.props.query.type === 'TAG' &&
+              ` for questions tagged ${this.props.query.parsedString}`
+            }
           </h1>
-          <div>
-            <SearchBar key={this.props.parsedQueryString}/>
-          </div>
           <Link className="ask-question-link primary-btn" to={'/questions/ask'}>
             Ask Question
-          </Link>
+           </Link>
         </div>
-
-
+        <div>
+          <SearchPageSearchBar key={this.props.query.parsedString} />
+        </div>
+        { questionSummaries.length === 0 &&
+          <SearchSyntaxTable/>
+        }
         <ul>
           {questionSummaries}
         </ul>
-      </>
+      </div>
     );
   }
 }
