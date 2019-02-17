@@ -33,11 +33,11 @@ class SearchPage extends React.Component {
         <div className="search-page-header">
           <h1 className="search-page-headline">
             Search
-            {this.props.query.type === 'QUESTION_TITLE' &&
+            {this.props.query.type === 'EXACT' &&
               ' Results'
             }
 
-            {this.props.query.type === 'TAG' &&
+            {this.props.query.type === 'TAGS' &&
               ` for questions tagged ${this.props.query.parsedString}`
             }
           </h1>

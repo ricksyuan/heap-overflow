@@ -12,35 +12,53 @@ class Api::SearchController < ApplicationController
       render json: ["Query cannot be blank"], status: 422
       return
     end
-
-    # tag
-    tag_match = /\[(.+)\]/.match(@query_string)
-    if tag_match
-      @query_type = 'TAGS'
-      tag_name = tag_match[1]
-      @questions = Question.joins(:tags).where(tags: { name: tag_name })
-      render :tag
+    
+    # check for quotes
+    exact_match = /\"(.+)\"/.match(@query_string)
+    if exact_match
+      @query_string = exact_match[1]
+      searchExact(@query_string)
       return
     end
 
-    tag = Tag.find_by(name: @query_string)
-    if tag
-      @questions = Question.joins(:tags).where(tags: { name: tag.name })
-      # Update query string to indicate was treated as tag
-      @query_string = "[#{@query_string}]"
-      @query_type = 'TAG'
-
-      render :tag
+    # tag
+    # Check for tags wrapped in []
+    # non-greedy tag matching
+    tag_names = @query_string.scan(/\[(.*?)\]/).map {|groups| groups.first }
+    if tag_names.length > 0
+      searchTags(tag_names)
+      return
+    end
+    
+    # Check if words not wrapped in [] are tags
+    tags = Tag.where(name: @query_string.split(' '))
+    if tags.length > 0
+      tag_names = tags.map{|tag| tag.name}
+      searchTags(tag_names)
       return
     end
     
     # no tag, so search for questions containing query in title
-    if tag.nil?
-      @query_type = 'QUESTION_TITLE'
-      @questions = Question.where('title ILIKE ?', "%#{@query_string}%")
-      render :search
+    if tags.nil?
+      searchExact(@query_string)
       return
     end
+  end
+
+  def searchExact(query)
+    @query_type = 'EXACT'
+    @questions = Question.where('title ILIKE ?', "%#{query}%")
+    render :exact_search
+  end
+
+  def searchTags(tag_names)
+    @query_type = 'TAGS'
+    @questions = Question.joins(:tags)
+                         .where('tags.name IN (?)', tag_names)
+                         .group("questions.id")
+                         .having("COUNT(*) = ?", tag_names.count)
+    @query_string = tag_names.map{|tag_name| "[#{tag_name}]"}.join(" ")
+    render :tags_search
   end
 
 end

@@ -1,6 +1,6 @@
-
 json.questions do
   @questions.each do |question|
+
     json.set! question.id do
       json.id question.id
       json.askerId question.asker_id
@@ -23,15 +23,21 @@ json.users do
   end
 end
 
+count_tags = 0
 json.tags do
   @questions.each do |question|
     question.tags.each do |tag|
+      count_tags += 1
       json.set! tag.id do
         json.id tag.id
         json.name tag.name
       end
     end
   end
+end
+
+if count_tags == 0
+  json.tags({})
 end
 
 json.query do
