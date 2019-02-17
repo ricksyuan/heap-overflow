@@ -72,6 +72,7 @@ class AskQuestionForm extends React.Component {
           </div>
           <div className="ask-body-editor">
             <label className="ask-body-label">Body</label>
+
             <ReactQuill
               modules={{ toolbar: toolbarOptions }}
               value={this.state.body}

@@ -83,7 +83,12 @@ class Answer extends React.Component {
         <div className="answer-main">
           <ReactQuill
             readOnly
-            modules={{ toolbar: null }}
+            modules={
+              {
+                syntax: false,    
+                toolbar: null,
+              }
+            }
             value={answer.body}
           />
           
