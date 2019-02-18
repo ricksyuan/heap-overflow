@@ -29,8 +29,8 @@ xml_file = File.read(File.join(__dir__, 'post_seeds.xml'))
 doc = Nokogiri::XML.parse(xml_file)
 
 doc.xpath('//row').each_with_index do |row_element, index|  
-  display_name = Faker::Name.unique.first_name      #=> "Christophe Bartell"
-  email = "#{display_name.downcase.split(' ').join('.')}@example.com" #=> "kirsten.greenholt@corkeryfisher.info"
+  display_name = Faker::TvShows::SiliconValley.unique.character # => "Jian Yang"      #=> "Christophe Bartell"
+  email = "#{display_name.split(' ').join('.')}@example.com"
 
   user = User.create!(
     display_name: display_name,
