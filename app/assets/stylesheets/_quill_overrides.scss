@@ -18,6 +18,16 @@
   font-size: 15px;
 }
 
-pre .ql-syntax {
+// codeblock
+.ql-snow .ql-editor pre.ql-syntax {
   background-color: #eff0f1;
+  color: $codeblock-text-color;
+}
+
+// blockquote
+.ql-snow .ql-editor blockquote {
+  background-color: #fff8dc;
+  border-left: 2px solid #ffeb8e;
+  margin-bottom: 10px;
+  padding: 10px;
 }
