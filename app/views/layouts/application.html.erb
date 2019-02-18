@@ -7,11 +7,12 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    
+    <%= favicon_link_tag asset_path('favicon/favicon.ico') %>
 
     <script>
       window.headerLogo = "<%= asset_path('header_logo.png')%>";
     </script>
+    
     <script href="highlight.js"></script>
   </head>
 
