@@ -20,12 +20,13 @@ Vote.delete_all
 Comment.delete_all
 
 
+# Create demo user
 demo_user = User.create!(
   display_name: 'demouser',
   email: 'demo@example.com',
   password: "password"
 )
-# Create users from Silicon Valley
+# Create users
 users = []
 8.times do |i|
   display_name = Faker::TvShows::SiliconValley.unique.character
@@ -33,8 +34,8 @@ users = []
   users.push(User.create!(display_name: display_name, email: email, password: 'password'));
 end
 
-questions_table = CSV.read(File.join(__dir__, 'seed_questions.csv'), headers: true)
-questions_table.each do |question_row|
+#  Create questions
+questions_table = CSV.foreach(File.join(__dir__, 'seed_questions.csv'), headers: true) do |question_row|
   id = question_row['Id'].to_i
   title = question_row['Title']
   asker_id = users.sample.id.to_i
@@ -48,6 +49,7 @@ questions_table.each do |question_row|
   Question.create!(id: id, title: title, asker_id: asker_id, editor_id: editor_id, views: views, body: body, created_at: created_at, updated_at: updated_at, answers_count: answers_count, score: score)
 end
 
+# Create answers
 CSV.foreach(File.join(__dir__, 'seed_answers.csv'), headers: true) do |answer_row|
   id = answer_row['Id'].to_i
   question_id = answer_row['ParentId'].to_i
@@ -60,3 +62,31 @@ CSV.foreach(File.join(__dir__, 'seed_answers.csv'), headers: true) do |answer_ro
   score = answer_row['Score'].to_i
   Answer.create!(id: id, question_id: question_id, answerer_id: answerer_id, editor_id: editor_id, body: body, created_at: created_at, updated_at: updated_at, score: score)
 end
+
+# Create comments on questions
+CSV.foreach(File.join(__dir__, 'seed_question_comments.csv'), headers: true) do |comment_row|
+  # Id	PostId	Score	Text	CreationDate	UserDisplayName	UserId
+  id = comment_row['Id'].to_i
+  commenter_id = users.sample.id.to_i
+  commentable_type = 'Question'
+  commentable_id = comment_row['PostId'].to_i
+  body = comment_row['Text']
+  created_at = comment_row['CreationDate']
+  updated_at = created_at
+  score = comment_row['Score'].to_i
+  Comment.create!(id: id, commenter_id: commenter_id, commentable_type: commentable_type, commentable_id: commentable_id, body: body, created_at: created_at, updated_at: updated_at, score: score)
+end
+
+# Create comments on answers
+CSV.foreach(File.join(__dir__, 'seed_answer_comments.csv'), headers: true) do |comment_row|
+  id = comment_row['Id'].to_i
+  commenter_id = users.sample.id.to_i
+  commentable_type = 'Answer'
+  commentable_id = comment_row['PostId'].to_i
+  body = comment_row['Text']
+  created_at = comment_row['CreationDate']
+  updated_at = created_at
+  score = comment_row['Score'].to_i
+  Comment.create!(id: id, commenter_id: commenter_id, commentable_type: commentable_type, commentable_id: commentable_id, body: body, created_at: created_at, updated_at: updated_at, score: score)
+end
+
