@@ -8,6 +8,7 @@
 
 require 'nokogiri'
 require 'faker'
+require 'csv'
 
 # Clear existing data
 User.delete_all
@@ -24,26 +25,38 @@ demo_user = User.create!(
   email: 'demo@example.com',
   password: "password"
 )
-
-xml_file = File.read(File.join(__dir__, 'post_seeds.xml'))
-doc = Nokogiri::XML.parse(xml_file)
-
-doc.xpath('//row').each_with_index do |row_element, index|  
-  display_name = Faker::TvShows::SiliconValley.unique.character # => "Jian Yang"      #=> "Christophe Bartell"
+# Create users from Silicon Valley
+users = []
+8.times do |i|
+  display_name = Faker::TvShows::SiliconValley.unique.character
   email = "#{display_name.split(' ').join('.')}@example.com"
+  users.push(User.create!(display_name: display_name, email: email, password: 'password'));
+end
 
-  user = User.create!(
-    display_name: display_name,
-    email: email,
-    password: "password"
-  )
+questions_table = CSV.read(File.join(__dir__, 'seed_questions.csv'), headers: true)
+questions_table.each do |question_row|
+  id = question_row['Id'].to_i
+  title = question_row['Title']
+  asker_id = users.sample.id.to_i
+  editor_id = asker_id
+  views = question_row['ViewCount'].to_i
+  body = question_row['Body']
+  created_at = question_row['CreationDate']
+  updated_at = question_row['LastEditDate']
+  answers_count = question_row['AnswerCount'].to_i
+  score = question_row['Score'].to_i
+  Question.create!(id: id, title: title, asker_id: asker_id, editor_id: editor_id, views: views, body: body, created_at: created_at, updated_at: updated_at, answers_count: answers_count, score: score)
+end
 
-  question = Question.create!(
-  
-    views: row_element.xpath('@ViewCount').text.to_i,
-    asker_id: user.id,
-    editor_id: user.id,
-    title: row_element.xpath('@Title').text,
-    body: row_element.xpath('@Body').text
-  )
+CSV.foreach(File.join(__dir__, 'seed_answers.csv'), headers: true) do |answer_row|
+  id = answer_row['Id'].to_i
+  question_id = answer_row['ParentId'].to_i
+  answerer_id = users.sample.id.to_i
+  score = users.sample.id.to_i
+  editor_id = answerer_id
+  body = answer_row['Body']
+  created_at = answer_row['CreationDate']
+  updated_at = answer_row['LastEditDate']
+  score = answer_row['Score'].to_i
+  Answer.create!(id: id, question_id: question_id, answerer_id: answerer_id, editor_id: editor_id, body: body, created_at: created_at, updated_at: updated_at, score: score)
 end

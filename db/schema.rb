@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_220428) do
+ActiveRecord::Schema.define(version: 2019_02_19_192034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_220428) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "accepted", default: false, null: false
+    t.integer "score", default: 0
     t.index ["answerer_id"], name: "index_answers_on_answerer_id"
     t.index ["body"], name: "index_answers_on_body"
     t.index ["editor_id"], name: "index_answers_on_editor_id"
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_220428) do
     t.string "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "score", default: 0
     t.index ["body"], name: "index_comments_on_body"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
     t.index ["commenter_id"], name: "index_comments_on_commenter_id"
@@ -50,6 +52,7 @@ ActiveRecord::Schema.define(version: 2019_02_15_220428) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "answers_count", default: 0
+    t.integer "score", default: 0
     t.index ["asker_id"], name: "index_questions_on_asker_id"
     t.index ["body"], name: "index_questions_on_body"
     t.index ["editor_id"], name: "index_questions_on_editor_id"

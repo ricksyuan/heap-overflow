@@ -1,0 +1,649 @@
+Id,PostTypeId,AcceptedAnswerId,ParentId,CreationDate,DeletionDate,Score,ViewCount,Body,OwnerUserId,OwnerDisplayName,LastEditorUserId,LastEditorDisplayName,LastEditDate,LastActivityDate,Title,Tags,AnswerCount,CommentCount,FavoriteCount,ClosedDate,CommunityOwnedDate
+"572549","1","572660","","2009-02-21 06:51:06","","2529","1409418","<p>The command <code>git add [--all|-A]</code> appears to be identical to <code>git add .</code>. Is this correct? If not, how do they differ?</p>
+","64313","Casey","11343","","2013-10-25 16:48:20","2019-01-10 10:42:23","Difference between ""git add -A"" and ""git add .""","<git><git-add>","10","0","1120","",""
+"948135","1","948157","","2009-06-04 01:18:00","","1911","743115","<p>How do I write a switch statement in Ruby?</p>
+","4883","","63550","","2018-10-27 14:29:21","2019-01-28 06:02:46","How to write a switch statement in Ruby","<ruby><switch-statement><conditional>","22","0","238","",""
+"1020568","1","1020571","","2009-06-20 00:16:00","","1032","602630","<p>How do I take a string and convert it to lower or upper case in Ruby?</p>
+","3484","","128421","","2016-08-22 17:47:51","2019-01-29 12:18:06","How to convert a string to lower or upper case in Ruby","<ruby><string><uppercase><lowercase>","8","0","79","",""
+"1186400","1","1188834","","2009-07-27 04:13:44","","100","94200","<p>I'm trying to find the best way to set default values for objects in Rails.  </p>
+
+<p>The best I can think of is to set the default value in the <code>new</code> method in the controller. </p>
+
+<p>Does anyone have any input if this is acceptable or if there's a better way to do it?</p>
+","135059","","128421","","2016-04-21 16:16:30","2018-07-09 10:58:08","How to set default values in Rails?","<ruby-on-rails><ruby>","16","4","21","",""
+"1335851","1","1335881","","2009-08-26 16:10:13","","7004","1000498","<p>Recently, I ran some of my JavaScript code through Crockford's <a href=""http://www.jslint.com/"" rel=""noreferrer"">JSLint</a>, and it gave the following error:</p>
+
+<blockquote>
+  <p>Problem at line 1 character 1: Missing ""use strict"" statement.</p>
+</blockquote>
+
+<p>Doing some searching, I realized that some people add <code>""use strict"";</code> into their JavaScript code. Once I added the statement, the error stopped appearing. Unfortunately, Google did not reveal much of the history behind this string statement. Certainly it must have something to do with how the JavaScript is interpreted by the browser, but I have no idea what the effect would be.</p>
+
+<p>So what is <code>""use strict"";</code> all about, what does it imply, and is it still relevant?</p>
+
+<p>Do any of the current browsers respond to the <code>""use strict"";</code> string or is it for future use?</p>
+","25847","","25847","","2017-01-23 01:30:02","2019-02-09 20:42:21","What does ""use strict"" do in JavaScript, and what is the reasoning behind it?","<javascript><syntax><jslint><use-strict>","26","0","1454","",""
+"1552340","1","1552353","","2009-10-12 01:48:06","","1592","560530","<p>I have a bunch of commits in the repo. I want to see a list of files changed between two commits - from SHA1 to SHA2.</p>
+
+<p>What command should I use? </p>
+","58743","","1663462","","2017-09-08 12:55:38","2019-01-29 03:48:16","How to list only the file names that changed between two commits?","<git><git-diff><git-show>","13","1","396","",""
+"1764483","1","1764571","","2009-11-19 16:14:10","","55","21863","<p>I have 2 tables: Users and Roles, and I have a table that joins these together. The only thing in the join table is Ids that link the 2 tables.</p>
+
+<p>What should I call this table? I've never really seen a good naming convention for this.</p>
+
+<p>Conventions I've seen before:</p>
+
+<ul>
+<li>UsersToRolesJoin</li>
+<li>UsersToRolesLink</li>
+<li>UsersToRolesMembership</li>
+<li>UsersRoles</li>
+</ul>
+
+<p>Ex:</p>
+
+<pre><code>Users:  
+Id  
+Name
+
+Roles:  
+Id  
+Name  
+
+TableThatJoinsTheTwo:  
+Id  
+UserId  
+RoleId  
+</code></pre>
+","68499","","","","","2018-04-12 07:52:07","SQL Join Table Naming Convention","<sql><sql-server><naming-conventions>","18","2","10","",""
+"1986386","1","1986398","","2009-12-31 17:49:03","","1174","725330","<p>I have a value <code>'Dog'</code> and an array <code>['Cat', 'Dog', 'Bird']</code>. </p>
+
+<p>How do I check if it exists in the array without looping through it? Is there a simple way of checking if the value exists, nothing more?</p>
+","211662","","128421","","2015-11-10 17:00:59","2019-01-25 07:23:34","Check if a value exists in an array in Ruby","<ruby><arrays>","24","3","119","",""
+"2003505","1","2003515","","2010-01-05 01:12:15","","14715","6581974","<p>I want to delete a branch both locally and on my remote project fork on <a href=""http://en.wikipedia.org/wiki/GitHub"" rel=""noreferrer"">GitHub</a>.</p>
+
+<h3>Failed Attempts to Delete Remote Branch</h3>
+
+<pre><code>$ git branch -d remotes/origin/bugfix
+error: branch 'remotes/origin/bugfix' not found.
+
+$ git branch -d origin/bugfix
+error: branch 'origin/bugfix' not found.
+
+$ git branch -rd origin/bugfix
+Deleted remote branch origin/bugfix (was 2a14ef7).
+
+$ git push
+Everything up-to-date
+
+$ git pull
+From github.com:gituser/gitproject
+* [new branch] bugfix -&gt; origin/bugfix
+Already up-to-date.
+</code></pre>
+
+<p>What do I need to do differently to successfully delete the
+<code>remotes/origin/bugfix</code> branch both locally and on GitHub?</p>
+","95592","","1000551","","2018-09-24 07:47:14","2018-12-13 18:17:55","How do I delete a Git branch both locally and remotely?","<git><git-branch><git-remote>","39","2","4790","",""
+"2373074","1","2373171","","2010-03-03 16:37:25","","223","112678","<p>I've always used single quotes when writing my HTML by hand. I work with a lot of rendered HTML which always uses double quotes. This allows me to determine if the HTML was written by hand or generated. Is this a good idea?</p>
+
+<p>What is the difference between the two? I know they both work and are supported by all modern browsers but is there a real difference where one is actually better than the other in different situations?</p>
+","6161","","246246","","2012-03-15 00:32:10","2018-06-13 10:49:39","Single vs Double quotes (' vs "") ","<html><syntax>","15","4","50","",""
+"2831059","1","2963582","","2010-05-14 00:02:54","","543","305856","<p>What's the syntax for dropping a database table column through a Rails migration?</p>
+","336019","","7822322","","2017-04-05 20:52:52","2019-02-04 15:46:39","How to drop columns using Rails migration","<ruby-on-rails><ruby><database><rails-migrations>","18","0","86","",""
+"2878248","1","2878408","","2010-05-20 22:17:41","","141","64028","<p>Where can I find a detailed manual about PostgreSQL naming conventions? (table names vs. camel case, sequences, primary keys, constraints, indexes, etc...)</p>
+","72563","","29613","","2015-06-15 19:48:01","2017-10-27 11:52:19","PostgreSQL naming conventions","<postgresql><naming-conventions>","2","1","28","",""
+"3028653","1","3028670","","2010-06-12 12:28:00","","260","69609","<p>What is the difference between collection routes and member routes in Rails?</p>
+
+<p>For example,</p>
+
+<pre><code>resources :photos do
+  member do
+    get :preview
+  end
+end
+</code></pre>
+
+<p>versus</p>
+
+<pre><code>resources :photos do
+  collection do
+    get :search
+  end
+end
+</code></pre>
+
+<p>I don't understand.</p>
+","224922","","561626","","2013-07-03 11:07:59","2016-07-14 12:08:28","difference between collection route and member route in ruby on rails?","<ruby-on-rails><ruby>","4","0","93","",""
+"3047056","1","3047117","","2010-06-15 16:24:01","","217","78490","<p>While inspecting an element using Chrome's devtools, in the elements tab, the right-hand side 'Styles' bar shows the corresponding CSS properties. At times, some of these properties are struck-through. What do these properties mean?</p>
+","121858","","121858","","2014-12-24 11:16:38","2017-08-17 05:20:05","What do the crossed style properties in Google Chrome devtools mean?","<css><google-chrome><google-chrome-devtools>","5","1","35","",""
+"4834809","1","4834906","","2011-01-29 02:48:20","","277","326985","<p>I have a Users model which needs an <code>:email</code> column (I forgot to add that column during the initial scaffold).  </p>
+
+<p>I opened the migration file and added <code>t.string :email</code>, did <code>rake db:migrate</code>, and got a <code>NoMethodError</code>. Then I added the line </p>
+
+<pre><code>add_column :users, :email, :string
+</code></pre>
+
+<p>again <code>rake db:migrate</code>, again <code>NoMethodError</code>.  Am I missing a step here?</p>
+
+<p>Edit: here's the migration file.</p>
+
+<pre><code>class CreateUsers &lt; ActiveRecord::Migration  
+  def self.up  
+    add_column :users, :email, :string  
+    create_table :users do |t|  
+      t.string :username  
+      t.string :email  
+      t.string :crypted_password  
+      t.string :password_salt  
+      t.string :persistence_token  
+
+      t.timestamps  
+    end  
+  end  
+
+  def self.down  
+    drop_table :users  
+  end  
+end
+</code></pre>
+","584432","","1863692","","2015-03-04 14:15:50","2018-12-26 21:30:18","Adding a column to an existing table in a Rails migration","<ruby-on-rails-3>","9","0","103","",""
+"5209814","1","5209833","","2011-03-06 09:58:13","","205","283005","<p>I find that when I position an element fixed, it doesn't matter if the parent is positioned relative or not, it will position fixed, relative to the window?</p>
+
+<p>CSS</p>
+
+<pre class=""lang-css prettyprint-override""><code>#wrapper { width: 300px; background: orange; margin: 0 auto; position: relative; }
+#feedback { position: fixed; right: 0; top: 120px; }
+</code></pre>
+
+<p>HTML</p>
+
+<pre><code>&lt;div id=""wrapper""&gt;
+    ...
+    &lt;a id=""feedback"" href=""#""&gt;Feedback&lt;/a&gt;
+&lt;/div&gt;
+</code></pre>
+
+<p><a href=""http://jsbin.com/ibesa3"" rel=""noreferrer"">http://jsbin.com/ibesa3</a></p>
+","292291","","1016588","","2016-09-14 20:30:17","2018-07-08 22:43:17","Can I position an element fixed relative to parent?","<css><dom>","10","3","36","2017-10-26 17:32:39",""
+"5340724","1","5340773","","2011-03-17 14:51:32","","528","457142","<p>In my repository I have a branch called <code>aq</code> which I'm working on.</p>
+
+<p>I then committed new work and bugs in <code>master</code>. </p>
+
+<p>What is the best way to get those commits into the <code>aq</code> branch? Create another new branch out of <code>master</code> and merge it with <code>aq</code>?</p>
+","34548","","1958461","","2016-07-06 12:13:34","2018-04-10 02:24:16","Get changes from master into branch in Git","<git><version-control><git-merge>","9","4","178","",""
+"5508119","1","5508131","","2011-04-01 00:52:01","","19","64475","<p>My homework has a problem for example there is a category array $cat=array('1','4','5','7'); now i need to select products from db based on the category that is</p>
+
+<pre><code>SELECT * FROM products WHERE catid='1'
+SELECT * FROM products WHERE catid='4'
+SELECT * FROM products WHERE catid='5'
+SELECT * FROM products WHERE catid='7'
+</code></pre>
+
+<p>Is it possible to do this in a single query? as the final results of the four queries will be combined.</p>
+","594649","","","","","2017-06-21 14:15:59","SQL select everything in an array","<sql><select>","3","0","","",""
+"5767325","1","5767357","","2011-04-23 22:17:18","","6814","5491663","<p>I have an array of Numbers, and I'm using the <code>.push()</code> method to add elements to it.</p>
+
+<p>Is there a simple way to remove a specific element from an array? The equivalent of something like <code>array.remove(number);</code>.</p>
+
+<p>I have to use <em>core</em> JavaScript - <em>no</em> frameworks are allowed.</p>
+","364969","","123671","","2019-02-14 12:09:46","2019-02-17 00:02:23","How do I remove a particular element from an array in JavaScript?","<javascript><arrays>","76","6","1097","",""
+"7217894","1","7218106","","2011-08-27 22:51:17","","306","108386","<p>This often happens to me: I write some code, go to check in my changes, and then realize I'm not in the proper branch to check in those changes. However I can't switch to another branch without my changes reverting. Is there a way to move changes to another branch to be checked in there?</p>
+","68101","","","","","2018-01-30 00:41:36","moving changed files to another branch for check-in","<git><github>","4","0","87","",""
+"9461621","1","9461657","","2012-02-27 07:52:30","","96","66734","<p>I need to show a currency value in the format of 1K of equal to one thousand, or 1.1K, 1.2K, 1.9K etc, if its  not an even thousands, otherwise if under a thousand, display normal 500, 100, 250 etc, using javascript to format the number?</p>
+","416056","","87015","","2018-09-20 22:13:22","2018-09-20 22:13:22","Format a number as 2.5K if a thousand or more, otherwise 900","<javascript><jquery><formatting><numbers>","13","3","29","",""
+"9529300","1","","","2012-03-02 06:59:35","","143","210715","<p>I have the following code:</p>
+
+<pre><code>  &lt;span&gt;
+     &lt;svg height=""32"" version=""1.1"" width=""32"" xmlns=""http://www.w3.org/2000/svg"" style=""overflow: hidden; position: relative; left: -0.0166626px; top: -0.983337px;""&gt;
+        &lt;desc&gt;&lt;/desc&gt;
+        &lt;defs/&gt;
+        &lt;path style="""" fill=""#333333"" stroke=""none"" d=""M15.985,5.972C8.422,5.972,2.289999999999999,10.049,2.289999999999999,15.078C2.289999999999999,17.955,4.302999999999999...............1,27.68,22.274Z""/&gt;
+      &lt;/svg&gt;&amp;nbsp;
+  &lt;/span&gt;
+</code></pre>
+
+<p>Is it possible to change the fill color of the SVG path with CSS or some other means without actually changing it inside the path tag?</p>
+","975566","","1043380","","2017-02-07 19:35:50","2017-09-04 09:37:03","Can I change the fill color of an svg path with CSS?","<css><svg>","5","1","17","",""
+"11490322","1","11490338","","2012-07-15 07:42:46","","9","4968","<p>Assuming I can construct a string that matches an existing class, how do I invoke it?</p>
+
+<p>For example, I have several classes:</p>
+
+<ul>
+<li>MyClass1</li>
+<li>MyClass2</li>
+<li>MyClass3</li>
+</ul>
+
+<p>And I want to dynamically invoke each of them by constructing a string that matches their names. If they all had the method ""methods"", how do I do something like this?:</p>
+
+<pre><code>(1..3).each do |n|
+  (""MyClass""+n).methods
+end
+</code></pre>
+","786984","","","","","2012-07-15 08:11:49","How do I dynamically invoke or call a class in Rails?","<ruby-on-rails><ruby><class><dynamic><invoke>","2","2","","",""
+"11556493","1","11556597","","2012-07-19 08:07:34","","61","109821","<p>I'm having some problems with my <code>ul</code>-list after using applying CSS-reset.</p>
+
+<p>When the text in the <code>li</code> is long and it breaks to a second line, the text begins under the bullet. I'd like it to start with the same margin/padding as the text on the right side of the bullet.</p>
+
+<p>Sort of hard to explain, but if you look at the example-image. The left-image is the list today. ""motta varsel [...]"" begins under the bullet, but I'd like it to look the the picture on the right.</p>
+
+<p>How can I do this with CSS? I assume there is something very simple I've overlooked, but I can't figure out what. Google searches did not return anything useful either.</p>
+
+<p><img src=""https://i.stack.imgur.com/wlpdI.jpg"" alt=""enter image description here""></p>
+","921563","","921563","","2017-11-10 14:06:54","2017-11-10 14:06:54","Second line in li starts under the bullet after CSS-reset","<html><css>","3","0","12","",""
+"11757537","1","11763434","","2012-08-01 10:43:22","","335","595715","<p>I have an image, and I want to set it a specific width and height (in pixels)</p>
+
+<p>But If I set width and height using css (<code>width:150px; height:100px</code>), image will be stretched, and It may be ugly.</p>
+
+<p>How to <strong>Fill</strong> images to a specific size using CSS, and <strong>not stretching</strong> it?</p>
+
+<p>Example of fill and stretching image:</p>
+
+<p>Original Image:</p>
+
+<p><img src=""https://i.stack.imgur.com/2OrtT.jpg"" alt=""Original""></p>
+
+<p>Stretched Image:</p>
+
+<p><img src=""https://i.stack.imgur.com/L1ihk.jpg"" alt=""Stretched""></p>
+
+<p>Filled Image:</p>
+
+<p><img src=""https://i.stack.imgur.com/vwi7R.jpg"" alt=""Filled""></p>
+
+<p><strong>Please note that in the Filled image example above: first, image is resized to 150x255 (maintained aspect ratio), and then, it <em>cropped</em> to 150x100.</strong></p>
+","942659","","1470950","","2013-04-15 21:24:01","2019-02-01 13:23:52","CSS Image size, how to fill, not stretch?","<css><image>","11","6","103","",""
+"13824444","1","13824472","","2012-12-11 16:34:50","","33","124972","<p>I've just started to learn ruby and this is probably very easy to solve. How do I compare two strings in Ruby?</p>
+
+<p>I've tried the following :</p>
+
+<pre><code>puts var1 == var2 //false, should be true (I think)
+puts var1.eql?(var2) //false, should be true (I think)
+</code></pre>
+
+<p>When I try to echo them to console so I can compare values visually, I do this :</p>
+
+<pre><code>puts var1 //prints ""test content"" without quotes
+puts var2 //prints [""test content""] with quotes and braces
+</code></pre>
+
+<p>Ultimately are these different types of strings of how do I compare these two?</p>
+","190623","","","","","2013-09-30 14:13:52","comparing two strings in ruby","<ruby>","4","1","5","2012-12-11 18:37:05",""
+"15482354","1","18550696","","2013-03-18 16:50:26","","22","22265","<p>if I do </p>
+
+<pre><code>  validates :body, :presence =&gt; true, :length =&gt; {:maximum =&gt; 30000, :message =&gt; ' is a bit long...'}
+  validates :body, :length =&gt; {:minimum =&gt; 10, :message =&gt; ' is a bit short...'}
+</code></pre>
+
+<p>I still have a possibility of having a text which includes only <code>spaces</code> and <code>/r</code> or <code>/n</code> - non visible chars, which while the text isn't blank by definition, it is blank by looking at it</p>
+
+<p>How can I validate that the text had a min and max length listed above and is also visible (not 10 spaces) </p>
+","972789","","1228","","2013-09-03 14:43:26","2017-06-13 13:43:49","How to validate text isn't blank in Rails","<ruby-on-rails-3><validation><chars>","3","2","3","",""
+"16191820","1","16192396","","2013-04-24 12:16:04","","36","19470","<p>Is there a quick rake db:rollback command for all of the migrations?</p>
+","1043612","","","","","2018-10-11 15:47:01","Rake db:migrate - how do I undo all migrations and redo them","<ruby-on-rails><database><ruby-on-rails-3><migration>","4","0","12","",""
+"17073808","1","","","2013-06-12 19:35:34","","11","7657","<p>I am new to git having previously used Perforce, SVN, source safe and many other source control tools.</p>
+
+<p>I am looking for the functionality that I used to use in Perforce where I could construct a change list; I was able to add files to the change list and provide a comment specific to each file.</p>
+
+<p>git has a staging area into which changed files are added, is there a way to provide a per file comment when adding a file to the staging area?</p>
+
+<p>Or perhaps at the comment stage I can add a per file comment; I have had a good look and not been able to workout if either how to perform either - in fact from what I can seen neither is possible.</p>
+
+<p>Anyone have any ideas how I could do this?</p>
+","2196409","","","","","2019-01-28 14:55:08","git commit comment per file","<git><comments><commit>","4","1","1","",""
+"20824558","1","20824579","","2013-12-29 11:14:52","","29","7065","<p>In the Restify framework code I found this function:</p>
+
+<pre><code>function queryParser(options) {
+
+    function parseQueryString(req, res, next) {
+        // Some code goes there
+        return (next());
+    }
+    return (parseQueryString);
+}
+</code></pre>
+
+<p>Why would the author write <code>return (next());</code> and <code>return (parseQueryString);</code>? Does it need parentheses there and if so, why?</p>
+","1988021","","63550","","2017-12-08 18:04:02","2019-01-29 06:50:16","Why use parentheses when returning in JavaScript?","<javascript>","7","3","8","",""
+"20925494","1","20925700","","2014-01-04 19:12:29","","10","18809","<p>I have 2 models </p>
+
+<pre><code> class Deal &lt; ActiveRecord::Base
+   has_many :couponizations, dependent: :destroy     
+   has_many :coupon_codes, through: :couponizations, source: :coupon_code, dependent: :destroy
+   accepts_nested_attributes_for :coupon_codes, allow_destroy: true
+ end
+</code></pre>
+
+<p>and </p>
+
+<pre><code>class CouponCode &lt; ActiveRecord::Base
+   has_one :couponization, dependent: :destroy
+   has_one :deal, through: :couponization, source: :deal
+</code></pre>
+
+<p>which are linked by many-to-many relationship</p>
+
+<pre><code>class Couponization &lt; ActiveRecord::Base
+   belongs_to :coupon_code
+   belongs_to :deal
+end
+</code></pre>
+
+<p>Despite I specified <code>dependent: :destroy</code> option, when I delete deal, coupon codes are not being deleted. However couponizations are deleted successfully. Is there any way to delete associated nested records on object destroy? </p>
+","1318874","","1318874","","2014-01-04 19:20:40","2017-10-14 19:55:32","Delete associated records on object destroy Rails","<ruby-on-rails><ruby-on-rails-3><activerecord><ruby-on-rails-4>","2","0","2","",""
+"23090136","1","23090449","","2014-04-15 17:06:21","","65","79447","<p>How can I tell a flexbox layout row consume the remaining vertical space in a browser window?</p>
+
+<p>I have a 3-row flexbox layout. The first two rows are fixed height, but the 3rd is dynamic and I would like it to grow to the full height of the browser.</p>
+
+<p><img src=""https://i.stack.imgur.com/WKkRJ.png"" alt=""enter image description here""></p>
+
+<p>I have another flexbox in row-3 which creates a set of columns. To properly adjust elements within these columns I need them to understand the full height of the browser -- for things like background color and item alignments at the base. The major layout would ultimately resemble this:</p>
+
+<p><img src=""https://i.stack.imgur.com/3NVZM.png"" alt=""enter image description here""></p>
+
+<p><div class=""snippet"" data-lang=""js"" data-hide=""false"" data-console=""true"" data-babel=""false"">
+<div class=""snippet-code"">
+<pre class=""snippet-code-css lang-css prettyprint-override""><code>.vwrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    //height: 1000px;
+}
+.vwrapper #row1 {
+    background-color: red;
+}
+.vwrapper #row2 {
+    background-color: blue;
+}
+.vwrapper #row3 {
+    background-color: green;
+    flex 1 1 auto;
+    display: flex;
+}
+.vwrapper #row3 #col1 {
+    background-color: yellow;
+    flex 0 0 240px;
+}
+.vwrapper #row3 #col2 {
+    background-color: orange;
+    flex 1 1;
+}
+.vwrapper #row3 #col3 {
+    background-color: purple;
+    flex 0 0 240px;
+}</code></pre>
+<pre class=""snippet-code-html lang-html prettyprint-override""><code>&lt;body&gt;
+    &lt;div class=""vwrapper""&gt;
+        &lt;div id=""row1""&gt;
+            this is the header
+        &lt;/div&gt;
+        &lt;div id=""row2""&gt;
+            this is the second line
+        &lt;/div&gt;
+        &lt;div id=""row3""&gt;
+            &lt;div id=""col1""&gt;
+                col1
+            &lt;/div&gt;
+            &lt;div id=""col2""&gt;
+                col2
+            &lt;/div&gt;
+            &lt;div id=""col3""&gt;
+                col3
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+</div>
+</div>
+</p>
+
+<p>I've tried adding a <code>height</code> attribute, which does work when I set it to a hard number but not when I set it to <code>100%</code>. I understand <code>height: 100%</code> isn't working, because the content isn't filling the browser window, but can I replicate the idea using the flexbox layout?</p>
+","411063","","2756409","","2016-12-30 05:27:50","2018-01-18 23:10:00","How can I make my flexbox layout take 100% vertical space?","<html><css><css3><flexbox>","2","3","16","",""
+"23336359","1","23336560","","2014-04-28 08:41:18","","0","483","<p>I've got a button with a search label. The idea is that when you click the button (and put it in the active state) my search field which is put on display:none becomes visible. My current setup doesn't seem to work however. I've created a <a href=""http://jsfiddle.net/mKbd8/"" rel=""nofollow""><strong>jsfiddle</strong></a> containing my problem. Since this already is in ModX i cant paste the exact code but if clicking the button shows the text it yields the same result. </p>
+
+<pre><code>&lt;div id=""header""&gt;
+    &lt;div class=""search_function""&gt;[[$base.search-tpl]]&lt;/div&gt;
+    &lt;button class=""search_button""&gt;Search&lt;/button&gt;
+</code></pre>
+
+<h2>    </h2>
+
+<pre><code>#header label{
+    display:none;
+}
+
+#header input{
+    width:88%;
+    height:30px;
+    float:left;
+    margin:0px;
+    padding:0 0 0 10%;
+    text-align:center;
+    border-radius:0px;
+}
+
+#header button{
+    width:12%;
+    height:30px;
+    margin:0px;
+    padding:0px;
+    background-image:url('../images/transparent_search_icon30x30.png');
+    background-color:#eeeeee;
+    background-repeat:no-repeat;
+    background-position:center;
+}
+
+.search_button:active &gt; .search_function{
+    display:all;
+}
+.search_function{
+    display:none;
+
+}
+</code></pre>
+","2339525","","","","","2014-04-28 09:07:38","Make a button's active state show my search box","<html><css><modx>","1","2","","",""
+"25430085","1","25449515","","2014-08-21 15:20:34","","10","2436","<p>My problem is simply the favicon not showing up when using the <code>favicon_link_tag</code> and the multiple sizes option.</p>
+
+<pre><code>&lt;%= favicon_link_tag 'favicon.ico', sizes: '16x16 32x32' %&gt;
+</code></pre>
+
+<p>The files were labeled <code>favicon-16.ico</code> and <code>favicon-32.ico</code> respectively. These images are in the <code>app/assets/images</code> folder. Am I labeling them wrong? Is this a limitation?</p>
+","1118919","","","","","2018-03-08 10:57:57","How to use multiple favicon.ico sizes with favicon_link_tag helper in rails 4","<ruby-on-rails-4><favicon>","2","0","4","",""
+"27722872","1","27722921","","2014-12-31 15:10:07","","16","44012","<p>While I was fiddling with this <a href=""http://cssdeck.com/labs/fancy-3d-button"" rel=""noreferrer"">'Fancy 3D Button'</a> example, I found that the <code>width</code> seemed to be hard-coded to fit the text's width. </p>
+
+<p>Here is the HTML / CSS:</p>
+
+<p><div class=""snippet"" data-lang=""js"" data-hide=""true"" data-console=""false"" data-babel=""false"">
+<div class=""snippet-code snippet-currently-hidden"">
+<pre class=""snippet-code-css lang-css prettyprint-override""><code>body {
+  background-image: url(http://subtlepatterns.com/patterns/ricepaper.png)
+}
+a {
+  position: relative;
+  color: rgba(255, 255, 255, 1);
+  text-decoration: none;
+  background-color: rgba(219, 87, 5, 1);
+  font-family: 'Yanone Kaffeesatz';
+  font-weight: 700;
+  font-size: 3em;
+  display: block;
+  padding: 4px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 9px 0px rgba(219, 31, 5, 1), 0px 9px 25px rgba(0, 0, 0, .7);
+  -moz-box-shadow: 0px 9px 0px rgba(219, 31, 5, 1), 0px 9px 25px rgba(0, 0, 0, .7);
+  box-shadow: 0px 9px 0px rgba(219, 31, 5, 1), 0px 9px 25px rgba(0, 0, 0, .7);
+  margin: 100px auto;
+  width: 160px;
+  text-align: center;
+  -webkit-transition: all .1s ease;
+  -moz-transition: all .1s ease;
+  -ms-transition: all .1s ease;
+  -o-transition: all .1s ease;
+  transition: all .1s ease;
+}
+a:active {
+  -webkit-box-shadow: 0px 3px 0px rgba(219, 31, 5, 1), 0px 3px 6px rgba(0, 0, 0, .9);
+  -moz-box-shadow: 0px 3px 0px rgba(219, 31, 5, 1), 0px 3px 6px rgba(0, 0, 0, .9);
+  box-shadow: 0px 3px 0px rgba(219, 31, 5, 1), 0px 3px 6px rgba(0, 0, 0, .9);
+  position: relative;
+  top: 6px;
+}</code></pre>
+<pre class=""snippet-code-html lang-html prettyprint-override""><code>&lt;link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:700' rel='stylesheet' type='text/css'&gt;
+
+&lt;a href=""javascript:void(0);""&gt;Push me!&lt;/a&gt;</code></pre>
+</div>
+</div>
+</p>
+
+<p><img src=""https://i.stack.imgur.com/ZEPx7.png"" alt=""Normal look""></p>
+
+<p>If I remove the <code>width</code> property, the button would fill the page width.</p>
+
+<p><img src=""https://i.stack.imgur.com/2Kvze.png"" alt=""Without the width property""></p>
+
+<p>Is there any way to make the button's width fit to the text, automatically? </p>
+","845070","","2930477","","2014-12-31 15:24:46","2017-05-27 02:06:50","Make button width fit to the text","<html><css>","5","1","1","",""
+"35181340","1","35184796","","2016-02-03 15:40:17","","49","59379","<p>I want to make <code>POST request</code> to my local dev, like this:</p>
+
+<pre><code>  HTTParty.post('http://localhost:3000/fetch_heroku',
+                :body =&gt; {:type =&gt; 'product'},)
+</code></pre>
+
+<p>However, from the server console it reports </p>
+
+<pre><code>Started POST ""/fetch_heroku"" for 127.0.0.1 at 2016-02-03 23:33:39 +0800
+  ActiveRecord::SchemaMigration Load (0.0ms)  SELECT ""schema_migrations"".* FROM ""schema_migrations""
+Processing by AdminController#fetch_heroku as */*
+  Parameters: {""type""=&gt;""product""}
+Can't verify CSRF token authenticity
+Completed 422 Unprocessable Entity in 1ms
+</code></pre>
+
+<p>Here is my controller and routes setup, it's quite simple. </p>
+
+<pre><code>  def fetch_heroku
+    if params[:type] == 'product'
+      flash[:alert] = 'Fetch Product From Heroku'
+      Heroku.get_product
+    end
+  end
+
+  post 'fetch_heroku' =&gt; 'admin#fetch_heroku'
+</code></pre>
+
+<p>I'm not sure what I need to do? To turn off the CSRF would certainly work, but I think it should be my mistake when creating such an API.</p>
+
+<p>Is there any other setup I need to do?</p>
+","1794744","","","","","2018-12-13 07:52:40","Rails: Can't verify CSRF token authenticity when making a POST request","<ruby-on-rails>","5","1","7","",""
+"37909134","1","37909363","","2016-06-19 16:02:59","","42","35801","<p>I am using the &amp;nbsp tag in jsx and it is not rendering the space. The following is a small snippet of my code.Please help.</p>
+
+<pre><code>var Reporting=React.createClass({
+
+  render: function(){
+    return(
+      &lt;div style={divPositionReporting}&gt;
+          &lt;p&gt;Pricing Reports&lt;/p&gt;
+          &lt;hr&gt;&lt;/hr&gt;
+          Select Scenario:&amp;nbsp;&amp;nbsp;
+          &lt;select&gt;
+            &lt;option&gt;&lt;/option&gt;
+          &lt;/select&gt;
+          &lt;button type=""button""&gt;Get Pricing Report&lt;/button&gt;
+          &lt;br/&gt;
+          Select Takeout Scenario:&amp;nbsp;
+          &lt;select&gt;
+            &lt;option&gt;&lt;/option&gt;
+          &lt;/select&gt;
+          &lt;button type=""button""&gt;Get Pricing Report&lt;/button&gt;
+          &lt;br/&gt;
+      &lt;/div&gt;
+    );
+  },
+
+});
+</code></pre>
+","6453895","","218196","","2016-06-19 17:31:46","2019-02-01 19:04:00","&nbsp jsx not working","<html><reactjs><jsx>","5","3","5","",""
+"38713405","1","38723094","","2016-08-02 06:43:01","","718","154412","<p>I am using Visual Studio Code 1.3.1 with the newly introduced tabs. When I click on files, the first file will open in a tab. If I do not make any changes to this file, the second clicked file will open in the same tab. How can I avoid this and make Visual Studio Code always open a new tab?</p>
+","2629219","","63550","","2018-12-15 17:52:54","2019-02-14 01:35:15","How do I configure Visual Studio Code to open files always in a new tab?","<visual-studio-code>","13","2","130","",""
+"45945820","1","45946523","","2017-08-29 18:15:56","","22","3392","<p>If I quick open a file using the quick open menu, is there a <strong>keyboard shortcut</strong> that will take the opened file outside of preview mode so that when I open a new file it won't replace the currently open one?</p>
+
+<p>(I'm looking for a keyboard shortcut as opposed to double-clicking the filename or tab in order to keep my workflow keyboard oriented)</p>
+","604296","","2631715","","2019-02-14 01:45:41","2019-02-14 01:45:41","Keyboard shortcut to take file out of preview mode in VSCode","<visual-studio-code><keyboard-shortcuts>","3","0","2","",""
+"46040733","1","46040808","","2017-09-04 16:03:34","","7","5465","<p>Let's say I have a simple component like this:</p>
+
+<pre><code>class SimpleComponent extends React.Component
+{
+    render() { return &lt;p&gt;Some text&lt;/p&gt; }
+}
+</code></pre>
+
+<p>Is it possible to add a <code>className</code> to <code>SimpleComponent</code> or is this constrained to HTML DOM elements only?</p>
+
+<p>For example:</p>
+
+<pre><code>var mySimpleComponent = &lt;SimpleComponent className=""myComp""/&gt;
+</code></pre>
+
+<p>The reason I would like to do this is so that I can style the elements inside my custom component like this:</p>
+
+<pre><code>.myComp &gt; p {
+    background-color: blue;
+}
+</code></pre>
+","1823368","","","","","2017-09-04 16:24:16","Is it possible to set a className on custom react components?","<javascript><reactjs>","1","2","0","2017-09-04 16:14:05",""
+"48107353","1","48130849","","2018-01-05 04:51:39","","6","3649","<p>I have a grid layout with two columns and two rows. A sticky left nav, a sticky header, and content that will live in the bottom right corner of the grid.</p>
+
+<p>What I have now is nearly there, but I would like the <code>.content</code> div to use scroll when content extends beyond the screen. I thought I would be able to just use <code>overflow: auto</code>, but that isn't working. Is what I have close?</p>
+
+<p><div class=""snippet"" data-lang=""js"" data-hide=""false"" data-console=""true"" data-babel=""false"">
+<div class=""snippet-code"">
+<pre class=""snippet-code-css lang-css prettyprint-override""><code>body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.page {
+  display: grid;
+  grid-template-rows: 55px auto;
+  grid-template-columns: 20vh auto;
+  grid-template-areas: ""nav header"" ""nav content"";
+}
+
+.nav {
+  grid-area: nav;
+  background-color: blue;
+}
+
+.header {
+  grid-area: header;
+  background-color: grey;
+}
+
+.content {
+  grid-area: content;
+  height: 1000px; // This is dynamic
+  background-color: red;
+}</code></pre>
+<pre class=""snippet-code-html lang-html prettyprint-override""><code>&lt;div class=""page""&gt;
+  &lt;div class=""nav""&gt;Side nav&lt;/div&gt;
+  &lt;div class=""header""&gt;Header&lt;/div&gt;
+  &lt;div class=""content""&gt;
+    &lt;h1&gt;title&lt;/h1&gt;
+  &lt;/div&gt;
+  &lt;div&gt;</code></pre>
+</div>
+</div>
+</p>
+
+<p><a href=""https://jsfiddle.net/seanyesmunt/hh5vxa0e/"" rel=""noreferrer"">JS fiddle</a></p>
+","2309358","","3597276","","2018-01-06 18:47:28","2018-01-06 19:33:19","Allow one grid item to scroll with fixed header and sidebar","<html><css><css3><css-grid>","3","0","2","",""
+"50807929","1","","","2018-06-12 01:00:06","","0","535","<p>What is the difference between Link and Route in react router? 
+Where do we use them or do we use them together or separately?
+Where can I find genuine and professional React web development tutorial?</p>
+","9724062","","","","","2018-06-12 03:00:00","How does React router works and what is the difference between <link> and<Route>","<reactjs><react-router>","2","0","","",""
