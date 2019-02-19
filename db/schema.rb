@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_192034) do
+ActiveRecord::Schema.define(version: 2019_02_19_221541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 2019_02_19_192034) do
     t.boolean "accepted", default: false, null: false
     t.integer "score", default: 0
     t.index ["answerer_id"], name: "index_answers_on_answerer_id"
-    t.index ["body"], name: "index_answers_on_body"
     t.index ["editor_id"], name: "index_answers_on_editor_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
