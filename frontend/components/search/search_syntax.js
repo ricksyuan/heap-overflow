@@ -18,7 +18,7 @@ const SearchSyntaxTable = () => {
           <th scope="row">Exact</th>
           <td className="ff-mono">"words here"</td>
         </tr>
-        <tr>
+        {/* <tr>
           <th scope="row">Author</th>
           <td className="ff-mono">
             user:1234<br />
@@ -88,7 +88,7 @@ const SearchSyntaxTable = () => {
                 </td>
         </tr>
         <tr>
-        </tr>
+        </tr> */}
       </tbody>
     </table>
   );

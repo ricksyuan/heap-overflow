@@ -31,6 +31,15 @@
   }
 }
 
+.search-page-tips-toggle {
+  color: #07C;
+  font-size: 11px;
+  margin-right: 16px;
+  &:hover, &:active {
+    color: #3af;
+  }
+}
+
 .search-page-search-button {
   height: 38px;
   padding: 10.4px;

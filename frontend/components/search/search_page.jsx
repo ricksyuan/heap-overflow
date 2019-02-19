@@ -21,7 +21,15 @@ const mapDispatchToProps = (dispatch) => {
 
 class SearchPage extends React.Component {
   constructor(props) {
-    super(props);    
+    super(props);
+    this.state = {showSyntax: false}
+    this.handleTipsClicked = this.handleTipsClicked.bind(this)
+  }
+
+  handleTipsClicked() {
+    this.setState ({
+      showSyntax: !this.state.showSyntax,
+    });
   }
 
   render() {
@@ -32,25 +40,38 @@ class SearchPage extends React.Component {
       <div className="search-page">
         <div className="search-page-header">
           <h1 className="search-page-headline">
-            Search
+
+            {this.props.query.type === 'NONE' &&
+              'Search'
+            }
+
+            {this.props.query.type === 'BLANK' &&
+              'Search'
+            }
             {this.props.query.type === 'EXACT' &&
-              ' Results'
+              `Search Results for ${this.props.query.parsedString}`
             }
 
             {this.props.query.type === 'TAGS' &&
-              ` for questions tagged ${this.props.query.parsedString}`
+              `Search for questions tagged ${this.props.query.parsedString}`
             }
+
           </h1>
-          <Link className="ask-question-link primary-btn" to={'/questions/ask'}>
-            Ask Question
-           </Link>
+          <div>
+            <button className="search-page-tips-toggle" onClick={this.handleTipsClicked}>
+              Advanced Search Tips
+            </button>
+            <Link className="ask-question-link primary-btn" to={'/questions/ask'}>
+              Ask Question
+            </Link>
+          </div>
         </div>
+        { this.state.showSyntax && 
+          <SearchSyntaxTable />
+        }
         <div>
           <SearchPageSearchBar key={this.props.query.parsedString} />
         </div>
-        { questionSummaries.length === 0 &&
-          <SearchSyntaxTable/>
-        }
         <ul>
           {questionSummaries}
         </ul>

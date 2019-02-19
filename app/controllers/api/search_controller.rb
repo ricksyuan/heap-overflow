@@ -2,14 +2,14 @@ class Api::SearchController < ApplicationController
 
   # Search tag(s) first, then title
   def search
-
     @query_string = params[:query]
     @query_type = ''
 
     # empty search
     if @query_string == ''
       @query_type = 'BLANK'
-      render json: ["Query cannot be blank"], status: 422
+      @questions = []
+      render :search
       return
     end
     
@@ -39,7 +39,7 @@ class Api::SearchController < ApplicationController
     end
     
     # no tag, so search for questions containing query in title
-    if tags.nil?
+    if tags.length == 0
       searchExact(@query_string)
       return
     end
@@ -48,17 +48,19 @@ class Api::SearchController < ApplicationController
   def searchExact(query)
     @query_type = 'EXACT'
     @questions = Question.where('title ILIKE ?', "%#{query}%")
-    render :exact_search
+    @query_string = "\"#{@query_string}\""
+
+    render :search
   end
 
   def searchTags(tag_names)
     @query_type = 'TAGS'
     @questions = Question.joins(:tags)
                          .where('tags.name IN (?)', tag_names)
-                         .group("questions.id")
+                         .group('questions.id')
                          .having("COUNT(*) = ?", tag_names.count)
-    @query_string = tag_names.map{|tag_name| "[#{tag_name}]"}.join(" ")
-    render :tags_search
+    @query_string = tag_names.map{|tag_name| "[#{tag_name}]"}.join(' ')
+    render :search
   end
 
 end
