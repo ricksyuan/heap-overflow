@@ -11,8 +11,11 @@ import {
 import { RECEIVE_ANSWER, REMOVE_ANSWER } from '../actions/answer_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_QUESTION_VOTE } from '../actions/vote_actions';
+import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 
-const questionsReducer = (oldState = {}, action) => {
+const _nullQuestions = {};
+
+const questionsReducer = (oldState = _nullQuestions, action) => {
   Object.freeze(oldState);
   let newState;
   let question;
@@ -71,6 +74,8 @@ const questionsReducer = (oldState = {}, action) => {
       return newState;
     case RECEIVE_QUESTION_VOTE:
       return merge({}, oldState, action.question);
+    case LOGOUT_CURRENT_USER:
+      return _nullQuestions;
     default:
       return oldState;
   }

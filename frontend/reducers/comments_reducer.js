@@ -7,9 +7,11 @@ import { RECEIVE_COMMENT_VOTE } from '../actions/vote_actions';
 import {
   RECEIVE_QUESTION,
 } from '../actions/question_actions';
+import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 
+const _nullComments = {};
 
-const commentsReducer = (oldState = {}, action) => {
+const commentsReducer = (oldState = _nullComments, action) => {
   Object.freeze(oldState);
   let newState;
   switch (action.type) {
@@ -27,6 +29,8 @@ const commentsReducer = (oldState = {}, action) => {
       return newState;
     case RECEIVE_COMMENT_VOTE:
       return merge({}, oldState, action.comment);
+    case LOGOUT_CURRENT_USER:
+      return _nullComments;
     default:
       return oldState;
   }

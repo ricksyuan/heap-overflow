@@ -9,6 +9,9 @@ import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import {
   RECEIVE_QUESTION,
 } from '../actions/question_actions';
+import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
+
+const _nullAnswers = {};
 
 const answersReducer = (oldState = {}, action) => {
   Object.freeze(oldState);
@@ -49,6 +52,8 @@ const answersReducer = (oldState = {}, action) => {
         }
         return newState;
       }
+    case LOGOUT_CURRENT_USER:
+      return _nullAnswers;
     default:
       return oldState;
   }
