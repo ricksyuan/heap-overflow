@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import QuestionStat from './question_stat';
 import { kFormatter } from '../../../utils/formatting_util';
-import Tag from '../tag';
+import Tag from '../../tags/tag';
 
 const mapStateToProps = (state, ownProps) => {
   const asker = state.entities.users[ownProps.question.askerId];

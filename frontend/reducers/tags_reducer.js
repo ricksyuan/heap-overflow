@@ -6,7 +6,9 @@ import {
 import { RECEIVE_SEARCH_RESULTS, RECEIVE_SEARCH_ERRORS } from '../actions/search_actions';
 import { RECEIVE_TAGS, RECEIVE_TAG } from '../actions/tag_actions';
 
-const tagReducer = (oldState = {}, action) => {
+const _nullTags = {};
+
+const tagReducer = (oldState = _nullTags, action) => {
   Object.freeze(oldState);
   switch (action.type) {
     case RECEIVE_ALL_QUESTIONS:
@@ -20,7 +22,7 @@ const tagReducer = (oldState = {}, action) => {
     case RECEIVE_SEARCH_RESULTS:
       return action.tags;
     case RECEIVE_SEARCH_ERRORS:
-      return {};
+      return _nullTags;
     default:
       return oldState;
   }

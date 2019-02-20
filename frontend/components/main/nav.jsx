@@ -15,7 +15,7 @@ const Nav = () => {
             <span>Stack Overflow</span>
           </Link>
         </li>
-        <li><Link className="nav-bar-link tags" to="/">Tags</Link></li>
+        <li><Link className="nav-bar-link tags" to="/tags">Tags</Link></li>
         {/* TODO: Implement users index */}
         {/* <li><Link className="nav-bar-link users" to="/">Users</Link></li> */}
         {/* TODO: Implement users index */}

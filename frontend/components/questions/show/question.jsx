@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { vote } from '../../../actions/vote_actions';
 import { deleteQuestion } from '../../../actions/question_actions';
 import { openPopup } from '../../../actions/popup_actions';
-import Tag from '../tag';
+import Tag from '../../tags/tag';
 import CommentIndex from '../../comments/comment_index';
 import ReactQuill from 'react-quill';
 

@@ -8,6 +8,7 @@ import AskQuestionForm from '../questions/create/ask_question_form';
 import QuestionPage from '../questions/show/question_page';
 import Popup from '../../components/popup/popup';
 import SearchPage from '../../components/search/search_page';
+import TagsPage from '../../components/tags/tags_page';
 
 const Content = () => {
   return (
@@ -15,6 +16,7 @@ const Content = () => {
       <Popup />
       <Route exact path="/" component={TopQuestionsIndex} />
       <Route path="/search" component={SearchPage} />
+      <Route path="/tags" component={TagsPage} />
       <Switch>
         <ProtectedRoute exact path="/questions/ask" component={AskQuestionForm} />
         <Route exact path="/questions/:questionId" component={QuestionPage} />
