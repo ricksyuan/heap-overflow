@@ -41,36 +41,6 @@ class Api::AnswersController < ApplicationController
     @answer.destroy
     render :destroy
   end
-
-  def downvote
-    vote('down_vote')
-  end
-
-  def upvote
-    vote('up_vote')
-  end
-
-  def vote(vote_type)
-    unless Vote.vote_types.include? vote_type
-      render json: ["Unknown vote type #{vote_type}"], status: 422
-      return
-    end    
-    @answer = Answer.find_by(id: params[:id])
-    if @answer.nil?
-      render json: ["Answer not found"], status: 404
-      return 
-    end
-    voter_id = current_user.id
-    new_vote = Vote.new(vote_type: vote_type, voter_id: voter_id, votable_type: :Answer, votable_id: @answer.id)
-    existing_vote = @answer.votes.find_by(voter_id: voter_id)
-    if existing_vote.nil?
-      new_vote.save!
-    else
-      new_vote.save! unless new_vote.vote_type == existing_vote.vote_type
-      existing_vote.destroy
-    end
-    render :vote
-  end
   
   private
 

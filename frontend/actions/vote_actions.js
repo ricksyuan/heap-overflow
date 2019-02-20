@@ -12,29 +12,6 @@ export const RECEIVE_ANSWER_VOTE = 'RECEIVE_ANSWER_VOTE';
 export const RECEIVE_COMMENT_VOTE = 'RECEIVE_COMMENT_VOTE';
 export const RECEIVE_VOTE_ERRORS = 'RECEIVE_VOTE_ERRORS';
 
-const receiveAnswerVote = ({answer}) => {
-  return {
-    type: RECEIVE_ANSWER_VOTE,
-    answer: answer,
-  };
-};
-
-export const upvoteAnswer = (answerId) => (dispatch) => {
-  return VoteAPIUtil.upvoteAnswer(answerId)
-    .then(
-      (answer) => dispatch(receiveAnswerVote(answer)),
-      (errors) => dispatch(receiveVoteErrors(errors.responseJSON))
-    );
-};
-
-export const downvoteAnswer = (answerId) => (dispatch) => {
-  return VoteAPIUtil.downvoteAnswer(answerId)
-    .then(
-      (answer) => dispatch(receiveAnswerVote(answer)),
-      (errors) => dispatch(receiveVoteErrors(errors.responseJSON))
-    );
-};
-
 const receiveVote = ({ payload, votableType }) => {
   let type;
   let field;

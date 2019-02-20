@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteAnswer } from '../../actions/answer_actions';
-import { upvoteAnswer, downvoteAnswer } from '../../actions/vote_actions';
+import { vote } from '../../actions/vote_actions';
 import { openPopup } from '../../actions/popup_actions';
 import CommentIndex from '../comments/comment_index';
 import ReactQuill from 'react-quill';
@@ -24,6 +24,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     deleteAnswer: (answerId) => dispatch(deleteAnswer(answerId)),
+    vote: (voteType, votableType, votableId) => dispatch(vote(voteType, votableType, votableId)),
     upvoteAnswer: (answerId) => dispatch(upvoteAnswer(answerId)),
     downvoteAnswer: (answerId) => dispatch(downvoteAnswer(answerId)),
     openPopup: (popup) => dispatch(openPopup(popup)),
@@ -34,30 +35,22 @@ class Answer extends React.Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handleUpvote = this.handleUpvote.bind(this);
-    this.handleDownvote = this.handleDownvote.bind(this);
+    this.handleVote = this.handleVote.bind(this);
   }
 
-  handleUpvote() {
-    if (this.props.isLoggedIn) {
-      this.props.upvoteAnswer(this.props.answer.id);
-    } else {
-      this.props.openPopup({
-        name: 'vote_error',
-        clickCoordinate: { x: event.pageX, y: event.pageY },
-      });
-    }
-  }
-
-  handleDownvote() {
-    if (this.props.isLoggedIn) {
-      this.props.downvoteAnswer(this.props.answer.id);
-    } else {
-      this.props.openPopup({
-        name: 'vote_error',
-        clickCoordinate: { x: event.pageX, y: event.pageY },
-      });
-    }
+  
+  handleVote(voteType) {
+    return (event) => {
+      event.preventDefault();
+      if (this.props.isLoggedIn) {
+        this.props.vote(voteType, 'Answer', this.props.answer.id);
+      } else {
+        this.props.openPopup({
+          name: 'vote_error',
+          clickCoordinate: { x: event.pageX, y: event.pageY },
+        });
+      }
+    };
   }
 
   handleDelete(e) {
@@ -71,12 +64,12 @@ class Answer extends React.Component {
     return (
       <div className="answer-container">
         <div className="answer-voting">
-          <button className={`up-arrow ${answer.currentUserVote === 'up_vote' ? 'current-user-vote' : ''}`} onClick={this.handleUpvote}>
+          <button className={`up-arrow ${answer.currentUserVote === 'up_vote' ? 'current-user-vote' : ''}`} onClick={this.handleVote('up_vote')}>
             <svg className="svg-icon" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 26h32L18 10z"></path></svg>
           </button>
 
           <div className="answer-score">{answer.score}</div>
-          <button className={`down-arrow ${answer.currentUserVote === 'down_vote' ? 'current-user-vote' : ''}`} onClick={this.handleDownvote} >
+          <button className={`down-arrow ${answer.currentUserVote === 'down_vote' ? 'current-user-vote' : ''}`} onClick={this.handleVote('down_vote')}>
             <svg className="svg-icon" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36"><path d="M2 10h32L18 26z"></path></svg>
           </button>
         </div>
