@@ -36,6 +36,7 @@ end
 
 #  Create questions
 questions_table = CSV.foreach(File.join(__dir__, 'seed_questions.csv'), headers: true) do |question_row|
+  # Id	PostTypeId	AcceptedAnswerId	ParentId	CreationDate	DeletionDate	Score	ViewCount	Body	OwnerUserId	OwnerDisplayName	LastEditorUserId	LastEditorDisplayName	LastEditDate	LastActivityDate	Title	Tags	AnswerCount	CommentCount	FavoriteCount	ClosedDate	CommunityOwnedDate
   id = question_row['Id'].to_i
   title = question_row['Title']
   asker_id = users.sample.id.to_i
@@ -90,3 +91,18 @@ CSV.foreach(File.join(__dir__, 'seed_answer_comments.csv'), headers: true) do |c
   Comment.create!(id: id, commenter_id: commenter_id, commentable_type: commentable_type, commentable_id: commentable_id, body: body, created_at: created_at, updated_at: updated_at, score: score)
 end
 
+# Create tags
+CSV.foreach(File.join(__dir__, 'seed_tags.csv'), headers: true) do |tag_row|
+  # Id	TagName	Count	ExcerptPostId	WikiPostId
+  id = tag_row['Id'];
+  name = tag_row['TagName'];
+  count = tag_row['Count']
+  Tag.create!(id: id, name: name, count: count);
+end
+
+CSV.foreach(File.join(__dir__, 'seed_post_tags.csv'), headers: true) do |post_tag_row|
+  # PostId	TagId
+  question_id = post_tag_row['PostId'];
+  tag_id = post_tag_row['TagId'];
+  Tagging.create!(question_id: question_id, tag_id: tag_id);
+end
