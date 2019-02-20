@@ -15,7 +15,7 @@ const queryReducer = (oldState = _nullQuery, action) => {
     case RECEIVE_SEARCH_ERRORS:
       return _nullQuery;
     default:
-      return oldState;
+      return _nullQuery;
   }
 };
 
