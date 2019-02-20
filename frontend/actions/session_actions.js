@@ -45,6 +45,15 @@ export const login = formUser => dispatch => (
     )
 );
 
+export const loginDemo = () => dispatch => {
+  return SessionAPIUtil.postDemoUser()
+    .then(
+      returningUser => dispatch(receiveCurrentUser(returningUser)),
+      err => dispatch(receiveSessionErrors(err.responseJSON))
+    );
+};
+
+
 export const logout = () => dispatch => (
   SessionAPIUtil.deleteSession()
     .then(

@@ -4,8 +4,17 @@ export const postUser = (newUser) => (
     method: 'POST',
     url: '/api/users',
     data: { user: newUser },
-  })// REVIEW: no semi-colon!
+  })
 );
+
+export const postDemoUser = () => (
+  $.ajax({
+    method: 'POST',
+    url: '/api/users',
+    data: { user: 'demo' },
+  })
+);
+
 
 export const postSession = (returningUser) => (
   $.ajax({

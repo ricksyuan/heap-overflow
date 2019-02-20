@@ -2,10 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ErrorList from '../errors/error_list';
 
-// For guest log in
-const DEMO_EMAIL = "demo@example.com";
-const DEMO_PASSWORD = "password";
-
 export default class SessionForm extends React.Component {
   constructor(props) {
     super(props);
@@ -99,10 +95,7 @@ export default class SessionForm extends React.Component {
           <br />
           <p>Just trying it out? <button
             className="session-alt-link"
-            onClick={() => this.props.login({
-              email: DEMO_EMAIL,
-              password: DEMO_PASSWORD,
-            })}>Log in as guest</button>
+            onClick={this.props.loginDemo}>Log in as guest</button>
           </p>
           
         </div>

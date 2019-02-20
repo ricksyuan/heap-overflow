@@ -2,10 +2,26 @@ class Api::UsersController < ApplicationController
 
   # Sign up user
   def create
+    # demo
+    if params[:user] == 'demo'
+      last_id = User.last.id
+      display_name = "demouser#{last_id + 1}"
+      email = "#{display_name}@example.com"
+      @user = User.new(
+        display_name: display_name,
+        email: email,
+        password: 'password'
+      )
+      @user.save!
+      login!(@user)
+      render 'api/users/show'
+      return
+    end
+    # normal sign in
     @user = User.new(user_params)
     if @user.save
       login!(@user)
-      render "api/users/show"
+      render 'api/users/show'
     else
       render json: @user.errors.full_messages, status: 422
     end
