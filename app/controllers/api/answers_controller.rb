@@ -9,6 +9,11 @@ class Api::AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
+    sanitizer = Rails::Html::FullSanitizer.new
+    if sanitizer.sanitize(@answer.body).length == 0 
+      render json: ['Body cannot be blank'], status: 422
+      return
+    end
     @answer.answerer_id = current_user.id
     @answer.editor_id = current_user.id
     @answer.question_id = params[:question_id]
