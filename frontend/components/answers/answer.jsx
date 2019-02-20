@@ -25,8 +25,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     deleteAnswer: (answerId) => dispatch(deleteAnswer(answerId)),
     vote: (voteType, votableType, votableId) => dispatch(vote(voteType, votableType, votableId)),
-    upvoteAnswer: (answerId) => dispatch(upvoteAnswer(answerId)),
-    downvoteAnswer: (answerId) => dispatch(downvoteAnswer(answerId)),
     openPopup: (popup) => dispatch(openPopup(popup)),
   };
 };
