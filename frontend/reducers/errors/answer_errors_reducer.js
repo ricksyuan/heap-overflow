@@ -4,7 +4,7 @@ import {
 
 const _nullErrors = [];
 
-const commentErrorsReducer = (state = _nullErrors, action) => {
+const answerErrorsReducer = (state = _nullErrors, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_ANSWER_ERRORS:
@@ -15,4 +15,4 @@ const commentErrorsReducer = (state = _nullErrors, action) => {
   }
 };
 
-export default commentErrorsReducer;
+export default answerErrorsReducer;

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import CommentListItem from './comment_list_item';
 import { postComment } from '../../actions/comment_actions';
 import { openPopup } from '../../actions/popup_actions';
+import ErrorList from '../../components/errors/error_list';
 
 const mapStateToProps = (state) => {
   const isLoggedIn = !!state.session.id;
@@ -53,25 +54,13 @@ class CommentIndex extends React.Component {
       }).then(() => this.setState({ commentBody: '', showCommentField: false }));
   }
 
-  renderErrors() {
-    return (
-      <ul className="comment-error-ul">
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
   render() {
     const comments = this.props.comments.map(comment => {
       return <CommentListItem key={comment.id} comment={comment} />;
     });
     return (
       <div className="comment-index">
-        {this.renderErrors()}
+        <ErrorList errors={this.props.errors}/>
         <ul>
           {comments.length > 0 && comments}
         </ul>

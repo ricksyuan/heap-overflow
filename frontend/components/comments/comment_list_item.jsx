@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { deleteComment } from '../../actions/comment_actions';
 import { vote } from '../../actions/vote_actions';
 import { openPopup } from '../../actions/popup_actions';
-
+import ErrorList from '../errors/error_list';
 
 const mapStateToProps = (state, ownProps) => {
   const commenter = state.entities.users[ownProps.comment.commenterId];
@@ -59,22 +59,10 @@ class CommentListItem extends React.Component {
     
   }
 
-  renderErrors() {
-    return (
-      <ul className="comment-error-ul">
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
   render() {
     return (
       <li className="comment-list-item">
-        {this.renderErrors()}
+        <ErrorList errors={this.props.errors}/>
         <div className="comment-left-aside">
           <div className="comment-review-actions">
             <div className="comment-score">

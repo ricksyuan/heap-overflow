@@ -10,6 +10,7 @@ const commentErrorsReducer = (state = _nullErrors, action) => {
     case RECEIVE_COMMENT_ERRORS:
       return action.errors;
     default:
+      // Clear comment errors unless commnet error action received.
       return _nullErrors;
   }
 };

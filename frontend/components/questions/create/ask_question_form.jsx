@@ -4,10 +4,11 @@ import { createQuestion } from '../../../actions/question_actions';
 import { createTags } from '../../../actions/tag_actions';
 import ReactQuill from 'react-quill';
 import { toolbarOptions } from '../../../utils/quill_toolbar_options';
+import ErrorList from '../../errors/error_list';
 
 const mapStateToProps = (state) => {
   return {
-    
+    errors: state.errors.questions,
   };
 };
 
@@ -91,6 +92,7 @@ class AskQuestionForm extends React.Component {
               placeholder="e.g. (arrays wpf xcode)"
             />
           </div>
+          <ErrorList errors={this.props.errors}/>
           <div className="ask-submit">
             <button className="ask-submit-btn primary-btn" onClick={this.handleSubmit}>Post Your Question</button>
             <button className="ask-discard-btn" onClick={this.handleDiscard}>Discard</button>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ErrorList from '../errors/error_list';
 
 // For guest log in
 const DEMO_EMAIL = "demo@example.com";
@@ -41,19 +42,6 @@ export default class SessionForm extends React.Component {
     return (e) => this.setState({[field]: e.currentTarget.value});
   }
 
-  renderErrors() {
-    return (
-      <ul className="session-error-ul">
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
-
   render() {
     return (
       <>
@@ -86,7 +74,7 @@ export default class SessionForm extends React.Component {
             value={this.state.password}
             onChange={this.handleChange('password')}
           />
-          {this.renderErrors()}
+          <ErrorList errors={this.props.errors}/>
           <input
             className="session-form-submit-btn primary-btn"
             type="submit"

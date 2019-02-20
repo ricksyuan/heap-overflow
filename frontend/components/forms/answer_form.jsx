@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import { connect } from 'react-redux';
 import { postAnswer } from '../../actions/answer_actions';
 import { toolbarOptions } from '../../utils/quill_toolbar_options'
+import ErrorList from '../errors/error_list';
 
 const mapStateToProps = (state) => {
   return {
@@ -41,20 +42,6 @@ class AnswerForm extends React.Component {
       .then(this.setState({ body: '' }));
   }
 
-  
-
-  renderErrors() {
-    return (
-      <ul className="answer-error-ul">
-        {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
-            {error}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-
   render() {
     return (
       <>
@@ -65,7 +52,7 @@ class AnswerForm extends React.Component {
             value={this.state.body}
             onChange={this.handleQuillChange}
           />
-          {this.renderErrors()}
+          <ErrorList errors={this.props.errors}/>
           <input type="submit" className="answer-submit-btn primary-btn" value="Post Your Answer" />
         </form>
       </>
