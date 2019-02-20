@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { deleteComment } from '../../actions/comment_actions';
 import { vote } from '../../actions/vote_actions';
 import { openPopup } from '../../actions/popup_actions';
+import ReactMarkdown from 'react-markdown';
 import ErrorList from '../errors/error_list';
 
 const mapStateToProps = (state, ownProps) => {
@@ -60,6 +61,7 @@ class CommentListItem extends React.Component {
   }
 
   render() {
+    const comment = `${this.props.comment.body} - ${this.props.commenter.displayName}`;
     return (
       <li className="comment-list-item">
         <ErrorList errors={this.props.errors}/>
@@ -76,7 +78,7 @@ class CommentListItem extends React.Component {
           </div>
         </div>
         <div className="comment-text">
-          {this.props.comment.body} - {this.props.commenter.displayName}
+          <ReactMarkdown source={comment} escapeHTML={false}/>
         </div>
         
         <div className="comment-delete">

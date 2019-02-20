@@ -22,6 +22,16 @@
     }
     & .comment-text {
       color: #242729;
+      & a {
+        text-decoration: underline;
+        color: #005999;
+        &:hover {
+          color: #3af;
+        }
+      }
+      & code {
+        background-color: #eff0f1;
+      }
     }
 
     & .comment-delete {
