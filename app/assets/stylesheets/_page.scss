@@ -48,8 +48,10 @@
           // Align text inside <a> using flex
           display: flex;
           align-items: center;
+          cursor: default;
           &:hover {
-            background-color: $so-header-user-dash-hover-background-color;
+            // background-color: $so-header-user-dash-hover-background-color;
+            cursor: default; // TODO: Switch after implementing user page
           }
 
           & .reputation {
@@ -207,7 +209,7 @@
       }
     }
 
-    & .tags, & .users, & .jobs {
+    & .tags {
       padding: 4px 4px 4px 30px;
     }
 

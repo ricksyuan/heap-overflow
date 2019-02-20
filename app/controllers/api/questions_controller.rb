@@ -12,6 +12,7 @@ class Api::QuestionsController < ApplicationController
   def show
     @question = Question.includes(:asker, :answerers, :votes, { answers: [:votes] }).find(params[:id])
     if @question
+      @question.update(views: @question.views + 1)
       render :show
     else
       render json: ["Question not found"], status: 404

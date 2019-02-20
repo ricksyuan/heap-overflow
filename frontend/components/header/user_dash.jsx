@@ -7,7 +7,8 @@ const UserDash = ({currentUser}) => {
   const md5_hash = md5(email);
   return (
     <div className="user-dash">      
-      <Link to={`/users/${currentUser.id}/${currentUser.displayName}`}>
+      {/* <Link to={`/users/${currentUser.id}/${currentUser.displayName}`}> */}
+      <Link to={`/users/${currentUser.id}/${currentUser.displayName}`} onClick={e => e.preventDefault()}>
         <img className="gravatar" src={`https://www.gravatar.com/avatar/${md5_hash}?s=24&r=pg&d=identicon`} />
         <div className="reputation" title="your reputation">
           {currentUser.reputation}

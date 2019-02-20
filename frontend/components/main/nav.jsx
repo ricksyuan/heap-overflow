@@ -16,8 +16,9 @@ const Nav = () => {
           </Link>
         </li>
         <li><Link className="nav-bar-link tags" to="/">Tags</Link></li>
-        <li><Link className="nav-bar-link users" to="/">Users</Link></li>
-        <li><Link className="nav-bar-link jobs" to="/">Jobs</Link></li>
+        {/* TODO: Implement users index */}
+        {/* <li><Link className="nav-bar-link users" to="/">Users</Link></li> */}
+        {/* TODO: Implement users index */}
         <br/>
         <li className="teams-box">          
           <div className="teams-box-outline">
