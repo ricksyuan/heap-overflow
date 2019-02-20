@@ -7,12 +7,13 @@ class Nav extends React.Component {
     this.state = {
       activeField: 'HOME'
     };
-    this.handleLinkClick = this.handleLinkClick.bind(this);
   }
 
-  handleLinkClick(name) {
-    this.setState({
-      activeField: name,
+  componentDidMount() {
+    window.addEventListener("hashchange", () => {
+      this.setState({
+        activeField: window.location.hash,
+      });
     });
   }
 
@@ -22,8 +23,7 @@ class Nav extends React.Component {
         <ul>
           <li>
             <Link
-              className={`nav-bar-link home ${this.state.activeField === 'HOME' && 'you-are-here'}`}
-              onClick={() => this.handleLinkClick('HOME')}
+              className={`nav-bar-link home ${this.state.activeField === '#/' && 'you-are-here'}`}
               to="/">Home
             </Link>
             </li>
@@ -31,8 +31,7 @@ class Nav extends React.Component {
           <li>
             
             <Link
-              className={`nav-bar-link all ${this.state.activeField === 'ALL' && 'you-are-here'}`}
-              onClick={() => this.handleLinkClick('ALL')}
+              className={`nav-bar-link all ${this.state.activeField === '#/all' && 'you-are-here'}`}
               to="/"
             >
               <svg aria-hidden="true" className="svg-icon globe-icon" width="18" height="18" viewBox="0 0 18 18">
@@ -43,8 +42,7 @@ class Nav extends React.Component {
           </li>
           <li>
             <Link
-              className={`nav-bar-link tags ${this.state.activeField === 'TAGS' && 'you-are-here'}`}
-              onClick={() => this.handleLinkClick('TAGS')}
+              className={`nav-bar-link tags ${this.state.activeField === '#/tags' && 'you-are-here'}`}
               to="/tags">Tags
             </Link>
           </li>
