@@ -107,6 +107,6 @@ CSV.foreach(File.join(__dir__, 'seed_post_tags.csv'), headers: true) do |post_ta
   Tagging.create!(question_id: question_id, tag_id: tag_id);
 end
 
-ActiveRecord::Base.connection.tables.each do |t|
-  ActiveRecord::Base.connection.reset_pk_sequence!(t)
-end
+# ActiveRecord::Base.connection.tables.each do |t|
+#   ActiveRecord::Base.connection.reset_pk_sequence!(t)
+# end

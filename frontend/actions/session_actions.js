@@ -57,7 +57,8 @@ export const loginDemo = () => dispatch => {
 export const logout = () => dispatch => (
   SessionAPIUtil.deleteSession()
     .then(
-      () => dispatch(logoutCurrentUser())
+      () => dispatch(logoutCurrentUser()),
+      (errors) => dispatch(receiveSessionErrors(errors.responseJSON))
     )
 );
 
