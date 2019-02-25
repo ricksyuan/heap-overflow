@@ -43,8 +43,8 @@ class QuestionSummary extends React.Component {
               {tags}
             </div>
             <div className="question-asker-info">
-              <Link className="question-recency-link" to={`/questions/${this.props.question.id}`}>asked by </Link>
-              <Link className="question-user-link" to={`/users/${this.props.asker.id}/${this.props.asker.displayName}`}>{this.props.asker.displayName}</Link>
+              <Link className="question-recency-link" to={`/questions/${this.props.question.id}`}>asked by {this.props.asker.displayName}</Link>
+              {/* <Link className="question-user-link" to={`/users/${this.props.asker.id}/${this.props.asker.displayName}`}>{this.props.asker.displayName}</Link> */}
             </div>
           </div>
         </div>
