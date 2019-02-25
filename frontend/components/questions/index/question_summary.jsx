@@ -35,7 +35,7 @@ class QuestionSummary extends React.Component {
         </Link>
         
         <div className="question-summary">
-          <Link className="question-title-link" to={`questions/${this.props.question.id}`}>
+          <Link className="question-title-link" to={`/questions/${this.props.question.id}`}>
             {this.props.question.title}
           </Link>
           <div className="question-subtitle">
