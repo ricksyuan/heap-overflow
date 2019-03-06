@@ -37,12 +37,12 @@ class SecondaryTopBar extends React.Component {
             this.props.currentUser ? (
               <>
                 <UserDash currentUser={this.props.currentUser} />
-                {/* <DropIcons /> */}
+                <DropIcons />
                 <button className="header-logout-btn primary-btn" onClick={this.handleLogout}>Logout</button>
               </>
             ) : (
                 <>
-                  {/* <DropIcons /> */}
+                  <DropIcons />
                   <Link className="header-login-link" to="/login">Log In</Link>
                   <Link className="header-signup-btn-link primary-btn" to="/signup">Sign Up</Link>
                 </>
