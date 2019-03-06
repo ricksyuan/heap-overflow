@@ -50,11 +50,11 @@
           align-items: center;
           cursor: default;
           &:hover {
-            // background-color: $so-header-user-dash-hover-background-color;
-            cursor: default; // TODO: Switch after implementing user page
+            background-color: $so-header-user-dash-hover-background-color;
+            cursor: pointer;
           }
 
-          & .reputation {
+          & .user-dash-reputation {
             font-weight: 700;
             font-size: 12px;
             padding-left: 8px;
@@ -73,7 +73,6 @@
 
             & .gold-badge-count {
               color: #ffcc01;
-              // color: #cda400;
             }
 
             & .silver-badge {
@@ -84,7 +83,6 @@
 
             & .silver-badge-count {
               color: #b4b8bc;
-              // color: #8c9298;
             }
 
             & .bronze-badge {

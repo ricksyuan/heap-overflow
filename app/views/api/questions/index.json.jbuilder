@@ -10,16 +10,14 @@ json.questions do
       json.tagIds question.tag_ids
       json.answerIds question.answer_ids
       json.commentIds question.comments.ids
+      json.createdAt question.created_at
     end
   end
 end
 
-
 json.users do
   @questions.each do |question|
-    json.set! question.asker.id do 
-      json.extract! question.asker, :id, :display_name
-    end
+    json.partial! "api/questions/user", user: question.asker
   end
 end
 

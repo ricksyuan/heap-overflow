@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import QuestionStat from './question_stat';
 import { kFormatter } from '../../../utils/formatting_util';
 import Tag from '../../tags/tag';
+import moment from 'moment';
 
 const mapStateToProps = (state, ownProps) => {
   const asker = state.entities.users[ownProps.question.askerId];
@@ -43,8 +44,13 @@ class QuestionSummary extends React.Component {
               {tags}
             </div>
             <div className="question-asker-info">
-              <Link className="question-recency-link" to={`/questions/${this.props.question.id}`}>asked by {this.props.asker.displayName}</Link>
-              {/* <Link className="question-user-link" to={`/users/${this.props.asker.id}/${this.props.asker.displayName}`}>{this.props.asker.displayName}</Link> */}
+              <Link className="question-recency-link" to={`/questions/${this.props.question.id}`}>asked {moment(this.props.question.createdAt).fromNow()}</Link>
+              {" "}
+              <Link className="question-user-link" to={`/users/${this.props.asker.id}/${this.props.asker.displayName}`}>{this.props.asker.displayName}</Link>
+              {" "}
+              <span title="reputation score" className="question-asker-reputation">
+                {this.props.asker.reputation}
+              </span>
             </div>
           </div>
         </div>
