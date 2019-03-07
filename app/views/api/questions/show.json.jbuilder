@@ -88,34 +88,23 @@ if comment_count == 0
   json.comments({})
 end
 
+json.users do  
+  
+  json.partial! "api/questions/user", user: @question.asker
 
-
-json.users do
-  json.set! @question.asker.id do
-    json.id @question.asker.id
-    json.displayName @question.asker.display_name
-  end
   @question.answerers.each do |answerer|
-    json.set! answerer.id do
-      json.id answerer.id
-      json.displayName answerer.display_name
-    end
+    json.partial! "api/questions/user", user: answerer
   end
   
   @question.commenters.each do |commenter|
-    json.set! commenter.id do
-      json.id commenter.id
-      json.displayName commenter.display_name
-    end
+    json.partial! "api/questions/user", user: commenter
   end
 
   @question.answers.each do |answer|
     answer.comments.each do |comment|
-      json.set! comment.commenter.id do
-        json.id comment.commenter.id
-        json.displayName comment.commenter.display_name
-      end
+      json.partial! "api/questions/user", user: comment.commenter
     end
-  end  
+  end
+
 end
 

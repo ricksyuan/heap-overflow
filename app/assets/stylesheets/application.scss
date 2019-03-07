@@ -83,7 +83,9 @@ input[type='submit'] {
 @import 'react-quill/dist/quill.snow';
 @import 'quill_overrides';
 @import "question_page";
+@import "user";
 @import "search_bar";
 @import "search_page";
 @import "tags_page";
+@import "badges";
 @import "errors";

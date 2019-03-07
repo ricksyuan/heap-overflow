@@ -1,0 +1,36 @@
+.badges {
+  & > span {
+    margin-left: 6px;
+  }
+
+  & .gold-badge {
+    color: #ffcc01;
+    padding-left: 2px;
+    padding-right: 3px;
+  }
+
+  & .gold-badge-count {
+    color: #ffcc01;
+  }
+
+  & .silver-badge {
+    color: #b4b8bc;
+    padding-left: 2px;
+    padding-right: 3px;
+  }
+
+  & .silver-badge-count {
+    color: #b4b8bc;
+  }
+
+  & .bronze-badge {
+    color: #c38b5f;
+    padding-left: 2px;
+    padding-right: 3px;
+  }
+
+  & .bronze-badge-count {
+    color: #c38b5f;
+    // color: #d1a684;
+  }
+}

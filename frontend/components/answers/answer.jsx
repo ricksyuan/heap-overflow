@@ -5,6 +5,8 @@ import { vote } from '../../actions/vote_actions';
 import { openPopup } from '../../actions/popup_actions';
 import CommentIndex from '../comments/comment_index';
 import ReactQuill from 'react-quill';
+import Author from '../author';
+
 
 const mapStateToProps = (state, ownProps) => {
   const comments = ownProps.answer.commentIds.map(commentId => (    
@@ -88,9 +90,14 @@ class Answer extends React.Component {
               {this.props.isAuthor && <button className="answer-delete-btn" onClick={this.handleDelete}>delete</button>}
             </div>
             <div className="answer-user">
-              Answered by {answerer.displayName}
+              <Author
+                user={this.props.answerer}
+                verb="answered"
+                date={this.props.answer.createdAt}
+              />
             </div>
           </div>
+          
           <CommentIndex comments={comments} commentableType="Answer" commentableId={answer.id} />
         </div>
         

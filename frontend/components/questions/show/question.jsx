@@ -7,6 +7,7 @@ import { openPopup } from '../../../actions/popup_actions';
 import Tag from '../../tags/tag';
 import CommentIndex from '../../comments/comment_index';
 import ReactQuill from 'react-quill';
+import Author from '../../author';
 
 const mapStateToProps = (state, ownProps) => {
   const comments = ownProps.question.commentIds.map(commentId => {
@@ -105,7 +106,11 @@ class Question extends React.Component {
               {this.props.isAuthor && <button className="question-delete-btn" onClick={this.handleDelete}>delete</button>}
             </div>
             <div className="question-user">
-              Asked by {this.props.asker.displayName}
+              <Author
+                user={this.props.asker  }
+                verb="asked"
+                date={this.props.question.createdAt}
+              />
             </div>            
           </div>
           <CommentIndex comments={this.props.comments} commentableType="Question" commentableId={this.props.question.id} />
