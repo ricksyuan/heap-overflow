@@ -9,6 +9,7 @@ import QuestionPage from '../questions/show/question_page';
 import Popup from '../../components/popup/popup';
 import SearchPage from '../../components/search/search_page';
 import TagsPage from '../../components/tags/tags_page';
+import UserShowPage from '../../components/users/user_show_page';
 
 const Content = () => {
   return (
@@ -17,6 +18,7 @@ const Content = () => {
       <Route exact path="/" component={TopQuestionsIndex} />
       <Route path="/search" component={SearchPage} />
       <Route path="/tags" component={TagsPage} />
+      <Route path="/users/:userId/:displayName" component={UserShowPage} />
       <Switch>
         <ProtectedRoute exact path="/questions/ask" component={AskQuestionForm} />
         <Route exact path="/questions/:questionId" component={QuestionPage} />
