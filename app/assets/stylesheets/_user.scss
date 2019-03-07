@@ -7,7 +7,15 @@
   font-size: 12px;
 }
 
+// questions index
 .question-asker-reputation {
+  font-weight: 700;
+  font-size: 12px;
+  color: #848d95;
+}
+
+// question show
+.post-reputation {
   font-weight: 700;
   font-size: 12px;
   color: #848d95;
@@ -16,4 +24,9 @@
 .gravatar-32 {
   width: 32px;
   height: 32px;
+}
+
+.gravatar-post {
+  float: left;
+  margin-right: 8px;
 }

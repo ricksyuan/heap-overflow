@@ -1,7 +1,7 @@
 import React from 'react';
 import md5 from 'md5';
 import moment from 'moment';
-import BadgeDisplay from '../components/badge_display';
+import BadgeDisplay from './badge_display';
 
 const Author = ({user, verb, date}) => {
   const email = user.email.trim().toLowerCase();
@@ -14,7 +14,9 @@ const Author = ({user, verb, date}) => {
       <p className="user-action-time">{verb} {day} at {time}</p>
       <img className="gravatar-32 gravatar-post" src={`https://www.gravatar.com/avatar/${md5_hash}?s=32&r=pg&d=identicon`} />
       <div>{user.displayName}</div>
-      <div className="reputation">{user.reputation}</div>
+      <span className="post-reputation" title="reputation score">
+        {user.reputation}
+      </span>
       <BadgeDisplay
         goldCount="1"
         silverCount="2"

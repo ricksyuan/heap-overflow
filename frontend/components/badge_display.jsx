@@ -2,7 +2,7 @@ import React from 'react';
 
 const BadgeDisplay = ({goldCount, silverCount, bronzeCount}) => {
   return (
-    <div className="badges">
+    <span className="badges">
       <span title={`${goldCount} gold badge${goldCount > 1 ? 's' : ''}`}>
         <span className="gold-badge">●</span>
         <span className="gold-badge-count">{goldCount}</span>
@@ -15,7 +15,7 @@ const BadgeDisplay = ({goldCount, silverCount, bronzeCount}) => {
         <span className="bronze-badge">●</span>
         <span className="bronze-badge-count">{bronzeCount}</span>
       </span>
-    </div>
+    </span>
   );
 };
 

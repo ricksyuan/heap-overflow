@@ -12,7 +12,7 @@ const UserDash = ({currentUser}) => {
         <img className="gravatar" src={`https://www.gravatar.com/avatar/${md5_hash}?s=24&r=pg&d=identicon`} />
         <div className="user-dash-reputation" title="your reputation">
           {currentUser.reputation}
-        </div>
+        </div>        
         <BadgeDisplay 
           goldCount="1"
           silverCount="2"
