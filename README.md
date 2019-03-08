@@ -7,8 +7,11 @@ Q&A community for developers, inspired by Stack Overflow.
 ## Features
 + Ask a question - Get help from a community of users
 + Answer a question - Share your knowledge and solutions with others
++ Comment on questions or answers - Knowledge and code evolve. Discussion through comments helps this.
 + Vote on questions, answers, or comments - Curate post quality
 + Search - Find the questions you have through tags or titles
++ Badges - Earn badges for milestones, for example, asking your first question
++ Reputation - Earn reputation in the community, for example, when someone upvotes your post
 
 ## Technologies
 + This project uses React for the front-end and Ruby on Rails for the back-end with a Postgresql database

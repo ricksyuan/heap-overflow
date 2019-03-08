@@ -1,11 +1,18 @@
 import merge from 'lodash/merge';
 import {
+  RECEIVE_USER_PROFILE
+} from '../actions/user_actions';
+import {
   RECEIVE_ALL_ANSWERS,
   RECEIVE_ANSWER,
   REMOVE_ANSWER,
 } from '../actions/answer_actions';
-import { RECEIVE_ANSWER_VOTE } from '../actions/vote_actions';
-import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
+import {
+  RECEIVE_ANSWER_VOTE } from '../actions/vote_actions';
+import {
+  RECEIVE_COMMENT,
+  REMOVE_COMMENT,
+} from '../actions/comment_actions';
 import {
   RECEIVE_QUESTION,
 } from '../actions/question_actions';
@@ -18,6 +25,8 @@ const answersReducer = (oldState = {}, action) => {
   let newState;
   let answer;
   switch (action.type) {
+    case RECEIVE_USER_PROFILE:
+      return merge({}, oldState, action.answers);
     case RECEIVE_QUESTION:
       return merge({}, oldState, action.answers);
     case RECEIVE_ALL_ANSWERS:

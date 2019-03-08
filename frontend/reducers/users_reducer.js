@@ -1,4 +1,5 @@
 import merge from 'lodash/merge';
+import { RECEIVE_USER_PROFILE } from '../actions/user_actions';
 import { RECEIVE_ANSWER } from '../actions/answer_actions';
 import {
   RECEIVE_ALL_QUESTIONS,
@@ -10,6 +11,8 @@ import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
 const usersReducer = (state = {}, action) => {
   Object.freeze(state);
   switch(action.type) {
+    case RECEIVE_USER_PROFILE:
+      return merge({}, state, { [action.user.id]: action.user } );
     case RECEIVE_ALL_QUESTIONS:
       return merge({}, state, action.users);
     case RECEIVE_SEARCH_RESULTS:

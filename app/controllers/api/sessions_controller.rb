@@ -6,13 +6,13 @@ class Api::SessionsController < ApplicationController
       render json: ["Invalid email/password combination"], status: 401
     else
       login!(@user)
-      render "api/users/show", status: 200
+      render :session, status: 200
     end
   end
 
   def destroy
     @user = current_user
-    if current_user.nil?            
+    if current_user.nil?
       render json: ["Nobody signed in"], status: 404 # not found
     else
       logout!

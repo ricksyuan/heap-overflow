@@ -14,14 +14,14 @@ class Api::UsersController < ApplicationController
       )
       @user.save!
       login!(@user)
-      render 'api/users/show'
+      render :user
       return
     end
     # normal sign in
     @user = User.new(user_params)
     if @user.save
       login!(@user)
-      render 'api/users/show'
+      render :user
     else
       render json: @user.errors.full_messages, status: 422
     end
@@ -31,7 +31,7 @@ class Api::UsersController < ApplicationController
   def update        
     @user = selected_user # selected_user is a private helper method
     if @user && user.update_atributes(user_params)
-      render :show
+      render :user
     elsif !@user
       render json: ['Could not locate user'], status: 400 # Bad request
     else
@@ -41,8 +41,29 @@ class Api::UsersController < ApplicationController
 
   # Get all relevent info for user profile
   def show
-    @user = selected_user
+    @user = User.find(params[:id]);
+    # TODO: Eliminate n+1 queries
+    if @user
+      @questions = @user.questions
+      @answers = @user.answers
+      @answers.each do |answer|
+        @questions.push(answer.question)
+      end
+      render :profile
+    else
+      render :json ["User not found"], status: 404
+    end
+    
   end
+
+
+  # @question = Question.includes(:asker, :answerers, :votes, { answers: [:votes] }).find(params[:id])
+  #   if @question
+  #     @question.update(views: @question.views + 1)
+  #     render :show
+  #   else
+  #     render json: ["Question not found"], status: 404
+  #   end
 
 
   def index

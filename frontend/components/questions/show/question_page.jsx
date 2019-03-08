@@ -39,7 +39,7 @@ class QuestionPage extends React.Component {
     this.props.fetchQuestion(this.props.match.params.questionId)
     .then((payload) => {
       return this.setState({
-        loaded: true,        
+        loaded: true,
       });
     });
   }

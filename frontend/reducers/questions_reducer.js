@@ -12,6 +12,7 @@ import { RECEIVE_ANSWER, REMOVE_ANSWER } from '../actions/answer_actions';
 import { RECEIVE_COMMENT, REMOVE_COMMENT } from '../actions/comment_actions';
 import { RECEIVE_QUESTION_VOTE } from '../actions/vote_actions';
 import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_USER_PROFILE } from '../actions/user_actions';
 
 const _nullQuestions = {};
 
@@ -26,7 +27,7 @@ const questionsReducer = (oldState = _nullQuestions, action) => {
     case RECEIVE_ANSWER:
       newState = merge({}, oldState);
       answer = Object.values(action.answer)[0];
-      if (newState[answer.questionId].answerIds) {        
+      if (newState[answer.questionId].answerIds) {
         newState[answer.questionId].answerIds.push(answer.id);
       } else {
         newState[answer.questionId].answerIds = [answer.id];
@@ -74,6 +75,8 @@ const questionsReducer = (oldState = _nullQuestions, action) => {
       return newState;
     case RECEIVE_QUESTION_VOTE:
       return merge({}, oldState, action.question);
+    case RECEIVE_USER_PROFILE:
+      return merge({}, oldState, action.questions);
     case LOGOUT_CURRENT_USER:
       return _nullQuestions;
     default:
