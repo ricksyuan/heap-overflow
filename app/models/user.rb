@@ -13,11 +13,13 @@
 #  updated_at      :datetime         not null
 #
 
+# require 'digest/md5'
+
 class User < ApplicationRecord
     
   # validations
   validates :display_name, presence: true, length: {minimum: 3}
-  validates :email, presence: true, uniqueness: true
+  validates :email, :email_hash, presence: true, uniqueness: true
   validates :password_digest, :session_token, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
   
@@ -69,6 +71,11 @@ class User < ApplicationRecord
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)
+  end
+
+  def email=(email)
+    self.email_hash ||= Digest::MD5.hexdigest(email)
+    super(email)
   end 
 
   def ensure_session_token

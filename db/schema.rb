@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_19_224007) do
+ActiveRecord::Schema.define(version: 2019_03_10_042713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,15 @@ ActiveRecord::Schema.define(version: 2019_02_19_224007) do
     t.integer "photo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "last_access_date"
+    t.text "website_url"
+    t.text "profile_image_url"
+    t.text "about_me"
+    t.integer "views", default: 0
+    t.integer "up_votes", default: 0
+    t.integer "down_votes", default: 0
+    t.string "email_hash", null: false
+    t.string "location"
     t.index ["display_name"], name: "index_users_on_display_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["photo_id"], name: "index_users_on_photo_id"

@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-require 'nokogiri'
 require 'csv'
 
 # Clear existing data
@@ -29,20 +28,35 @@ def mapSeedFiletoUsers(seed_file)
     location = user_row['Location']
     about_me = user_row['AboutMe']
     views = user_row['Views'].to_i
-    upvotes = user_row['UpVotes'].to_i
-    downvotes = user_row['DownVotes'].to_i
+    up_votes = user_row['UpVotes'].to_i
+    down_votes = user_row['DownVotes'].to_i
     profile_image_url = user_row['ProfileImageUrl']
     email_hash = user_row['EmailHash']
-    email = "#{display_name}#{id}@example.com"
+    email = "#{display_name.delete(' ')}#{id}@example.com"
     account_id = user_row['AccountId'].to_i
-    User.create(id: id, email: email, password: 'password', display_name: display_name, reputation: reputation)
+    User.create(
+      id: id,
+      password: 'password',
+      email: email,
+      reputation: reputation,
+      display_name: display_name,
+      last_access_date: last_access_date,
+      website_url: website_url,
+      location: location,
+      about_me: about_me,
+      views: views,
+      up_votes: up_votes,
+      down_votes: down_votes,
+      profile_image_url: profile_image_url
+    )
   end
 end
 
 mapSeedFiletoUsers('seed_users_for_questions.csv')
+mapSeedFiletoUsers('seed_users_for_question_comments.csv')
 mapSeedFiletoUsers('seed_users_for_answers.csv')
 mapSeedFiletoUsers('seed_users_for_answer_comments.csv')
-mapSeedFiletoUsers('seed_users_for_questions.csv')
+
 
 # Create demo user
 demo_user = User.create!(
@@ -51,7 +65,15 @@ demo_user = User.create!(
   password: "password"
 )
 
+# Create default user
+default_user = User.create!(
+  display_name: 'Default User',
+  email: 'defaultuser@example.com',
+  password: "password"
+)
+
 #  Create questions
+
 CSV.foreach(File.join(__dir__, 'seed_questions.csv'), headers: true) do |question_row|
   # Id	PostTypeId	AcceptedAnswerId	ParentId	CreationDate	DeletionDate	Score	ViewCount	Body	OwnerUserId	OwnerDisplayName	LastEditorUserId	LastEditorDisplayName	LastEditDate	LastActivityDate	Title	Tags	AnswerCount	CommentCount	FavoriteCount	ClosedDate	CommunityOwnedDate
   id = question_row['Id'].to_i
@@ -72,7 +94,7 @@ CSV.foreach(File.join(__dir__, 'seed_answers.csv'), headers: true) do |answer_ro
   id = answer_row['Id'].to_i
   question_id = answer_row['ParentId'].to_i
   answerer_id = answer_row['OwnerUserId'].to_i
-  answerer_id = demo_user.id if answerer_id == 0
+  answerer_id = default_user.id if answerer_id == 0
   editor_id = answerer_id
   body = answer_row['Body']
   created_at = answer_row['CreationDate']
@@ -86,21 +108,22 @@ def mapSeedFileToComments(seed_file, commentable_type, default_user)
     # Id	PostId	Score	Text	CreationDate	UserDisplayName	UserId
     id = comment_row['Id'].to_i
     commenter_id = comment_row['UserId'].to_i
-    commenter_id = default_user.id if commenter_id == 0
+    commenter = User.find_by(id: commenter_id)
+    commenter_id = default_user.id unless commenter
     commentable_type = commentable_type
     commentable_id = comment_row['PostId'].to_i
     body = comment_row['Text']
     created_at = comment_row['CreationDate']
     updated_at = created_at
     score = comment_row['Score'].to_i
-    Comment.create!(id: id, commenter_id: commenter_id, commentable_type: commentable_type, commentable_id: commentable_id, body: body, created_at: created_at, updated_at: updated_at, score: score)
+    Comment.create!(id: id, commenter_id: commenter_id, commentable_type: commentable_type, commentable_id: commentable_id, body: body, created_at: created_at, updated_at: updated_at, score: score)    
   end
 end
 
 # Create comments on questions
-mapSeedFileToComments('seed_question_comments.csv', 'Question', demo_user)
+mapSeedFileToComments('seed_question_comments.csv', 'Question', default_user)
 # Create comments on answers
-mapSeedFileToComments('seed_answer_comments.csv', 'Answer', demo_user)
+mapSeedFileToComments('seed_answer_comments.csv', 'Answer', default_user)
 
 # Create tags
 CSV.foreach(File.join(__dir__, 'seed_tags.csv'), headers: true) do |tag_row|
