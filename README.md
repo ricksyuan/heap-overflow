@@ -7,14 +7,14 @@ Q&A community for developers, inspired by Stack Overflow.
 ## Features
 + Ask a question - Get help from a community of users
 + Answer a question - Share your knowledge and solutions with others
-+ Comment on questions or answers - Knowledge and code evolve. Discussion through comments helps this.
++ Comment on questions or answers - Knowledge and code evolve. Discussion through comments helps this
 + Vote on questions, answers, or comments - Curate post quality
 + Search - Find the questions you have through tags or titles
 + Badges - Earn badges for milestones, for example, asking your first question
 + Reputation - Earn reputation in the community, for example, when someone upvotes your post
 
 ## Technologies
-+ This project uses React for the front-end and Ruby on Rails for the back-end with a Postgresql database
++ This project uses React for the front-end and Ruby on Rails for the back-end with a Postgresql database.
 
 ## Code highlights
 Voting was implemented to allow both efficient counter cache.
@@ -73,7 +73,6 @@ This app uses the following open source libraries:
 
 + [React-Quill](https://github.com/zenoamaro/react-quill) for rich-text question and answer forms
 + [react-markdown](https://github.com/rexxars/react-markdown) for rendering comments as markdown
-+ [MD5](https://github.com/pvorb/node-md5) to calculate hash for user [gravatar](https://en.gravatar.com/)
 + [Moment](http://momentjs.com/) to display elapsed time, e.g. "Asked 47 minutes ago"
 
 ## License

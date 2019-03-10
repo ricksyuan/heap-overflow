@@ -31,7 +31,6 @@
     "babel-loader": "^8.0.5",
     "highlight.js": "^9.14.2",
     "lodash": "^4.17.11",
-    "md5": "^2.2.1",
     "moment": "^2.24.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
