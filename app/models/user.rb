@@ -13,8 +13,6 @@
 #  updated_at      :datetime         not null
 #
 
-# require 'digest/md5'
-
 class User < ApplicationRecord
     
   # validations
