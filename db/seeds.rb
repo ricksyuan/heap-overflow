@@ -7,7 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'nokogiri'
-require 'faker'
 require 'csv'
 
 # Clear existing data
@@ -18,13 +17,6 @@ Answer.delete_all
 Tagging.delete_all
 Vote.delete_all
 Comment.delete_all
-
-
-# Create users
-# seeds_users_for_answer_comments.csv
-# seed_users_for_question_comments.csv
-# seed_users_for_answers.csv
-# 
 
 def mapSeedFiletoUsers(seed_file)
   CSV.foreach(File.join(__dir__, seed_file), headers: true) do |user_row|
@@ -90,7 +82,6 @@ CSV.foreach(File.join(__dir__, 'seed_answers.csv'), headers: true) do |answer_ro
 end
 
 def mapSeedFileToComments(seed_file, commentable_type, default_user)
-  count = 0
   CSV.foreach(File.join(__dir__, seed_file), headers: true) do |comment_row|
     # Id	PostId	Score	Text	CreationDate	UserDisplayName	UserId
     id = comment_row['Id'].to_i
