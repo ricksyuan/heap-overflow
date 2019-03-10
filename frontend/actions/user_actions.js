@@ -1,24 +1,46 @@
+import * as UserAPIUtil from '../utils/user_api_util';
 
-
+export const RECEIVE_ALL_USERS = 'RECEIVE_ALL_USERS';
 export const RECEIVE_USER_PROFILE = 'RECEIVE_USER_PROFILE';
 export const RECEIVE_USER_ERRORS = 'RECEIVE_USER_ERRORS';
 
+const receiveUserProfile = (payload) => {
+  return {
+    type: RECEIVE_USER_PROFILE,
+    user: payload.user,
+    answers: payload.answers,
+    questions: payload.questions,
+  };
+};
+
+const receiveUserErrors = (errors) => {
+  return {
+    type: RECEIVE_USER_ERRORS,
+    errors: errors,
+  };
+};
+
+const receiveAllUsers = (users) => {
+  return {
+    type: RECEIVE_ALL_USERS,
+    users: users,
+  };
+};
+
 export const fetchUserProfile = (userId) => (dispatch) => {
-  return $.ajax({
-    method: 'GET',
-    url: `/api/users/${userId}`,
-  }).then(
+  return UserAPIUtil.fetchUserProfile(userId).then(
     (payload) => {
-      return dispatch({
-        type: RECEIVE_USER_PROFILE,
-        user: payload.user,
-        answers: payload.answers,
-        questions: payload.questions,
-      });
+      return dispatch(receiveUserProfile(payload));
     },
-    (errors) => dispatch({
-      type: RECEIVE_USER_ERRORS,
-      errors: errors,
-    })
+    (errors) => dispatch(receiveUserErrors(errors))
+  );
+};
+
+export const fetchAllUsers = () => (dispatch) => {
+  return UserAPIUtil.fetchAllUsers().then(
+    (users) => {
+      return dispatch(receiveAllUsers(users));
+    },
+    (errors) => dispatch(receiveUserErrors(errors))
   );
 };

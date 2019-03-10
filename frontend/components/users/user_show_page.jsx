@@ -56,7 +56,7 @@ class UserShowPage extends React.Component {
       <>
         <div className="user-show-page">
           <div>
-            <Gravatar size={32} email={this.props.user.email} />
+            <Gravatar size={32} hash={this.props.user.emailHash} />
           </div>
           <div>
             Display Name: {this.props.user.displayName}

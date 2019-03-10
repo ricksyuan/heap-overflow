@@ -46,9 +46,12 @@ class Nav extends React.Component {
               to="/tags">Tags
             </Link>
           </li>
-          {/* TODO: Implement users index */}
-          {/* <li><Link className="nav-bar-link users" to="/">Users</Link></li> */}
-          {/* TODO: Implement users index */}
+          <li>
+            <Link
+              className={`nav-bar-link users ${this.state.activeField === '#/users' && 'you-are-here'}`}
+              to="/users">Users
+            </Link>
+          </li>
           <br/>
           <li className="teams-box">          
             <div className="teams-box-outline">

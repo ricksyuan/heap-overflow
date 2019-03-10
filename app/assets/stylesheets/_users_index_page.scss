@@ -1,0 +1,23 @@
+// Users
+
+.users-index-page {
+  padding-bottom: 27px;
+  padding-left: 24px;
+}
+
+.users-index-page-content-header {
+  display: flex;
+}
+
+.users-index-page-content-headline {
+  flex-grow: 1;
+  font-size: 27px;
+  padding-bottom: 27px;
+}
+
+.users-index-user-grid {
+  display: grid;
+  grid-auto-rows: min-content;
+  grid-template-areas: "user user user user";
+  grid-gap: 30px 10px ;
+}

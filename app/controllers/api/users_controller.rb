@@ -56,18 +56,9 @@ class Api::UsersController < ApplicationController
     
   end
 
-
-  # @question = Question.includes(:asker, :answerers, :votes, { answers: [:votes] }).find(params[:id])
-  #   if @question
-  #     @question.update(views: @question.views + 1)
-  #     render :show
-  #   else
-  #     render json: ["Question not found"], status: 404
-  #   end
-
-
   def index
     @users = User.all
+    render :index
   end
 
   def destroy

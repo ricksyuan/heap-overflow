@@ -10,7 +10,7 @@ const Author = ({user, verb, date}) => {
   return (
     <div className="author">
       <p className="user-action-time">{verb} {day} at {time}</p>
-      <Gravatar size={32} email={user.email} float={true}/>
+      <Gravatar size={32} hash={user.emailHash} float={true}/>
       <div>{user.displayName}</div>
       <span className="post-reputation" title="reputation score">
         {user.reputation}
