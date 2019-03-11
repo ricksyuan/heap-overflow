@@ -5,9 +5,12 @@ export const fetchUserProfile = (userId) => {
   });
 }
 
-export const fetchAllUsers = () => {
+export const fetchAllUsers = (pageNum) => {
   return $.ajax({
     method: 'GET',
     url: '/api/users',
+    data: { 
+      page: pageNum,
+     },
   });
 }

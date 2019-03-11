@@ -1,0 +1,35 @@
+.page-control {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.page-number {
+  padding: 4px 8px;
+  margin-left: 4px;
+  font-size: 12px;
+  color: #848d95;
+  border: 1px solid #e4e6e8;
+  border-radius: 3px;
+  background-color: transparent;
+  &:hover {
+    color: #FFF;
+    background-color: #F48024;
+    border-color: transparent;
+  }
+}
+
+.page-number-divider {
+  color: #848d95;
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+.page-number-current {
+  color: #FFF;
+  background-color: #F48024;
+  border-color: transparent;
+}

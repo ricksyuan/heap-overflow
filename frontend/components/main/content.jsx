@@ -19,8 +19,10 @@ const Content = () => {
       <Route exact path="/" component={TopQuestionsIndex} />
       <Route path="/search" component={SearchPage} />
       <Route path="/tags" component={TagsPage} />
-      <Route exact path="/users" component={UsersIndexPage} />
-      <Route path="/users/:userId/:displayName" component={UserShowPage} />
+      <Switch>
+        <Route exact path="/users/page/:pageNum" component={UsersIndexPage} />
+        <Route exact path="/users/:userId/:displayName" component={UserShowPage} />
+      </Switch>
       <Switch>
         <ProtectedRoute exact path="/questions/ask" component={AskQuestionForm} />
         <Route exact path="/questions/:questionId" component={QuestionPage} />

@@ -57,10 +57,12 @@ class Api::UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
+    @page = params[:page]
+    @users = User.paginate(page: @page, per_page: 10)
+    @total_pages = @users.total_pages
     render :index
   end
-
+  
   def destroy
     @user = selected_user
     if @user

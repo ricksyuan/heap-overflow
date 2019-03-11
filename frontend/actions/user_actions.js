@@ -20,10 +20,11 @@ const receiveUserErrors = (errors) => {
   };
 };
 
-const receiveAllUsers = (users) => {
+const receiveAllUsers = (payload) => {
   return {
     type: RECEIVE_ALL_USERS,
-    users: users,
+    users: payload.users,
+    page: payload.page,
   };
 };
 
@@ -36,8 +37,8 @@ export const fetchUserProfile = (userId) => (dispatch) => {
   );
 };
 
-export const fetchAllUsers = () => (dispatch) => {
-  return UserAPIUtil.fetchAllUsers().then(
+export const fetchAllUsers = (pageNum) => (dispatch) => {
+  return UserAPIUtil.fetchAllUsers(pageNum).then(
     (users) => {
       return dispatch(receiveAllUsers(users));
     },

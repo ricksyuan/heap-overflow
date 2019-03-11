@@ -1,13 +1,52 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { fetchAllUsers } from '../../actions/user_actions';
 import UsersIndex from './users_index';
+
+const mapStateToProps = (state) => {
+  return {
+    users: state.entities.users,
+    page: state.ui.page,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchAllUsers: (pageNum) => dispatch(fetchAllUsers(pageNum)),
+  };
+}
+
 
 class UsersIndexPage extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      loaded: false,
+    };
+  }
+
+  componentDidMount() {
+    // Default to first page if no page param
+    const pageNum = this.props.match.params.pageNum || 1;
+    this.props.fetchAllUsers(pageNum).then(() => {
+      this.setState({
+        loaded: true,
+      })
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.page.pageNum !== this.props.match.params.pageNum) {
+      this.props.fetchAllUsers(this.props.match.params.pageNum).then(() => {
+        this.setState({
+          loaded: true,
+        })
+      });
+    }
   }
 
   render() {
-    
+    if (!this.state.loaded) return <></>;
     return (
       <>
         <div className="users-index-page">
@@ -16,7 +55,7 @@ class UsersIndexPage extends React.Component {
           </div>
           <div>
             
-            <UsersIndex />
+            <UsersIndex page={this.props.page} users={this.props.users}/>
           </div>
         </div>
       </>
@@ -24,4 +63,4 @@ class UsersIndexPage extends React.Component {
   }
 }
 
-export default UsersIndexPage;
+export default connect(mapStateToProps, mapDispatchToProps)(UsersIndexPage);

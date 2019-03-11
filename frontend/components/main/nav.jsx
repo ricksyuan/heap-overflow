@@ -5,14 +5,15 @@ class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeField: 'HOME'
+      activeField: ''
     };
   }
 
   componentDidMount() {
     window.addEventListener("hashchange", () => {
+      const baseString = window.location.hash.split('/')[1];
       this.setState({
-        activeField: window.location.hash,
+        activeField: baseString,
       });
     });
   }
@@ -23,7 +24,7 @@ class Nav extends React.Component {
         <ul>
           <li>
             <Link
-              className={`nav-bar-link home ${this.state.activeField === '#/' && 'you-are-here'}`}
+              className={`nav-bar-link home ${this.state.activeField === '' && 'you-are-here'}`}
               to="/">Home
             </Link>
             </li>
@@ -31,7 +32,7 @@ class Nav extends React.Component {
           <li>
             
             <Link
-              className={`nav-bar-link all ${this.state.activeField === '#/all' && 'you-are-here'}`}
+              className={`nav-bar-link all ${this.state.activeField === 'all' && 'you-are-here'}`}
               to="/"
             >
               <svg aria-hidden="true" className="svg-icon globe-icon" width="18" height="18" viewBox="0 0 18 18">
@@ -42,14 +43,14 @@ class Nav extends React.Component {
           </li>
           <li>
             <Link
-              className={`nav-bar-link tags ${this.state.activeField === '#/tags' && 'you-are-here'}`}
+              className={`nav-bar-link tags ${this.state.activeField === 'tags' && 'you-are-here'}`}
               to="/tags">Tags
             </Link>
           </li>
           <li>
             <Link
-              className={`nav-bar-link users ${this.state.activeField === '#/users' && 'you-are-here'}`}
-              to="/users">Users
+              className={`nav-bar-link users ${this.state.activeField === 'users' && 'you-are-here'}`}
+              to="/users/page/1">Users
             </Link>
           </li>
           <br/>
