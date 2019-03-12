@@ -16,7 +16,7 @@ class Comment < ApplicationRecord
   include Votable
   
   belongs_to :commentable, polymorphic: true
-  belongs_to :commenter,
+  belongs_to :author,
     class_name: :User
 
   has_many :votes, as: :votable

@@ -7,12 +7,12 @@ import Tag from '../../tags/tag';
 import moment from 'moment';
 
 const mapStateToProps = (state, ownProps) => {
-  const asker = state.entities.users[ownProps.question.askerId];
+  const author = state.entities.users[ownProps.question.authorId];
   const tags = ownProps.question.tagIds.map(tagId => (
     state.entities.tags[tagId]
   ));
   return {
-    asker: asker || {},
+    author: author || {},
     tags: tags || {},
   };
 };
@@ -43,13 +43,13 @@ class QuestionSummary extends React.Component {
             <div className="question-tags">
               {tags}
             </div>
-            <div className="question-asker-info">
+            <div className="question-author-info">
               <Link className="question-recency-link" to={`/questions/${this.props.question.id}`}>asked {moment(this.props.question.createdAt).fromNow()}</Link>
               {" "}
-              <Link className="question-user-link" to={`/users/${this.props.asker.id}/${this.props.asker.displayName}`}>{this.props.asker.displayName}</Link>
+              <Link className="question-user-link" to={`/users/${this.props.author.id}/${this.props.author.displayName}`}>{this.props.author.displayName}</Link>
               {" "}
-              <span title="reputation score" className="question-asker-reputation">
-                {this.props.asker.reputation}
+              <span title="reputation score" className="question-author-reputation">
+                {this.props.author.reputation}
               </span>
             </div>
           </div>

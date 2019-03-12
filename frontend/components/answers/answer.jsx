@@ -12,12 +12,12 @@ const mapStateToProps = (state, ownProps) => {
   const comments = ownProps.answer.commentIds.map(commentId => (    
     state.entities.comments[commentId]
   ));
-  const answerer = state.entities.users[ownProps.answer.answererId];
+  const author = state.entities.users[ownProps.answer.authorId];
   const isLoggedIn = !!state.session.id;
-  const isAuthor = (state.session.id === answerer.id);
+  const isAuthor = (state.session.id === author.id);
   return {
     comments: comments,
-    answerer: answerer,
+    author: author,
     isLoggedIn: isLoggedIn,
     isAuthor: isAuthor,
   };
@@ -59,7 +59,7 @@ class Answer extends React.Component {
   }
 
   render() {
-    const { answer, answerer, comments } = this.props;
+    const { answer, author, comments } = this.props;
 
     return (
       <div className="answer-container">
@@ -91,7 +91,7 @@ class Answer extends React.Component {
             </div>
             <div className="answer-user">
               <Author
-                user={this.props.answerer}
+                user={this.props.author}
                 verb="answered"
                 date={this.props.answer.createdAt}
               />

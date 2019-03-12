@@ -6,11 +6,11 @@ class Api::QuestionsController < ApplicationController
   ]
 
   def index
-    @questions = Question.all.includes(:asker, :answers, :tags)
+    @questions = Question.all.includes(:author, :answers, :tags)
   end
 
   def show
-    @question = Question.includes(:asker, :answerers, :votes, { answers: [:votes] }).find(params[:id])
+    @question = Question.includes(:author, :answer_authors, :votes, { answers: [:votes] }).find(params[:id])
     if @question
       @question.update(views: @question.views + 1)
       render :show
@@ -21,7 +21,7 @@ class Api::QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    @question.asker_id = current_user.id
+    @question.author_id = current_user.id
     @question.editor_id = current_user.id
     
     if @question.save
@@ -63,7 +63,7 @@ class Api::QuestionsController < ApplicationController
   def destroy
     question = Question.find(params[:id])    
     if question      
-      if question.asker_id == current_user.id
+      if question.author_id == current_user.id
         question.destroy
         render json: question.id
       else

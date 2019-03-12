@@ -16,7 +16,7 @@ class Api::AnswersController < ApplicationController
       render json: ['Body cannot be blank'], status: 422
       return
     end
-    @answer.answerer_id = current_user.id
+    @answer.author_id = current_user.id
     @answer.editor_id = current_user.id
     @answer.question_id = params[:question_id]
     if @answer.save
@@ -33,7 +33,7 @@ class Api::AnswersController < ApplicationController
       return
     end
 
-    if current_user.id != @answer.answerer_id
+    if current_user.id != @answer.author_id
       render json: ["Cannot delete answers of other users."], status: 403
       return
     end

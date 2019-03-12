@@ -16,13 +16,13 @@ const mapStateToProps = (state, ownProps) => {
   const tags = ownProps.question.tagIds.map(tagId => (
     state.entities.tags[tagId]
   ));
-  const asker = state.entities.users[ownProps.question.askerId];
+  const author = state.entities.users[ownProps.question.authorId];
   const isLoggedIn = !!state.session.id;
-  const isAuthor = (state.session.id === asker.id);
+  const isAuthor = (state.session.id === author.id);
   return {
     tags: tags,
     comments: comments,
-    asker: asker,
+    author: author,
     isLoggedIn: isLoggedIn,
     isAuthor: isAuthor,
   };
@@ -107,7 +107,7 @@ class Question extends React.Component {
             </div>
             <div className="question-user">
               <Author
-                user={this.props.asker  }
+                user={this.props.author  }
                 verb="asked"
                 date={this.props.question.createdAt}
               />

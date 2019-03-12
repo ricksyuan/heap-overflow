@@ -3,7 +3,7 @@ module Commentable
   
   included do
     has_many :comments, as: :commentable, dependent: :destroy
-    has_many :commenters, through: :comments
+    has_many :comment_authors, through: :comments, source: :author
 
   end
   

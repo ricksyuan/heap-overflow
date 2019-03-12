@@ -5,7 +5,7 @@ else
     @questions.each do |question|
       json.set! question.id do
         json.id question.id
-        json.askerId question.asker_id
+        json.authorId question.author_id
         json.title question.title
         json.answerCount question.answers.length
         json.score question.score
@@ -23,8 +23,8 @@ if @questions.length == 0
 else
   json.users do
     @questions.each do |question|
-      json.set! question.asker.id do 
-        json.extract! question.asker, :id, :display_name
+      json.set! question.author.id do 
+        json.extract! question.author, :id, :display_name
       end
     end
   end

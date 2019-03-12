@@ -4,7 +4,7 @@ json.comment do
   json.id @comment.id
   json.commentableType @comment.commentable_type
   json.commentableId @comment.commentable_id
-  json.commenterId @comment.commenter_id
+  json.authorId @comment.author_id
   json.body @comment.body
   
   json.score @comment.score

@@ -1,6 +1,6 @@
 
 json.question do
-  json.extract! @question, :id, :asker_id, :title, :body, :score, :tag_ids, :answer_ids, :comment_ids
+  json.extract! @question, :id, :author_id, :title, :body, :score, :tag_ids, :answer_ids, :comment_ids
   if current_user
     current_user_vote = @question.votes.find_by(voter_id: current_user.id)  
     json.currentUserVote current_user_vote ? current_user_vote.vote_type : "none"
@@ -28,7 +28,7 @@ else
     @question.answers.each do |answer|
       json.set! answer.id do
         json.id answer.id
-        json.answererId answer.answerer_id
+        json.authorId answer.author_id
         json.questionId answer.question_id
         json.score answer.score
         json.body answer.body
@@ -52,7 +52,7 @@ json.comments do
       json.id comment.id
       json.commentableType comment.commentable_type
       json.commentableId comment.commentable_id
-      json.commenterId comment.commenter_id
+      json.authorId comment.author_id
       json.body comment.body
 
       json.score comment.score
@@ -70,7 +70,7 @@ json.comments do
         json.id comment.id
         json.commentableType comment.commentable_type
         json.commentableId comment.commentable_id
-        json.commenterId comment.commenter_id
+        json.authorId comment.author_id
         json.body comment.body
 
         json.score comment.score
@@ -88,21 +88,21 @@ if comment_count == 0
   json.comments({})
 end
 
-json.users do  
+json.users do
   
-  json.partial! "api/questions/user", user: @question.asker
+  json.partial! "api/questions/user", user: @question.author
 
-  @question.answerers.each do |answerer|
-    json.partial! "api/questions/user", user: answerer
+  @question.answer_authors.each do |author|
+    json.partial! "api/questions/user", user: author
   end
   
-  @question.commenters.each do |commenter|
-    json.partial! "api/questions/user", user: commenter
+  @question.comment_authors.each do |author|
+    json.partial! "api/questions/user", user: author
   end
 
   @question.answers.each do |answer|
     answer.comments.each do |comment|
-      json.partial! "api/questions/user", user: comment.commenter
+      json.partial! "api/questions/user", user: comment.author
     end
   end
 

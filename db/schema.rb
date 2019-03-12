@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_10_042713) do
+ActiveRecord::Schema.define(version: 2019_03_12_173831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
-    t.integer "answerer_id", null: false
+    t.integer "author_id", null: false
     t.integer "editor_id"
     t.integer "question_id", null: false
     t.string "body", null: false
@@ -24,26 +24,26 @@ ActiveRecord::Schema.define(version: 2019_03_10_042713) do
     t.datetime "updated_at", null: false
     t.boolean "accepted", default: false, null: false
     t.integer "score", default: 0
-    t.index ["answerer_id"], name: "index_answers_on_answerer_id"
+    t.index ["author_id"], name: "index_answers_on_author_id"
     t.index ["editor_id"], name: "index_answers_on_editor_id"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "commenter_id", null: false
+    t.integer "author_id", null: false
     t.string "commentable_type"
     t.bigint "commentable_id"
     t.string "body", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "score", default: 0
+    t.index ["author_id"], name: "index_comments_on_author_id"
     t.index ["body"], name: "index_comments_on_body"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
-    t.index ["commenter_id"], name: "index_comments_on_commenter_id"
   end
 
   create_table "questions", force: :cascade do |t|
-    t.integer "asker_id", null: false
+    t.integer "author_id", null: false
     t.integer "editor_id"
     t.integer "views", default: 0, null: false
     t.string "title", null: false
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_03_10_042713) do
     t.datetime "updated_at", null: false
     t.integer "answers_count", default: 0
     t.integer "score", default: 0
-    t.index ["asker_id"], name: "index_questions_on_asker_id"
+    t.index ["author_id"], name: "index_questions_on_author_id"
     t.index ["body"], name: "index_questions_on_body"
     t.index ["editor_id"], name: "index_questions_on_editor_id"
     t.index ["title"], name: "index_questions_on_title"

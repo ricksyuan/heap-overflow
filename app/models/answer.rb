@@ -3,7 +3,7 @@
 # Table name: answers
 #
 #  id          :bigint(8)        not null, primary key
-#  answerer_id :integer          not null
+#  author_id :integer          not null
 #  editor_id   :integer
 #  question_id :integer          not null
 #  body        :string           not null
@@ -21,7 +21,7 @@ class Answer < ApplicationRecord
   
   belongs_to :question, counter_cache: true
 
-  belongs_to :answerer,
+  belongs_to :author,
     class_name: :User
 
   belongs_to :editor,

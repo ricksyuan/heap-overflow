@@ -7,7 +7,7 @@ class Api::CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.commenter_id = current_user.id
+    @comment.author_id = current_user.id
     if @comment.save
       render :show
     else
@@ -22,7 +22,7 @@ class Api::CommentsController < ApplicationController
       return
     end
 
-    if current_user.id != @comment.commenter_id
+    if current_user.id != @comment.author_id
       render json: ["Not authorized to delete comments of other users"], status: 403
       return
     end

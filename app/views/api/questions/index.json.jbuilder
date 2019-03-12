@@ -3,7 +3,7 @@ json.questions do
   @questions.each do |question|
     json.set! question.id do
       json.id question.id
-      json.askerId question.asker_id
+      json.authorId question.author_id
       json.title question.title
       json.score question.score
       json.views question.views
@@ -17,7 +17,7 @@ end
 
 json.users do
   @questions.each do |question|
-    json.partial! "api/questions/user", user: question.asker
+    json.partial! "api/questions/user", user: question.author
   end
 end
 

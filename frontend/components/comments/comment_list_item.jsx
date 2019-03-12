@@ -7,11 +7,11 @@ import ReactMarkdown from 'react-markdown';
 import ErrorList from '../errors/error_list';
 
 const mapStateToProps = (state, ownProps) => {
-  const commenter = state.entities.users[ownProps.comment.commenterId];
+  const author = state.entities.users[ownProps.comment.authorId];
   const isLoggedIn = !!state.session.id;
-  const isAuthor = (state.session.id === commenter.id);
+  const isAuthor = (state.session.id === author.id);
   return {
-    commenter: commenter,
+    author: author,
     isLoggedIn: isLoggedIn,
     isAuthor: isAuthor,
     errors: state.errors.comments,
@@ -61,7 +61,7 @@ class CommentListItem extends React.Component {
   }
 
   render() {
-    const comment = `${this.props.comment.body} - ${this.props.commenter.displayName}`;
+    const comment = `${this.props.comment.body} - ${this.props.author.displayName}`;
     return (
       <li className="comment-list-item">
         <ErrorList errors={this.props.errors}/>

@@ -10,13 +10,13 @@ const mapStateToProps = (state, ownProps) => {
   const user = state.entities.users[userId] || {};
   const userQuestions = [];
   Object.values(state.entities.questions).forEach(question => {
-    if (question.askerId === userId) {
+    if (question.authorId === userId) {
       userQuestions.push(question);
     };
   });
   // Filter answers asked by the user. Then get question titles for those answers.
   const userAnswers = Object.values(state.entities.answers).filter(answer => {
-    return answer.answererId === userId
+    return answer.authorId === userId
   });
   const userAnswerQuestions = userAnswers.map(answer => {
     return state.entities.questions[answer.questionId];

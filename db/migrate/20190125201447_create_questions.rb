@@ -1,7 +1,7 @@
 class CreateQuestions < ActiveRecord::Migration[5.2]
   def change
     create_table :questions do |t|
-      t.integer :asker_id, null: false
+      t.integer :author_id, null: false
       t.integer :editor_id, null: false
       t.integer :views, null: false
       t.string :title, null: false

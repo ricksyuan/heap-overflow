@@ -11,12 +11,12 @@ def addVote(vote)
     when "up_vote"
       self.update(score: self.score + 1)
       if self.class == Question
-        self.asker.improveReputation(10)
+        self.author.improveReputation(10)
       end
     when "down_vote"
       self.update(score: self.score - 1)
       if self.class == Question
-        self.asker.loseReputation(10)
+        self.author.loseReputation(10)
       end
     else
       return

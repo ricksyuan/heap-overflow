@@ -78,45 +78,45 @@ CSV.foreach(File.join(__dir__, 'seed_questions.csv'), headers: true) do |questio
   # Id	PostTypeId	AcceptedAnswerId	ParentId	CreationDate	DeletionDate	Score	ViewCount	Body	OwnerUserId	OwnerDisplayName	LastEditorUserId	LastEditorDisplayName	LastEditDate	LastActivityDate	Title	Tags	AnswerCount	CommentCount	FavoriteCount	ClosedDate	CommunityOwnedDate
   id = question_row['Id'].to_i
   title = question_row['Title']
-  asker_id = question_row['OwnerUserId'].to_i
-  editor_id = asker_id
+  author_id = question_row['OwnerUserId'].to_i
+  editor_id = author_id
   views = question_row['ViewCount'].to_i
   body = question_row['Body']
   created_at = question_row['CreationDate']
   updated_at = question_row['LastEditDate']
   answers_count = question_row['AnswerCount'].to_i
   score = question_row['Score'].to_i
-  Question.create!(id: id, title: title, asker_id: asker_id, editor_id: editor_id, views: views, body: body, created_at: created_at, updated_at: updated_at, answers_count: answers_count, score: score)
+  Question.create!(id: id, title: title, author_id: author_id, editor_id: editor_id, views: views, body: body, created_at: created_at, updated_at: updated_at, answers_count: answers_count, score: score)
 end
 
 # Create answers
 CSV.foreach(File.join(__dir__, 'seed_answers.csv'), headers: true) do |answer_row|
   id = answer_row['Id'].to_i
   question_id = answer_row['ParentId'].to_i
-  answerer_id = answer_row['OwnerUserId'].to_i
-  answerer_id = default_user.id if answerer_id == 0
-  editor_id = answerer_id
+  author_id = answer_row['OwnerUserId'].to_i
+  author_id = default_user.id if author_id == 0
+  editor_id = author_id
   body = answer_row['Body']
   created_at = answer_row['CreationDate']
   updated_at = answer_row['LastEditDate']
   score = answer_row['Score'].to_i
-  Answer.create!(id: id, question_id: question_id, answerer_id: answerer_id, editor_id: editor_id, body: body, created_at: created_at, updated_at: updated_at, score: score)
+  Answer.create!(id: id, question_id: question_id, author_id: author_id, editor_id: editor_id, body: body, created_at: created_at, updated_at: updated_at, score: score)
 end
 
 def mapSeedFileToComments(seed_file, commentable_type, default_user)
   CSV.foreach(File.join(__dir__, seed_file), headers: true) do |comment_row|
     # Id	PostId	Score	Text	CreationDate	UserDisplayName	UserId
     id = comment_row['Id'].to_i
-    commenter_id = comment_row['UserId'].to_i
-    commenter = User.find_by(id: commenter_id)
-    commenter_id = default_user.id unless commenter
+    author_id = comment_row['UserId'].to_i
+    author = User.find_by(id: author_id)
+    author_id = default_user.id unless author
     commentable_type = commentable_type
     commentable_id = comment_row['PostId'].to_i
     body = comment_row['Text']
     created_at = comment_row['CreationDate']
     updated_at = created_at
     score = comment_row['Score'].to_i
-    Comment.create!(id: id, commenter_id: commenter_id, commentable_type: commentable_type, commentable_id: commentable_id, body: body, created_at: created_at, updated_at: updated_at, score: score)    
+    Comment.create!(id: id, author_id: author_id, commentable_type: commentable_type, commentable_id: commentable_id, body: body, created_at: created_at, updated_at: updated_at, score: score)    
   end
 end
 
