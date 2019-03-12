@@ -3,6 +3,16 @@
   width: 200px;
 }
 
+.author-display-name-link {
+  display: block;
+  font-size: 14px;
+  color: #07C;
+  &:hover {
+    color: #3af;
+  }
+}
+
+
 .reputation {
   font-weight: 700;
   font-size: 12px;

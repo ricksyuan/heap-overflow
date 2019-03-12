@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Gravatar from './gravatar';
 import moment from 'moment';
 import BadgeDisplay from './badge_display';
@@ -11,7 +12,9 @@ const Author = ({user, verb, date}) => {
     <div className="author">
       <p className="user-action-time">{verb} {day} at {time}</p>
       <Gravatar size={32} hash={user.emailHash} float={true}/>
-      <div>{user.displayName}</div>
+      <Link className="author-display-name-link" to={`/users/${user.id}/${user.displayName}`}>
+        {user.displayName}
+      </Link>
       <span className="post-reputation" title="reputation score">
         {user.reputation}
       </span>

@@ -86,11 +86,7 @@ class User < ApplicationRecord
 
   def loseReputation(amt)
     reputation = self.reputation
-    if amt > reputation
-      self.update(reputation: 0)
-    else
-      self.update(reputation: reputation - amt)
-    end
+    self.update(reputation: reputation - amt)
   end
 
 end

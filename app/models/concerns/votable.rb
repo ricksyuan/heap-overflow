@@ -10,14 +10,10 @@ def addVote(vote)
   case vote.vote_type
     when "up_vote"
       self.update(score: self.score + 1)
-      if self.class == Question
-        self.author.improveReputation(10)
-      end
+      self.author.improveReputation(10)
     when "down_vote"
       self.update(score: self.score - 1)
-      if self.class == Question
-        self.author.loseReputation(10)
-      end
+      self.author.loseReputation(10)
     else
       return
     end
@@ -27,8 +23,10 @@ def undoVote(vote)
   case vote.vote_type
     when "up_vote"
       self.update(score: self.score - 1)
+      self.author.loseReputation(10)
     when "down_vote"
       self.update(score: self.score + 1)
+      self.author.improveReputation(10)
     else
       return      
     end
