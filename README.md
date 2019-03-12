@@ -9,7 +9,8 @@ Q&A community for developers, inspired by Stack Overflow.
 + Answer a question - Share your knowledge and solutions with others
 + Comment on questions or answers - Knowledge and code evolve. Discussion through comments helps this
 + Vote on questions, answers, or comments - Curate post quality
-  - Voting immediately and persistantly affects the post owner's reputation.
+  - Voting immediately and persistantly affects the post owner's reputation
+  - Cannot vote on own posts
 + Search - Use the search bar to find the questions you have by tags or titles
 + Badges - Earn badges for milestones, for example, asking your first question
 + Reputation - Earn reputation in the community, for example, when someone upvotes your post

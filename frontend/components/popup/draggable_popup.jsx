@@ -43,13 +43,15 @@ class DraggablePopup extends React.Component {
           <span className="popup-title">{this.props.title}</span>
         </h2>
         
-        <p>{this.props.message}</p>
+        <p>{this.props.message1}</p>
 
-        <p>Setting up an account is free and open to everyone. Set up your account today and earn extra privileges like posting, commenting and voting.</p>
+        <p>{this.props.message2}</p>
 
-        <span className="popup-link-container">
-          <Link className="popup-signup-link" to="/signup">Sign up</Link> or <Link className="popup-login-link" to="/login">log in</Link>
-        </span>
+        {this.props.accountLinks &&
+          <span className="popup-link-container">
+            <Link className="popup-signup-link" to="/signup">Sign up</Link> or <Link className="popup-login-link" to="/login">log in</Link>
+          </span>
+        }
       </>
     );
   }

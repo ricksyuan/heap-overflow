@@ -43,10 +43,17 @@ class Answer extends React.Component {
     return (event) => {
       event.preventDefault();
       if (this.props.isLoggedIn) {
-        this.props.vote(voteType, 'Answer', this.props.answer.id);
+        if (this.props.isAuthor) {
+          this.props.openPopup({
+            name: 'VOTE_AUTHOR_ERROR',
+            clickCoordinate: { x: event.pageX, y: event.pageY },
+          });
+        } else {
+          this.props.vote(voteType, 'Answer', this.props.answer.id);
+        }
       } else {
         this.props.openPopup({
-          name: 'vote_error',
+          name: 'VOTE_ERROR',
           clickCoordinate: { x: event.pageX, y: event.pageY },
         });
       }

@@ -2,15 +2,24 @@
 #
 # Table name: users
 #
-#  id              :bigint(8)        not null, primary key
-#  email           :string           not null
-#  password_digest :string           not null
-#  session_token   :string           not null
-#  display_name    :string           not null
-#  reputation      :integer          default(0), not null
-#  photo_id        :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  id                :bigint(8)        not null, primary key
+#  email             :string           not null
+#  password_digest   :string           not null
+#  session_token     :string           not null
+#  display_name      :string           not null
+#  reputation        :integer          default(0), not null
+#  photo_id          :integer
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  last_access_date  :datetime
+#  website_url       :text
+#  profile_image_url :text
+#  about_me          :text
+#  views             :integer          default(0)
+#  up_votes          :integer          default(0)
+#  down_votes        :integer          default(0)
+#  email_hash        :string           not null
+#  location          :string
 #
 
 class User < ApplicationRecord

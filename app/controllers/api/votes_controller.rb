@@ -18,6 +18,13 @@ class Api::VotesController < ApplicationController
 
     new_vote = Vote.new(vote_type: vote_type, voter_id: voter_id, votable_type: votable_type, votable_id: votable_id)
     @votable = new_vote.votable
+
+    # Prevent author from voting on own posts
+    if voter_id == @votable.author.id
+      render json: ["Cannot vote on own post"], status: 403;
+      return
+    end
+
     existing_vote = Vote.find_by(voter_id: voter_id, votable_type: votable_type, votable_id: votable_id)
     if existing_vote.nil?
       new_vote.save!

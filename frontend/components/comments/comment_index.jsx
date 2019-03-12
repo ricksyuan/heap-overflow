@@ -38,7 +38,7 @@ class CommentIndex extends React.Component {
       this.setState({ showCommentField: true });
     } else {
       this.props.openPopup({
-        name: 'comment_error',
+        name: 'COMMENT_ERROR',
         clickCoordinate: {x: e.pageX, y: e.pageY},
       });
     }

@@ -39,7 +39,7 @@ class CommentListItem extends React.Component {
     } else {
       const clickCoordinate = { x: e.pageX, y: e.pageY };
       const popup = {
-        name: 'comment_error',
+        name: 'COMMENT_ERROR',
         clickCoordinate: clickCoordinate,
       };
       this.props.openPopup(popup);
@@ -48,16 +48,20 @@ class CommentListItem extends React.Component {
 
   handleUpvote(e) {
     if (this.props.isLoggedIn) {
-      this.props.vote('up_vote', 'Comment', this.props.comment.id);
+      if (this.props.isAuthor) {
+        this.props.openPopup({
+          name: 'VOTE_AUTHOR_ERROR',
+          clickCoordinate: { x: event.pageX, y: event.pageY },
+        });
+      } else {
+        this.props.vote('up_vote', 'Comment', this.props.comment.id);
+      }
     } else {
-      const clickCoordinate = { x: e.pageX, y: e.pageY };
-      const popup = {
-        name: 'vote_error',
-        clickCoordinate: clickCoordinate,
-      };
-      this.props.openPopup(popup);
+      this.props.openPopup({
+        name: 'VOTE_ERROR',
+        clickCoordinate: { x: event.pageX, y: event.pageY },
+      });
     }
-    
   }
 
   render() {

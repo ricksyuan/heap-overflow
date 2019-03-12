@@ -27,25 +27,31 @@ class Popup extends React.Component {
     if (!popup) {
       return null;
     }
-
+    
     let component;
     switch (popup.name) {
-      case 'question_error':
-        component = <p>question error</p>;
-        break;
-      case 'answer_error':
-        component = <p>answer error</p>;
-        break;
-      case 'comment_error':
+      case 'COMMENT_ERROR':
         component = <DraggablePopup
           title="Your feedback is appreciated!"
-          message="Commenting requires being signed in."
+          message1="Commenting requires being signed in."
+          message2="Setting up an account is free and open to everyone.Set up your account today and earn extra privileges like posting, commenting and voting."
+          accountLinks={true}
         />;
         break;
-      case 'vote_error':
+      case 'VOTE_ERROR':
         component = <DraggablePopup
           title="Thanks for the feedback!"
-          message="Voting requires being signed in."
+          message1="Voting requires being signed in."
+          message2="Setting up an account is free and open to everyone.Set up your account today and earn extra privileges like posting, commenting and voting."
+          accountLinks={true}
+        />;
+        break;
+      case 'VOTE_AUTHOR_ERROR':
+        component = <DraggablePopup
+          title="Thanks for the feedback!"
+          message1="You cannot vote on your own posts."
+          message2="Questions, answers, and comments can only be voted on users besides the original author."
+          accountLinks={false}
         />;
         break;
       default:

@@ -3,13 +3,14 @@
 # Table name: answers
 #
 #  id          :bigint(8)        not null, primary key
-#  author_id :integer          not null
+#  author_id   :integer          not null
 #  editor_id   :integer
 #  question_id :integer          not null
 #  body        :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  accepted    :boolean          default(FALSE), not null
+#  score       :integer          default(0)
 #
 
 class Answer < ApplicationRecord

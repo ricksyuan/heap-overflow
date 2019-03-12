@@ -2,14 +2,16 @@
 #
 # Table name: questions
 #
-#  id         :bigint(8)        not null, primary key
-#  author_id   :integer          not null
-#  editor_id  :integer
-#  views      :integer          default(0), not null
-#  title      :string           not null
-#  body       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id            :bigint(8)        not null, primary key
+#  author_id     :integer          not null
+#  editor_id     :integer
+#  views         :integer          default(0), not null
+#  title         :string           not null
+#  body          :string           not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  answers_count :integer          default(0)
+#  score         :integer          default(0)
 #
 
 class Question < ApplicationRecord
