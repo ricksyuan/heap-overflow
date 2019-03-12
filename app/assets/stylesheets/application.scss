@@ -75,6 +75,11 @@ input[type='submit'] {
 
 // Put additional imports after application wide styles
 
+
+// folders
+@import "question_page";
+@import "users";
+// files
 @import "page";
 @import "session";
 @import "top_questions";
@@ -82,12 +87,9 @@ input[type='submit'] {
 @import "popup";
 @import 'react-quill/dist/quill.snow';
 @import 'quill_overrides';
-@import "question_page";
-@import "user";
 @import "search_bar";
 @import "search_page";
 @import "tags_page";
-@import "users_index_page";
 @import "badges";
 @import "page_control";
 @import "errors";

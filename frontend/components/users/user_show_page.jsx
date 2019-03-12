@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchUserProfile } from '../../actions/user_actions';
-import { QuestionPanel, AnswerPanel } from './panels';
-import Gravatar from '../gravatar';
+import QuestionPanel from './panels/question_panel';
+import AnswerPanel from './panels/answer_panel';
+import AvatarCard from './avatar_card';
 
 const mapStateToProps = (state, ownProps) => {
   const userId = Number(ownProps.match.params.userId);
@@ -47,42 +48,22 @@ class UserShowPage extends React.Component {
       .then(() => this.setState({loaded: true}));
   }
 
-  
-
   render() {
     if (!this.state.loaded) return <></>;
-        
     return (
       <>
         <div className="user-show-page">
-          <div>
-            <Gravatar size={32} hash={this.props.user.emailHash} />
+          <div className="avatar-container">
+            <AvatarCard
+              reputation={this.props.user.reputation}
+              displayName={this.props.user.displayName}
+              hash={this.props.user.emailHash}
+            />
           </div>
-          <div>
-            Display Name: {this.props.user.displayName}
+          <div className="user-show-page-panels">
+            <QuestionPanel questions={this.props.userQuestions}/>
+            <AnswerPanel questions={this.props.userAnswerQuestions} />
           </div>
-          <div>
-            Reputation: {this.props.user.reputation}
-          </div>
-          <div>
-            Questions: {this.props.userQuestions.length}
-            {/* <QuestionPanel list={this.props.userQuestions}/> */}
-          </div>
-          <div>
-            Answers: {this.props.userAnswerQuestions.length}
-            {/* <AnswerPanel list={this.props.userAnswerQuestions} /> */}
-          </div>
-
-        {/* {this.props.user.displayName} */}
-          {/* Panels: */}
-          <div className="user-panels">
-            {/* Badges */}
-            {/* Answers */} {/* Reputation */}
-            {/* Questions */} {/* Tags */}
-            {/* Votes */}
-          </div>
-          
-          
         </div>
       </>
     );

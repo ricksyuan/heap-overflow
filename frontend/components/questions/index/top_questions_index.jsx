@@ -5,7 +5,7 @@ import { fetchAllQuestions } from '../../../actions/question_actions';
 import QuestionSummary from './question_summary';
 
 const mapStateToProps = (state) => {
-  const questions = Object.keys(state.entities.questions).map(id => state.entities.questions[id]);
+  const questions = Object.values(state.entities.questions);
   return {
     questions: questions,
   };
@@ -21,13 +21,22 @@ class TopQuestionsIndex extends React.Component {
   
   constructor(props) {
     super(props);
+    this.state = {
+      loaded: false,
+    }
   }
 
   componentDidMount() {
-    this.props.fetchAllQuestions();
+    this.props.fetchAllQuestions()
+      .then(() => this.setState({
+        loaded: true,
+      }));
   }
 
   render() {
+    if (!this.state.loaded) {
+      return <></>;
+    }
     const questionSummaries = this.props.questions.map(question => (
       <QuestionSummary key={question.id} question={question} />
     ));

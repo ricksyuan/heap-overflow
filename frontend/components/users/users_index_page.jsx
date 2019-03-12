@@ -51,10 +51,9 @@ class UsersIndexPage extends React.Component {
       <>
         <div className="users-index-page">
           <div className="users-index-page-content-header">
-            <h1 className="users-index-page-content-headline">Users Page</h1>
+            <h1 className="users-index-page-content-headline">Users</h1>
           </div>
           <div>
-            
             <UsersIndex page={this.props.page} users={this.props.users}/>
           </div>
         </div>

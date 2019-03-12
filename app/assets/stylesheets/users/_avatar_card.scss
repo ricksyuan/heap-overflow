@@ -1,0 +1,32 @@
+.avatar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.avatar-card {
+  // border: solid 1px red;
+  border: 1px solid #e4e6e8;
+  padding: 26px 22px 18px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: inset 0 10em 0 #eff0f1;
+}
+
+.avatar-card-display-name {
+  color: #0C0D0E;
+  font-size: 27px;
+  font-weight: 700;
+  margin: 6px;
+}
+
+.avatar-card-reputation-score {
+  font-size: 21px;
+  margin: 4px;
+}
+
+.avatar-card-reputation-number {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #6a737c;
+}
