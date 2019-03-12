@@ -80,17 +80,16 @@ class User < ApplicationRecord
     self.session_token ||= User.generate_session_token
   end
 
-  private
-
   def improveReputation(amt)
-    @reputation += amt
+    self.update(reputation: self.reputation + amt)
   end
 
   def loseReputation(amt)
-    if amt > self.reputation
-      @reputation = 0
+    reputation = self.reputation
+    if amt > reputation
+      self.update(reputation: 0)
     else
-      @reputation -= amt
+      self.update(reputation: reputation - amt)
     end
   end
 

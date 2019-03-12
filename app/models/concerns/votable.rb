@@ -9,9 +9,15 @@ module Votable
 def addVote(vote)
   case vote.vote_type
     when "up_vote"
-      update(score: self.score + 1)
+      self.update(score: self.score + 1)
+      if self.class == Question
+        self.asker.improveReputation(10)
+      end
     when "down_vote"
-      update(score: self.score - 1)
+      self.update(score: self.score - 1)
+      if self.class == Question
+        self.asker.loseReputation(10)
+      end
     else
       return
     end
@@ -20,9 +26,9 @@ end
 def undoVote(vote)
   case vote.vote_type
     when "up_vote"
-      update(score: self.score - 1)
+      self.update(score: self.score - 1)
     when "down_vote"
-      update(score: self.score + 1)
+      self.update(score: self.score + 1)
     else
       return      
     end
