@@ -1,5 +1,9 @@
 json.user do
   json.extract! @user, :id, :email_hash, :display_name, :reputation
+  json.badges(@user.badges) do |badge|
+    json.name badge.name
+    json.badgeType badge.badge_type
+  end
 end
 
 json.questions do

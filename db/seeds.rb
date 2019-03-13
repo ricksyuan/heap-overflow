@@ -16,6 +16,7 @@ Answer.delete_all
 Tagging.delete_all
 Vote.delete_all
 Comment.delete_all
+Badge.delete_all
 
 def mapSeedFiletoUsers(seed_file)
   CSV.foreach(File.join(__dir__, seed_file), headers: true) do |user_row|
@@ -57,7 +58,6 @@ mapSeedFiletoUsers('seed_users_for_question_comments.csv')
 mapSeedFiletoUsers('seed_users_for_answers.csv')
 mapSeedFiletoUsers('seed_users_for_answer_comments.csv')
 
-
 # Create demo user
 demo_user = User.create!(
   display_name: 'demouser',
@@ -72,7 +72,20 @@ default_user = User.create!(
   password: "password"
 )
 
-#  Create questions
+# Create badges
+CSV.foreach(File.join(__dir__, 'seed_badges_9000.csv'), headers: true) do |badge_row|
+  id = badge_row['Id'].to_i
+  name = badge_row['Name']
+  # class and type are reserved words in Rails
+  badge_type = badge_row['Class'].to_i
+  user_id = badge_row['UserId'].to_i
+  if user_id == 0
+    user_id = default_user.id
+  end
+  Badge.create!(id: id, user_id: user_id, name: name, badge_type: badge_type);
+end
+
+# # Create questions
 
 CSV.foreach(File.join(__dir__, 'seed_questions.csv'), headers: true) do |question_row|
   # Id	PostTypeId	AcceptedAnswerId	ParentId	CreationDate	DeletionDate	Score	ViewCount	Body	OwnerUserId	OwnerDisplayName	LastEditorUserId	LastEditorDisplayName	LastEditDate	LastActivityDate	Title	Tags	AnswerCount	CommentCount	FavoriteCount	ClosedDate	CommunityOwnedDate

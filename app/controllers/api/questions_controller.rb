@@ -10,7 +10,12 @@ class Api::QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.includes(:author, :answer_authors, :votes, { answers: [:votes] }).find(params[:id])
+    @question = Question.includes(
+      :votes,
+      {author: [:badges]},
+      {answers: [:votes, {author: [:badges]}]},
+      {comments: [:votes, {author: [:badges]}]},
+    ).find(params[:id])
     if @question
       @question.update(views: @question.views + 1)
       render :show

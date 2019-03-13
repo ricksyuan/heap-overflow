@@ -37,6 +37,7 @@ class User < ApplicationRecord
   has_many :answers, foreign_key: :author_id, dependent: :destroy
   has_many :comments, foreign_key: :author_id, dependent: :destroy
   has_many :votes, foreign_key: :voter_id, dependent: :destroy
+  has_many :badges, foreign_key: :user_id, dependent: :destroy
 
   # allows validation of password length without storing password in DB
   attr_reader :password

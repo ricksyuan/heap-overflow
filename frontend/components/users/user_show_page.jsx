@@ -50,6 +50,22 @@ class UserShowPage extends React.Component {
 
   render() {
     if (!this.state.loaded) return <></>;
+    let goldBadgeCount = 0
+    let silverBadgeCount = 0;
+    let bronzeBadgeCount = 0;
+    this.props.user.badges.forEach(badge => {
+      switch (badge.badgeType) {
+        case 1:
+          goldBadgeCount += 1;
+          break;
+        case 2:
+          silverBadgeCount += 1;
+          break;
+        case 3:
+          bronzeBadgeCount += 1;
+          break;
+      };
+    });
     return (
       <>
         <div className="user-show-page">
@@ -58,6 +74,9 @@ class UserShowPage extends React.Component {
               reputation={this.props.user.reputation}
               displayName={this.props.user.displayName}
               hash={this.props.user.emailHash}
+              goldBadgeCount={goldBadgeCount}
+              silverBadgeCount={silverBadgeCount}
+              bronzeBadgeCount={bronzeBadgeCount}
             />
           </div>
           <div className="user-show-page-panels">

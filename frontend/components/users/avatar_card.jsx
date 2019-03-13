@@ -8,7 +8,7 @@ const formatter = new Intl.NumberFormat('en-US', {
   style: 'decimal',
 });
 
-const AvatarCard = ({hash, displayName, reputation, badges}) => {
+const AvatarCard = ({hash, displayName, reputation, goldBadgeCount, silverBadgeCount, bronzeBadgeCount}) => {
   return (
     <>
       <div className='avatar-card'>
@@ -24,9 +24,9 @@ const AvatarCard = ({hash, displayName, reputation, badges}) => {
         </div>
         <div>
           <BadgeDisplay
-            goldCount="1"
-            silverCount="2"
-            bronzeCount="3"
+            goldBadgeCount={goldBadgeCount}
+            silverBadgeCount={silverBadgeCount}
+            bronzeBadgeCount={bronzeBadgeCount}
           />
         </div>
       </div>

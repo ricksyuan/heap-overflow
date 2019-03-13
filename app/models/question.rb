@@ -29,6 +29,7 @@ class Question < ApplicationRecord
   
   has_many :answers, dependent: :destroy
   has_many :answer_authors, through: :answers, source: :author
+  has_many :comment_authors, through: :comments, source: :author
     
   has_many :taggings
   has_many :tags, through: :taggings

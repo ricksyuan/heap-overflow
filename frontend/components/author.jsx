@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Gravatar from './gravatar';
 import moment from 'moment';
 import BadgeDisplay from './badge_display';
+import UserDash from './header/user_dash';
 
 const Author = ({user, verb, date}) => {
   const dateMoment = moment(date);
@@ -19,9 +20,9 @@ const Author = ({user, verb, date}) => {
         {user.reputation}
       </span>
       <BadgeDisplay
-        goldCount="1"
-        silverCount="2"
-        bronzeCount="3"
+        goldBadgeCount={user.badgeCounts["gold"]}
+        silverBadgeCount={user.badgeCounts["silver"]}
+        bronzeBadgeCount={user.badgeCounts["bronze"]}
       />
     </div>
   );

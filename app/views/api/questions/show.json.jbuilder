@@ -5,7 +5,6 @@ json.question do
     current_user_vote = @question.votes.find_by(voter_id: current_user.id)  
     json.currentUserVote current_user_vote ? current_user_vote.vote_type : "none"
   end
-  
 end
 
 if @question.tags.length == 0
@@ -89,7 +88,6 @@ if comment_count == 0
 end
 
 json.users do
-  
   json.partial! "api/questions/user", user: @question.author
 
   @question.answer_authors.each do |author|
