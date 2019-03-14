@@ -1,7 +1,7 @@
 class CreateAnswersTable < ActiveRecord::Migration[5.2]
   def change
     create_table :answers do |t|
-      t.integer :author_id, null: false
+      t.integer :answerer_id, null: false
       t.integer :editor_id
       t.integer :question_id, null: false
       t.boolean :accepted, null: false, default: false
