@@ -82,8 +82,8 @@ class User < ApplicationRecord
   end
 
   def email=(email)
-    self.email_hash ||= Digest::MD5.hexdigest(email)
     super(email)
+    self.email_hash ||= Digest::MD5.hexdigest(email)
   end 
 
   def ensure_session_token
