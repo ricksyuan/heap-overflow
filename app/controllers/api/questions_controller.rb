@@ -6,7 +6,10 @@ class Api::QuestionsController < ApplicationController
   ]
 
   def index
-    @questions = Question.all.includes(:author, :answers, :tags)
+    # n + 1 query in 234.2ms
+    # @questions = Question.all.includes(:author, :answers, :tags)
+    # 1 query in 67.4ms
+    @questions = Question.includes({author: [:badges]}, :answers, :tags).all
   end
 
   def show
@@ -30,12 +33,14 @@ class Api::QuestionsController < ApplicationController
     @question.editor_id = current_user.id
     
     if @question.save
+      # Create tags if necessary
       tag_string = params[:question][:tags]
       tags_array = tag_string.split
       tags_array.each do |tag_name|
         tag = Tag.find_or_create_by(name:tag_name)
         Tagging.find_or_create_by(question_id: @question.id, tag_id: tag.id)
       end
+      award_feature_badges
       render :show
     else
       render json: @question.errors.full_messages, status: 422

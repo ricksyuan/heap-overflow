@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUserProfile } from '../../actions/user_actions';
 import QuestionPanel from './panels/question_panel';
 import AnswerPanel from './panels/answer_panel';
+import BadgePanel from './panels/badge_panel';
 import AvatarCard from './avatar_card';
 
 const mapStateToProps = (state, ownProps) => {
@@ -82,6 +83,7 @@ class UserShowPage extends React.Component {
           <div className="user-show-page-panels">
             <QuestionPanel questions={this.props.userQuestions}/>
             <AnswerPanel questions={this.props.userAnswerQuestions} />
+            <BadgePanel badges={this.props.user.badges} />
           </div>
         </div>
       </>

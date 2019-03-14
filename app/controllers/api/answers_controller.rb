@@ -20,6 +20,7 @@ class Api::AnswersController < ApplicationController
     @answer.editor_id = current_user.id
     @answer.question_id = params[:question_id]
     if @answer.save
+      award_feature_badges
       render :show
     else
       render json: @answer.errors.full_messages, status: 422

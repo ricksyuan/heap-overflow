@@ -36,4 +36,45 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def award_feature_badges
+    # Award bronze badge if first question, comment, or answer
+    question_count = current_user.questions.count
+    answer_count = current_user.answers.count
+    comment_count = current_user.comments.count
+    vote_count = current_user.votes.count
+    met_conditions_count = 0
+
+    # Bronze badge
+    if question_count == 1 && !Badge.find_by(user_id: current_user.id, name: "First Question")
+      Badge.create!(user_id: current_user.id, badge_type: 3, name: "First Question");
+      met_conditions_count += 1
+    elsif question_count >= 1
+      met_conditions_count += 1
+    end
+    if answer_count == 1 && !Badge.find_by(user_id: current_user.id, name: "First Answer")
+      Badge.create!(user_id: current_user.id, badge_type: 3, name: "First Answer");
+      met_conditions_count += 1
+    elsif answer_count >= 1
+      met_conditions_count += 1
+    end
+    if comment_count == 1 && !Badge.find_by(user_id: current_user.id, name: "First Comment")
+      Badge.create!(user_id: current_user.id, badge_type: 3, name: "First Comment");
+      met_conditions_count += 1
+    elsif comment_count >= 1
+      met_conditions_count += 1
+    end
+    if vote_count == 1 && !Badge.find_by(user_id: current_user.id, name: "First Vote")
+      Badge.create!(user_id: current_user.id, badge_type: 3, name: "First Vote");
+      met_conditions_count += 1
+    elsif vote_count >= 1
+      met_conditions_count += 1
+    end
+    
+    # Silver badge
+    if met_conditions_count == 4 && !Badge.find_by(user_id: current_user.id, name: "Feature pro")
+      Badge.create!(user_id: current_user.id, badge_type: 2, name: "Feature pro");
+    end
+    
+  end
+
 end

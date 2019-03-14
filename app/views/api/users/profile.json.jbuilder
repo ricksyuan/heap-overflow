@@ -1,5 +1,7 @@
 json.user do
-  json.extract! @user, :id, :email_hash, :display_name, :reputation
+  # TODO: Is there a better way to sync badge_counts and badges?
+  # Always calculate badges counts on the front end?
+  json.extract! @user, :id, :email_hash, :display_name, :reputation, :badge_counts
   json.badges(@user.badges) do |badge|
     json.name badge.name
     json.badgeType badge.badge_type
@@ -21,10 +23,8 @@ json.questions do
   end
 end
 
-json.answers do
-  @answers.each do |answer|
-    json.set! answer.id do
-      json.extract! answer, :id, :author_id, :question_id
-    end
+json.answers(@answers) do |answer|
+  json.set! answer.id do
+    json.extract! answer, :id, :author_id, :question_id
   end
 end

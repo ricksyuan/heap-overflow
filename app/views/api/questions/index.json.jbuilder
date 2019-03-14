@@ -9,7 +9,6 @@ json.questions do
       json.views question.views
       json.tagIds question.tag_ids
       json.answerIds question.answer_ids
-      json.commentIds question.comments.ids
       json.createdAt question.created_at
     end
   end

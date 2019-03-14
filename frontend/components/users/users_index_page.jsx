@@ -27,7 +27,7 @@ class UsersIndexPage extends React.Component {
 
   componentDidMount() {
     // Default to first page if no page param
-    const pageNum = this.props.match.params.pageNum || 1;
+    const pageNum = this.props.match.params.pageNum;
     this.props.fetchAllUsers(pageNum).then(() => {
       this.setState({
         loaded: true,
@@ -36,7 +36,7 @@ class UsersIndexPage extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.page.pageNum !== this.props.match.params.pageNum) {
+    if (prevProps.page.pageNum && prevProps.page.pageNum !== this.props.match.params.pageNum) {
       this.props.fetchAllUsers(this.props.match.params.pageNum).then(() => {
         this.setState({
           loaded: true,

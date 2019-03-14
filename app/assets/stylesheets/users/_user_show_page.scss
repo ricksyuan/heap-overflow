@@ -7,7 +7,8 @@
   grid-template-rows: auto auto;
   grid-template-columns: 50% 50%;
   grid-template-areas: 
-    "questions answers";
+    "questions answers"
+    "badges votes";
   grid-column-gap: 10px;
 }
 
@@ -17,6 +18,31 @@
 
 .user-show-page-answer-panel {
    grid-area: answers;
+}
+
+.user-show-page-badge-panel {
+   grid-area: badges;
+}
+
+.user-show-page-gold-badge-text {
+  background-color: #fffae6;
+  padding: 4px 8px;
+  border: 1px solid #ece5c6;
+  border-radius: 2px;
+}
+
+.user-show-page-silver-badge-text {
+  background-color: #eaebec;
+  padding: 4px 8px;
+  border: 1px solid #dddee0;
+  border-radius: 2px;
+}
+
+.user-show-page-bronze-badge-text {
+  background-color: #f8e9dd;
+  padding: 4px 8px;
+  border: 1px solid #f0decb;
+  border-radius: 2px;
 }
 
 .user-show-page-panel-header {

@@ -12,9 +12,9 @@ const UserDash = ({currentUser}) => {
           {currentUser.reputation}
         </div>        
         <BadgeDisplay 
-          goldBadgeCount="1"
-          silverBadgeCount="2"
-          bronzeBadgeCount="3"
+          goldBadgeCount={currentUser.badgeCounts["gold"]}
+          silverBadgeCount={currentUser.badgeCounts["silver"]}
+          bronzeBadgeCount={currentUser.badgeCounts["bronze"]}
         />
       </Link>
     </div>

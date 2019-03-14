@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_13_140432) do
+ActiveRecord::Schema.define(version: 2019_03_13_212456) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,15 @@ ActiveRecord::Schema.define(version: 2019_03_13_140432) do
     t.index ["body"], name: "index_questions_on_body"
     t.index ["editor_id"], name: "index_questions_on_editor_id"
     t.index ["title"], name: "index_questions_on_title"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "session_token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_token"], name: "index_sessions_on_session_token"
+    t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
   create_table "taggings", force: :cascade do |t|

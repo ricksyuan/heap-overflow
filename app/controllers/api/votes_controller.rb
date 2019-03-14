@@ -37,6 +37,8 @@ class Api::VotesController < ApplicationController
       existing_vote.destroy
       @votable.undoVote(existing_vote)
     end
+    award_feature_badges
+    @votable.award_popular_post_badge
     render :vote
   end
 

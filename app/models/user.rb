@@ -99,4 +99,22 @@ class User < ApplicationRecord
     self.update(reputation: reputation - amt)
   end
 
+  def badge_counts
+    badge_counts = Hash.new
+    badge_counts["gold"] = 0
+    badge_counts["silver"] = 0
+    badge_counts["bronze"] = 0
+    self.badges.each do |badge|
+      case badge.badge_type
+      when 1
+        badge_counts["gold"] += 1
+      when 2
+        badge_counts["silver"] += 1
+      when 3
+        badge_counts["bronze"] += 1
+      end
+    end
+    badge_counts
+  end
+
 end
