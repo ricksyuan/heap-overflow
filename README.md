@@ -9,16 +9,15 @@ Q&A community for developers, inspired by Stack Overflow.
 ![Alt text](app/assets/images/readme/top_questions.png?raw=true "Top Questions")
 
 ## Features
-+ *Ask a question* - Get help on your coding problems from a community of users
-+ *Answer a question* - Share your knowledge and solutions with others
-+ *Comment* - Discuss posts and help make information relevant and accurate
-+ *Vote on posts* - Curate post quality and find concensus
++ *Q&A* - Use rich text editing to ask or answer coding questions in a community of users
++ *Comments* - Use markdown to discuss existing questions or answers and keep posts relevant and accurate 
++ *Vote* - Up vote helpful questions, answers, and comments written by other users. Downvote questions and answers that need improvement
 + *Search* - Filter questions by tags or title
-+ Reputation - Earn reputation in the community when someone votes on your post
-+ *Badges* - Earn badges for milestones, like asking your first question or having a popular post
++ *Reputation* - Receive/lose reputation in the community when other users upvote/downvote your post
++ *Badges* - Receive badges for milestones, such as asking your first question or having a popular post
 
 ## Technologies
-+ This project was built using React to allow for a dynamic user experience in the browser, Redux to manage front-end state, and Ruby on Rails on top of a Postgresql database to manage persistance.
++ This project was built using React, Redux, and Ruby on Rails on top of a Postgresql database.
 
 ## Code highlights
 Users can vote on questions, answers, and comments. This feature is implemented using a polymorphic association built off `votable_type` and `votable_id` columns in the `votes` database table. The association is kept DRY using concerns, simplifying the addition of features with complex interactions such as reputation and badges:
