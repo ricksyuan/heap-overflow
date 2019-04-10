@@ -7,7 +7,7 @@ import Answer from '../../answers/answer';
 import AnswerForm from '../../forms/answer_form';
 
 const mapStateToProps = (state, ownProps) => {
-  const question = state.entities.questions[ownProps.match.params.questionId]; //TODO: add empty values
+  const question = state.entities.questions[ownProps.match.params.questionId];
   let answers = [];
   if (question && question.answerIds) {
     question.answerIds.forEach(answerId => { 

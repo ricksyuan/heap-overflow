@@ -1,12 +1,5 @@
 import * as VoteAPIUtil from '../utils/vote_api_util';
 
-// TODO: Delete or simplify second implementation
-// File does two implementations for demonstration purposes:
-// 1) Not making type dynamic (applied to voting on answers only)
-//    - Uses corresponding controller (e.g. AnswerController) to handle votes
-// 2) Making type (ideally) dynamic (applied to voting on questions only. Should be generalizable to comments)
-//    - Uses VoteController to handle votes
-
 export const RECEIVE_QUESTION_VOTE = 'RECEIVE_QUESTION_VOTE';
 export const RECEIVE_ANSWER_VOTE = 'RECEIVE_ANSWER_VOTE';
 export const RECEIVE_COMMENT_VOTE = 'RECEIVE_COMMENT_VOTE';

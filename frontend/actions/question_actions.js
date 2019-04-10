@@ -26,7 +26,6 @@ export const receiveQuestion = (payload) => {
 };
 
 export const removeQuestion = (questionId) => {
-  // TODO: clean up additional state like tags
   return {
     type: REMOVE_QUESTION,
     questionId: questionId,

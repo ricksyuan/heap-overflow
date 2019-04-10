@@ -44,7 +44,6 @@ end
 
 comment_count = 0
 json.comments do
-  # TODO: Make partial
   @question.comments.each do |comment|
     json.set! comment.id do
       comment_count += 1

@@ -29,7 +29,7 @@ class Api::UsersController < ApplicationController
 
   # Modify user info
   def update        
-    @user = selected_user # selected_user is a private helper method
+    @user = selected_user
     if @user && user.update_atributes(user_params)
       render :user
     elsif !@user
@@ -69,8 +69,7 @@ class Api::UsersController < ApplicationController
       @user.destroy
       render :show
     else
-      # TODO: Update render message?
-      render ['Could not find user']
+      render ['Could not find user to destroy']
     end
   end
 

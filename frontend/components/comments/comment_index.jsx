@@ -71,7 +71,6 @@ class CommentIndex extends React.Component {
             <textarea className="comment-body-textarea" onChange={this.handleTextAreaChange} value={this.state.commentBody} placeholder='Use comments to ask for more information or suggest improvements. Avoid comments like "+1" or "thanks".'></textarea>
             <div className="comment-body-right-column">
               <input className="comment-body-submit primary-btn" type="submit" value="Add comment"/>
-              {/* TODO: Add help */}
             </div>
           </form>
         }        

@@ -6,9 +6,6 @@ class Api::QuestionsController < ApplicationController
   ]
 
   def index
-    # n + 1 query in 234.2ms
-    # @questions = Question.all.includes(:author, :answers, :tags)
-    # 1 query in 67.4ms
     @questions = Question.includes({author: [:badges]}, :answers, :tags).all
   end
 
@@ -56,8 +53,6 @@ class Api::QuestionsController < ApplicationController
       old_tags.each do |tag|
         tag.destroy
       end
-      # Destroy taggings not contained in updated question
-      # TODO: Fix
       tag_string = params[:question][:tags]
       tags_array = tag_string.split
       tags_array.each do |tag_name|
