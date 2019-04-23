@@ -2,7 +2,7 @@ import merge from 'lodash/merge';
 import { RECEIVE_USER_PROFILE, RECEIVE_ALL_USERS } from '../actions/user_actions';
 import { RECEIVE_ANSWER } from '../actions/answer_actions';
 import {
-  RECEIVE_ALL_QUESTIONS,
+  RECEIVE_QUESTIONS,
   RECEIVE_QUESTION,
 } from '../actions/question_actions';
 import { RECEIVE_SEARCH_RESULTS } from '../actions/search_actions';
@@ -15,7 +15,7 @@ const usersReducer = (state = {}, action) => {
       return merge({}, state, action.users);
     case RECEIVE_USER_PROFILE:
       return merge({}, state, { [action.user.id]: action.user } );
-    case RECEIVE_ALL_QUESTIONS:
+    case RECEIVE_QUESTIONS:
       return merge({}, state, action.users);
     case RECEIVE_SEARCH_RESULTS:
       return merge({}, state, action.users);

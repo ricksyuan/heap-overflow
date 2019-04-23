@@ -3,6 +3,7 @@ import LoginContainer from '../session/login_container';
 import SignupContainer from '../session/signup_container';
 import { AuthRoute, ProtectedRoute } from '../../utils/route_util';
 import { Switch, Route } from 'react-router';
+import AllQuestionsIndex from '../questions/index/all_questions_index';
 import TopQuestionsIndex from '../questions/index/top_questions_index';
 import AskQuestionForm from '../questions/create/ask_question_form';
 import QuestionPage from '../questions/show/question_page';
@@ -24,6 +25,7 @@ const Content = () => {
         <Route exact path="/users/:userId/:displayName" component={UserShowPage} />
       </Switch>
       <Switch>
+        <Route exact path="/questions" component={AllQuestionsIndex} />
         <ProtectedRoute exact path="/questions/ask" component={AskQuestionForm} />
         <Route exact path="/questions/:questionId" component={QuestionPage} />
       </Switch>

@@ -1,6 +1,6 @@
 import merge from 'lodash/merge';
 import {
-  RECEIVE_ALL_QUESTIONS,
+  RECEIVE_QUESTIONS,
   RECEIVE_QUESTION,
 } from '../actions/question_actions';
 import { RECEIVE_SEARCH_RESULTS, RECEIVE_SEARCH_ERRORS } from '../actions/search_actions';
@@ -11,7 +11,7 @@ const _nullTags = {};
 const tagReducer = (oldState = _nullTags, action) => {
   Object.freeze(oldState);
   switch (action.type) {
-    case RECEIVE_ALL_QUESTIONS:
+    case RECEIVE_QUESTIONS:
       return merge({}, oldState, action.tags);
     case RECEIVE_QUESTION:
       return merge({}, oldState, action.tags);

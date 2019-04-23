@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-class TopQuestionsIndex extends React.Component {
-  
+class AllQuestionsIndex extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -26,7 +26,7 @@ class TopQuestionsIndex extends React.Component {
   }
 
   componentDidMount() {
-    requestQuestions('NEWEST', 15, 1);
+    requestQuestions('NEWEST', 10, 1);
   }
 
   requestQuestions(sort, limit, page) {
@@ -47,14 +47,17 @@ class TopQuestionsIndex extends React.Component {
       <>
         <div className="top-questions-header">
           <h1 className="top-questions-headline">
-            Top Questions
+            All Questions
           </h1>
           <Link className="ask-question-link primary-btn" to={'/questions/ask'}>
             Ask Question
           </Link>
         </div>
-        
-        
+        <div>
+          <button>Newest</button>
+          <button>Votes</button>
+        </div>
+
         <ul>
           {questionSummaries}
         </ul>
@@ -63,4 +66,4 @@ class TopQuestionsIndex extends React.Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TopQuestionsIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(AllQuestionsIndex);

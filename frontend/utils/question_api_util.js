@@ -1,7 +1,12 @@
-export const fetchAllQuestions = () => {
+export const fetchQuestions = (sort, limit, page) => {
   return $.ajax({
     method: 'GET',
     url: '/api/questions',
+    data: {
+      sort,
+      limit,
+      page,
+    }
   });
 };
 

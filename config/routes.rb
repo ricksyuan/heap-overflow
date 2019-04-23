@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :badges, only: [:create]
     resources :questions, only: [:index, :show, :create, :update, :destroy] do
       member do
-        post 'upvote'         
+        post 'upvote'
         post 'downvote'
       end
       

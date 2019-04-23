@@ -1,17 +1,13 @@
 
-json.questions do
-  @questions.each do |question|
-    json.set! question.id do
-      json.id question.id
-      json.authorId question.author_id
-      json.title question.title
-      json.score question.score
-      json.views question.views
-      json.tagIds question.tag_ids
-      json.answerIds question.answer_ids
-      json.createdAt question.created_at
-    end
-  end
+json.questions(@questions) do |question|
+  json.id question.id
+  json.authorId question.author_id
+  json.title question.title
+  json.score question.score
+  json.views question.views
+  json.tagIds question.tag_ids
+  json.answerIds question.answer_ids
+  json.createdAt question.created_at
 end
 
 json.users do

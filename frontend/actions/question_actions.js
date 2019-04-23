@@ -1,13 +1,13 @@
 import * as QuestionAPIUtil from '../utils/question_api_util';
 
-export const RECEIVE_ALL_QUESTIONS = 'RECEIVE_ALL_QUESTIONS';
+export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const RECEIVE_QUESTION = 'RECEIVE_QUESTION';
 export const REMOVE_QUESTION = 'REMOVE_QUESTION';
 export const RECEIVE_QUESTION_ERRORS = 'RECEIVE_QUESTION_ERRORS';
 
-export const receiveAllQuestions = (payload) => {
+export const receiveQuestions = (payload) => {
   return {
-    type: RECEIVE_ALL_QUESTIONS,
+    type: RECEIVE_QUESTIONS,
     questions: payload.questions,
     users: payload.users,
     tags: payload.tags,
@@ -39,11 +39,11 @@ const receiveQuestionErrors = (errors) => {
   };
 };
 
-export const fetchAllQuestions = () => (dispatch) => {
-  return QuestionAPIUtil.fetchAllQuestions().then(
+export const fetchQuestions = (sort, limit, page) => (dispatch) => {
+  return QuestionAPIUtil.fetchQuestions(sort, limit, page).then(
     (payload) => {
-      return dispatch(receiveAllQuestions(payload));
-  });
+      return dispatch(receiveQuestions(payload));
+    });
 };
 
 export const fetchQuestion = (questionId) => (dispatch) => {

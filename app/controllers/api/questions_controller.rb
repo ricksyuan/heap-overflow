@@ -6,7 +6,18 @@ class Api::QuestionsController < ApplicationController
   ]
 
   def index
-    @questions = Question.includes({author: [:badges]}, :answers, :tags).all
+    num_questions = params[:limit].to_i || 10
+    sort_order = params[:sort] || 'NEWEST'
+    case sort_order
+    when 'NEWEST'
+      sort_criteria = 'created_at DESC'
+    when 'VOTES'
+      sort_criteria = 'score DESC'
+    else
+      sort_criteria = 'UNKNOWN'
+    end
+    page = params[:page]
+    @questions = Question.includes({author: [:badges]}, :answers, :tags).order(sort_criteria).limit(num_questions)
   end
 
   def show
