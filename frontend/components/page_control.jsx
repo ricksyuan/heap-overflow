@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PageControl = ({page}) => {
+const PageControl = ({page, urlBase}) => {
   const currentPage = Number(page.pageNum);
   const totalPages = Number(page.totalPages);
   let pages;
@@ -16,18 +16,18 @@ const PageControl = ({page}) => {
     if (index === 'spacer1' || index === 'spacer2') {
       return <div key={index} className="page-number-divider">...</div>;
     } else {
-      return <Link key={index} className={`page-number ${index === currentPage && 'page-number-current'}`} to={`/users/page/${index}`}>{index}</Link>;
+      return <Link key={index} className={`page-number ${index === currentPage && 'page-number-current'}`} to={`/${urlBase}/page/${index}`}>{index}</Link>;
     }
   });
     
   return (
     <div className="page-control">
       { currentPage > 1 && 
-        <Link className="page-number" to={`/users/page/${currentPage - 1}`}>prev</Link>
+        <Link className="page-number" to={`/${urlBase}/page/${currentPage - 1}`}>prev</Link>
       }
       { pageLinks }
       { currentPage < totalPages &&
-        <Link className="page-number" to={`/users/page/${currentPage + 1}`}>next</Link>
+        <Link className="page-number" to={`/${urlBase}/page/${currentPage + 1}`}>next</Link>
       }
     </div>
   );

@@ -26,3 +26,8 @@ json.tags do
     end
   end
 end
+
+json.page do
+  json.pageNum @page
+  json.totalPages @total_pages
+end

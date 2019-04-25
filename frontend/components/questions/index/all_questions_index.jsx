@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchQuestions } from '../../../actions/question_actions';
 import QuestionSummary from './question_summary';
+import PageControl from '../../page_control';
 
 const mapStateToProps = (state) => {
   return {
     questions: state.entities.questions,
+    page: state.ui.page,
   };
 };
 
@@ -26,7 +28,17 @@ class AllQuestionsIndex extends React.Component {
   }
 
   componentDidMount() {
-    requestQuestions('NEWEST', 10, 1);
+    this.requestQuestions('VOTES', 10, 1);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.page.pageNum && prevProps.page.pageNum !== this.props.match.params.pageNum) {
+      this.props.fetchQuestions(this.props.match.params.pageNum).then(() => {
+        this.setState({
+          loaded: true,
+        })
+      });
+    }
   }
 
   requestQuestions(sort, limit, page) {
@@ -34,6 +46,12 @@ class AllQuestionsIndex extends React.Component {
       .then(() => this.setState({
         loaded: true,
       }));
+  }
+
+  handleSort(sortType) {
+      return (event) => {
+        this.requestQuestions(sortType, 10, 1);
+      }
   }
 
   render() {
@@ -45,8 +63,8 @@ class AllQuestionsIndex extends React.Component {
     ));
     return (
       <>
-        <div className="top-questions-header">
-          <h1 className="top-questions-headline">
+        <div className="questions-index-header">
+          <h1 className="questions-index-headline">
             All Questions
           </h1>
           <Link className="ask-question-link primary-btn" to={'/questions/ask'}>
@@ -54,13 +72,16 @@ class AllQuestionsIndex extends React.Component {
           </Link>
         </div>
         <div>
-          <button>Newest</button>
-          <button>Votes</button>
+          <div className="sort-btns">
+            <button className="sort-btn newest-sort-btn sort-btn-selected" onClick={this.handleSort('NEWEST')}>Newest</button>
+            <button className="sort-btn votes-sort-btn" onClick={this.handleSort('VOTES')}>Votes</button>
+          </div>
         </div>
 
         <ul>
           {questionSummaries}
         </ul>
+          <PageControl page={this.props.page} urlBase="questions"/>
       </>
     );
   }

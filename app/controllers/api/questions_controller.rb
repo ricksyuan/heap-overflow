@@ -6,7 +6,7 @@ class Api::QuestionsController < ApplicationController
   ]
 
   def index
-    num_questions = params[:limit].to_i || 10
+    @limit = params[:limit].to_i || 10
     sort_order = params[:sort] || 'NEWEST'
     case sort_order
     when 'NEWEST'
@@ -16,8 +16,11 @@ class Api::QuestionsController < ApplicationController
     else
       sort_criteria = 'UNKNOWN'
     end
-    page = params[:page]
-    @questions = Question.includes({author: [:badges]}, :answers, :tags).order(sort_criteria).limit(num_questions)
+    @page = params[:page]
+    # @questions = Question.includes({author: [:badges]}, :answers, :tags).order(sort_criteria).limit(@limit)
+    # @questions = Question.paginate(page: @page, per_page: @limit)
+    @questions = Question.paginate(page: @page, per_page: @limit)
+    @total_pages = @questions.total_pages
   end
 
   def show

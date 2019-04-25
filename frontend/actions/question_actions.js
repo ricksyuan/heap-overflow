@@ -11,6 +11,7 @@ export const receiveQuestions = (payload) => {
     questions: payload.questions,
     users: payload.users,
     tags: payload.tags,
+    page: payload.page,
   };
 };
 

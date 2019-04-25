@@ -1,6 +1,6 @@
 import React from 'react';
 import UserInfoBox from './user_info_box';
-import PageControl from './page_control';
+import PageControl from '../page_control';
 
 class UsersIndex extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class UsersIndex extends React.Component {
         <div className="users-index-user-grid">
           {pageUserInfoBoxes}
         </div>
-        <PageControl page={page}/>
+        <PageControl page={page} urlBase="users"/>
       </>
     );
   }

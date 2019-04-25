@@ -25,7 +25,7 @@ const Content = () => {
         <Route exact path="/users/:userId/:displayName" component={UserShowPage} />
       </Switch>
       <Switch>
-        <Route exact path="/questions" component={AllQuestionsIndex} />
+        <Route exact path="/questions/page/:pageNum" component={AllQuestionsIndex} />
         <ProtectedRoute exact path="/questions/ask" component={AskQuestionForm} />
         <Route exact path="/questions/:questionId" component={QuestionPage} />
       </Switch>

@@ -26,7 +26,7 @@ class TopQuestionsIndex extends React.Component {
   }
 
   componentDidMount() {
-    requestQuestions('NEWEST', 15, 1);
+    this.requestQuestions('NEWEST', 15, 1);
   }
 
   requestQuestions(sort, limit, page) {
@@ -45,8 +45,8 @@ class TopQuestionsIndex extends React.Component {
     ));
     return (
       <>
-        <div className="top-questions-header">
-          <h1 className="top-questions-headline">
+        <div className="questions-index-header">
+          <h1 className="questions-index-headline">
             Top Questions
           </h1>
           <Link className="ask-question-link primary-btn" to={'/questions/ask'}>
