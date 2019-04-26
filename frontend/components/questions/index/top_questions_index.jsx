@@ -34,6 +34,7 @@ class TopQuestionsIndex extends React.Component {
       .then(() => this.setState({
         loaded: true,
       }));
+
   }
 
   render() {

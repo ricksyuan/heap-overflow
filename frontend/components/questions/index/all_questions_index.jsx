@@ -14,7 +14,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchQuestions: (sort, limit, page) => dispatch(fetchQuestions(sort, limit, page)),
+    fetchQuestions: (sortType, limit, page) => dispatch(fetchQuestions(sortType, limit, page)),
   };
 };
 
@@ -41,10 +41,11 @@ class AllQuestionsIndex extends React.Component {
     }
   }
 
-  requestQuestions(sort, limit, page) {
-    this.props.fetchQuestions(sort, limit, page)
+  requestQuestions(sortType, limit, page) {
+    this.props.fetchQuestions(sortType, limit, page)
       .then(() => this.setState({
         loaded: true,
+        sortType: sortType,
       }));
   }
 
@@ -73,8 +74,8 @@ class AllQuestionsIndex extends React.Component {
         </div>
         <div>
           <div className="sort-btns">
-            <button className="sort-btn newest-sort-btn sort-btn-selected" onClick={this.handleSort('NEWEST')}>Newest</button>
-            <button className="sort-btn votes-sort-btn" onClick={this.handleSort('VOTES')}>Votes</button>
+            <button className={`sort-btn votes-sort-btn ${this.state.sortType === 'VOTES' && 'sort-btn-selected'}`} onClick={this.handleSort('VOTES')}>Votes</button>
+            <button className={`sort-btn newest-sort-btn ${this.state.sortType === 'NEWEST' && 'sort-btn-selected'}`} onClick={this.handleSort('NEWEST')}>Newest</button>
           </div>
         </div>
 
