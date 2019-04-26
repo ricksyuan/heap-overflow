@@ -25,8 +25,6 @@ const questionsReducer = (oldState = _nullQuestions, action) => {
       return [];
     case RECEIVE_USER_PROFILE:
       return action.questions;
-    case LOGOUT_CURRENT_USER:
-      return _nullQuestions;
     default:
       return oldState;
   }

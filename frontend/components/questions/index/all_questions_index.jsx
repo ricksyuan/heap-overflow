@@ -24,24 +24,21 @@ class AllQuestionsIndex extends React.Component {
     super(props);
     this.state = {
       loaded: false,
+      limit: 10,
     }
   }
 
   componentDidMount() {
-    this.requestQuestions('VOTES', 10, 1);
+    this.handleQuestionsRequest('VOTES', this.state.limit, this.props.match.params.pageNum);
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.page.pageNum && prevProps.page.pageNum !== this.props.match.params.pageNum) {
-      this.props.fetchQuestions(this.props.match.params.pageNum).then(() => {
-        this.setState({
-          loaded: true,
-        })
-      });
+      this.handleQuestionsRequest(this.state.sortType, this.state.limit, this.props.match.params.pageNum);
     }
   }
 
-  requestQuestions(sortType, limit, page) {
+  handleQuestionsRequest(sortType, limit, page) {
     this.props.fetchQuestions(sortType, limit, page)
       .then(() => this.setState({
         loaded: true,
@@ -51,7 +48,7 @@ class AllQuestionsIndex extends React.Component {
 
   handleSort(sortType) {
       return (event) => {
-        this.requestQuestions(sortType, 10, 1);
+        this.handleQuestionsRequest(sortType, this.state.limit, this.props.page.currentPage);
       }
   }
 
@@ -82,7 +79,9 @@ class AllQuestionsIndex extends React.Component {
         <ul>
           {questionSummaries}
         </ul>
+        <div className="all-questions-page-control">
           <PageControl page={this.props.page} urlBase="questions"/>
+        </div>
       </>
     );
   }
