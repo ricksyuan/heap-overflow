@@ -12,10 +12,14 @@ class Api::UsersController < ApplicationController
         email: email,
         password: 'password'
       )
-      @user.save!
-      login!(@user)
-      render :user
-      return
+      if @user.save
+        login!(@user)
+        render :user
+        return 
+      else
+        render json: @user.errors.full_messages, status: 422
+      end
+
     end
     # normal sign in
     @user = User.new(user_params)
