@@ -24,7 +24,7 @@ class AllQuestionsIndex extends React.Component {
     super(props);
     this.state = {
       loaded: false,
-      limit: 10,
+      limit: 5,
     }
   }
 
@@ -48,7 +48,7 @@ class AllQuestionsIndex extends React.Component {
 
   handleSort(sortType) {
       return (event) => {
-        this.handleQuestionsRequest(sortType, this.state.limit, this.props.page.currentPage);
+        this.handleQuestionsRequest(sortType, this.state.limit, this.props.match.params.pageNum);
       }
   }
 
