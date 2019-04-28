@@ -6,20 +6,26 @@ json.user do
   end
 end
 
-json.questions do
-  @questions.each do |question|
-    json.set! question.id do
-      json.extract! question, :id, :title, :author_id, :score
-    end
-  end
 
-  @answers.each do |answer|
-    json.set! answer.question_id do
-      json.extract! answer.question, :id, :title, :author_id
-      json.answerScore answer.score
+if @questions.length == 0
+  json.questions({})
+else 
+  json.questions do
+    @questions.each do |question|
+      json.set! question.id do
+        json.extract! question, :id, :title, :author_id, :score
+      end
+    end
+
+    @answers.each do |answer|
+      json.set! answer.question_id do
+        json.extract! answer.question, :id, :title, :author_id
+        json.answerScore answer.score
+      end
     end
   end
 end
+
 
 json.answers(@answers) do |answer|
   json.set! answer.id do
