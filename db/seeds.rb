@@ -82,7 +82,6 @@ CSV.foreach(File.join(__dir__, 'seed_badges_4000.csv'), headers: true) do |badge
   if user_id == 0
     user_id = default_user.id
   end
-  
   Badge.create!(id: id, user_id: user_id, name: name, badge_type: badge_type);
 end
 
