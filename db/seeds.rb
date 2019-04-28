@@ -73,7 +73,7 @@ default_user = User.create!(
 )
 
 # Create badges
-CSV.foreach(File.join(__dir__, 'seed_badges_9000.csv'), headers: true) do |badge_row|
+CSV.foreach(File.join(__dir__, 'seed_badges_4000.csv'), headers: true) do |badge_row|
   id = badge_row['Id'].to_i
   name = badge_row['Name']
   # class and type are reserved words in Rails
