@@ -58,7 +58,7 @@ const questionReducer = (oldState = _nullQuestion, action) => {
     case REMOVE_QUESTION:
       return _nullQuestion;
     case RECEIVE_QUESTION_VOTE:
-      return merge({}, oldState, action.question);
+      return merge({}, oldState, Object.values(action.question)[0]);
     case RECEIVE_USER_PROFILE:
       return merge({}, oldState, action.questions);
     case LOGOUT_CURRENT_USER:

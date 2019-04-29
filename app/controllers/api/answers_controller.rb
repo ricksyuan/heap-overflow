@@ -3,8 +3,6 @@ class Api::AnswersController < ApplicationController
   before_action :require_logged_in, only: [
     :create,
     :destroy,
-    :downvote,
-    :upvote
   ]
 
   def create

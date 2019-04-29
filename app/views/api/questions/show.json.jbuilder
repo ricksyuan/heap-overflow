@@ -1,6 +1,6 @@
 
 json.question do
-  json.extract! @question, :id, :author_id, :title, :body, :score, :tag_ids, :answer_ids, :comment_ids
+  json.extract! @question, :id, :created_at, :author_id, :title, :body, :score, :tag_ids, :answer_ids, :comment_ids
   if current_user
     current_user_vote = @question.votes.find_by(voter_id: current_user.id)  
     json.currentUserVote current_user_vote ? current_user_vote.vote_type : "none"
@@ -27,6 +27,7 @@ else
     @question.answers.each do |answer|
       json.set! answer.id do
         json.id answer.id
+        json.createdAt answer.created_at
         json.authorId answer.author_id
         json.questionId answer.question_id
         json.score answer.score

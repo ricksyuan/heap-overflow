@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Question from './question';
 import Answer from '../../answers/answer';
 import AnswerForm from '../../forms/answer_form';
+import moment from 'moment';
 
 const mapStateToProps = (state, ownProps) => {
   const question = state.entities.question;
@@ -32,6 +33,7 @@ class QuestionPage extends React.Component {
     super(props);
     this.state = {
       loaded: false,
+      sortType: 'VOTES',
     };
   }
 
@@ -44,6 +46,15 @@ class QuestionPage extends React.Component {
     });
   }
 
+  handleSort(sortType) {
+    return (event) => {
+      console.log(`${sortType}  clicked`);
+      this.setState({
+        sortType: sortType,
+      }, () => {console.log(`state set to ${sortType}`)})
+    }
+  }
+
   render() {
     if (!this.state.loaded) {
       return <></>;
@@ -53,7 +64,15 @@ class QuestionPage extends React.Component {
       return <></>;
     }
     const question = this.props.question;
-    const answers = this.props.answers.map(answer => {
+    let answers;
+    if (this.state.sortType === 'VOTES') {
+      answers = this.props.answers.sort((answer1, answer2) => answer2.score - answer1.score);
+    } else if (this.state.sortType === 'NEWEST') {
+      answers = this.props.answers.sort((answer1, answer2) => moment.utc(answer2.createdAt).diff(moment.utc(answer1.createdAt)));
+    } else if (this.state.sortType === 'OLDEST') {
+      answers = this.props.answers.sort((answer1, answer2) => moment.utc(answer1.createdAt).diff(moment.utc(answer2.createdAt)));
+    }
+    answers = answers.map(answer => {
       return <Answer key={answer.id} answer={answer}/>;
     });
     return (
@@ -71,6 +90,11 @@ class QuestionPage extends React.Component {
           <div className="answers-container">
             <header className="answers-header">
               {answers.length} Answer{answers.length === 1  ? '' : 's'}
+              <div className="answer-sort-btns">
+                <button className={`answer-sort-btn ${this.state.sortType === 'VOTES' && 'answer-sort-btn-selected'}`} onClick={this.handleSort('VOTES')}>votes</button>
+                <button className={`answer-sort-btn ${this.state.sortType === 'NEWEST' && 'answer-sort-btn-selected'}`} onClick={this.handleSort('NEWEST')}>newest</button>
+                <button className={`answer-sort-btn ${this.state.sortType === 'OLDEST' && 'answer-sort-btn-selected'}`} onClick={this.handleSort('OLDEST')}>oldest</button>
+              </div>
             </header>
             <ul>
               {answers}
