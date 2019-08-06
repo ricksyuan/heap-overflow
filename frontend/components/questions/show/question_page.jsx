@@ -60,7 +60,7 @@ class QuestionPage extends React.Component {
       return <></>;
     }
 
-    if (!this.props.question) {
+    if (!Object.keys(this.props.question).length) {
       return <></>;
     }
     const question = this.props.question;
