@@ -275,7 +275,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pry-rails
   puma (~> 3.11)
-  rails (~> 5.2.2)
+  rails
   rails-controller-testing
   rspec-rails
   sass-rails (~> 5.0)
@@ -290,7 +290,7 @@ DEPENDENCIES
   will_paginate
 
 RUBY VERSION
-   ruby 2.6.1p33
+   ruby 2.6.3p62
 
 BUNDLED WITH
    1.17.2
